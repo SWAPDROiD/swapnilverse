@@ -1,0 +1,129 @@
+import React from "react";
+import {
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaStackOverflow,
+  FaYoutube,
+} from "react-icons/fa";
+import {
+  FACEBOOK,
+  GITHUB,
+  INSTAGRAM,
+  LINKEDIN,
+  STACKOVERFLOW,
+  YOUTUBE,
+} from "../constants/links";
+
+export const SOCIAL_LINKS = [
+  {
+    name: "LinkedIn",
+    url: LINKEDIN,
+    icon: FaLinkedin,
+    hoverColor: "hover:text-blue-500",
+  },
+  {
+    name: "GitHub",
+    url: GITHUB,
+    icon: FaGithub,
+    hoverColor: "hover:text-purple-400",
+  },
+  {
+    name: "StackOverflow",
+    url: STACKOVERFLOW,
+    icon: FaStackOverflow,
+    hoverColor: "hover:text-orange-500",
+  },
+  {
+    name: "Instagram",
+    url: INSTAGRAM,
+    icon: FaInstagram,
+    hoverColor: "hover:text-pink-500",
+  },
+  {
+    name: "Facebook",
+    url: FACEBOOK,
+    icon: FaFacebook,
+    hoverColor: "hover:text-blue-600",
+  },
+  {
+    name: "YouTube",
+    url: YOUTUBE,
+    icon: FaYoutube,
+    hoverColor: "hover:text-red-500",
+  },
+];
+
+const sizeClasses = {
+  sm: {
+    button: "p-1.5",
+    icon: "text-sm",
+  },
+  md: {
+    button: "p-2",
+    icon: "text-base",
+  },
+  lg: {
+    button: "p-3",
+    icon: "text-lg",
+  },
+};
+
+export default function SocialLinks({
+  size = "md",
+  variant = "default",
+  showTooltip = false,
+  className = "",
+}) {
+  const selectedSize = sizeClasses[size] || sizeClasses.md;
+  const isMinimal = variant === "minimal";
+  const wrapperClassName = `flex items-center gap-3 ${className}`.trim();
+
+  return (
+    <div className={wrapperClassName}>
+      {SOCIAL_LINKS.map(({ name, url, icon: Icon, hoverColor }) => {
+        const linkClassName = `
+          group
+          relative
+          inline-flex
+          items-center
+          justify-center
+          text-[#C7D2FE]
+          transition-all
+          duration-300
+          hover:scale-110
+          focus-visible:outline-none
+          focus-visible:ring-2
+          focus-visible:ring-white/40
+          ${selectedSize.button}
+          ${hoverColor}
+          ${
+            isMinimal
+              ? "bg-transparent border-none rounded-none backdrop-blur-0"
+              : "bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg"
+          }
+        `.replace(/\s+/g, " ").trim();
+
+        return (
+          <a
+            key={name}
+            href={url}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={name}
+            title={name}
+            className={linkClassName}
+          >
+            <Icon className={selectedSize.icon} aria-hidden="true" />
+            {showTooltip ? (
+              <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-white/10 bg-slate-900/95 px-2 py-1 text-xs text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
+                {name}
+              </span>
+            ) : null}
+          </a>
+        );
+      })}
+    </div>
+  );
+}

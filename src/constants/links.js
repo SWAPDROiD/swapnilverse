@@ -2,7 +2,7 @@
 export const LINKEDIN = 'https://www.linkedin.com/in/swapnil-nandapure-135129103/'
 export const GITHUB = 'https://github.com/swapdroid'
 export const ZENDESK = 'https://www.zendesk.com/in/'
-export const EMAIL = 'swapnil.s.nandapure@gmail.com'
+export const EMAIL = 'hireme.swapnil.dev@gmail.com'
 export const MAILTO = `mailto:${EMAIL}`
 export const PHONE = '+91-7276896530'
 export const TEL = 'tel:+917276896530'

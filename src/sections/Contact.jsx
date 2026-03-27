@@ -1,20 +1,15 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import { FaLinkedin, FaGithub, FaStackOverflow, FaInstagram, FaFacebook, FaYoutube } from "react-icons/fa";
+import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import {
-  LINKEDIN,
-  GITHUB,
-  STACKOVERFLOW,
-  INSTAGRAM,
-  FACEBOOK,
-  YOUTUBE,
   MAILTO,
   TEL,
   ZENDESK,
   EMAIL,
   PHONE,
 } from "../constants/links";
+import SocialLinks from "../common/SocialLinks";
 
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "";
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "";
@@ -100,7 +95,7 @@ export default function Contact() {
           from_name: form.name,
           from_email: form.email,
           message: `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`,
-          to_email: "swapnil.s.nandapure@gmail.com",
+          to_email: EMAIL,
         },
         PUBLIC_KEY,
       );
@@ -182,7 +177,7 @@ export default function Contact() {
         >
           {/* LEFT SIDE */}
           <motion.div className="space-y-4" variants={field}>
-            <p className="text-lg text-[#cbd5e1]">
+            <p className="mt-4 text-lg text-[#cbd5e1]">
               Open to full-time roles, freelance work, and collaborations.
             </p>
 
@@ -206,24 +201,47 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="mt-6 text-sm text-[#94A3B8] flex items-center gap-4">
-              <div>
-                Reach me directly at{" "}
-                <a href={MAILTO} className="text-white hover:underline">
-                  {EMAIL}
+            <div className="mt-8">
+              <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#94A3B8]">
+                Reach me directly
+              </p>
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a
+                  href={MAILTO}
+                  className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary">
+                    <FaEnvelope aria-hidden="true" />
+                  </span>
+                  <span className="flex flex-col">
+                    <span className="text-xs uppercase tracking-[0.16em] text-[#94A3B8]">
+                      Email
+                    </span>
+                    <span className="hover:underline">{EMAIL}</span>
+                  </span>
                 </a>
-              </div>
-              <div className="text-white/90">|</div>
-              <div>
-                <a href={TEL} className="text-white hover:underline">
-                  {PHONE}
+                <a
+                  href={TEL}
+                  className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary">
+                    <FaPhoneAlt aria-hidden="true" />
+                  </span>
+                  <span className="flex flex-col">
+                    <span className="text-xs uppercase tracking-[0.16em] text-[#94A3B8]">
+                      Phone
+                    </span>
+                    <span className="hover:underline">{PHONE}</span>
+                  </span>
                 </a>
               </div>
             </div>
+            
+            <SocialLinks size="lg" variant="default" showTooltip />
           </motion.div>
 
           {/* RIGHT SIDE - FORM */}
-          <motion.div variants={field} className="relative">
+          <motion.div variants={field} className="relative mt-4 lg:mt-6">
             <form
               onSubmit={submit}
               className="relative glass p-6 rounded-2xl backdrop-blur-md border border-white/6 shadow-lg"
