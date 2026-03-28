@@ -1,24 +1,8 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "@/styles/globals.css";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://swapnilverse.vercel.app";
-
-const themeScript = `
-  (function () {
-    try {
-      var saved = localStorage.getItem("theme");
-      var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      var theme = saved || (prefersDark ? "dark" : "light");
-      document.documentElement.classList.toggle("dark", theme === "dark");
-      document.documentElement.dataset.theme = theme;
-    } catch (error) {
-      document.documentElement.classList.add("dark");
-      document.documentElement.dataset.theme = "dark";
-    }
-  })();
-`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -70,11 +54,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark">
       <body className="bg-[var(--bg)] text-[var(--text)] antialiased">
-        <Script id="theme-script" strategy="beforeInteractive">
-          {themeScript}
-        </Script>
         {children}
       </body>
     </html>

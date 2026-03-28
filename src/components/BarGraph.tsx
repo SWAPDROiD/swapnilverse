@@ -67,7 +67,7 @@ export default function BarGraph({ data }: BarGraphProps) {
 
   if (!hasMounted) {
     return (
-      <div className="h-[400px] w-full rounded-2xl border border-white/8 bg-white/[0.03] p-4">
+      <div className="h-[400px] w-full rounded-2xl border border-gray-200 bg-white/70 p-4 dark:border-white/8 dark:bg-white/[0.03]">
         <div className="flex h-full items-end gap-3">
           {data.map((item) => (
             <div key={item.name} className="flex flex-1 flex-col items-center justify-end gap-3">
@@ -75,7 +75,7 @@ export default function BarGraph({ data }: BarGraphProps) {
                 className="w-full rounded-t-2xl opacity-70"
                 style={{ height: `${item.value * 3}px`, backgroundColor: item.color }}
               />
-              <span className="text-center text-[10px] text-slate-400">{item.name}</span>
+              <span className="text-center text-[10px] text-gray-500 dark:text-slate-400">{item.name}</span>
             </div>
           ))}
         </div>

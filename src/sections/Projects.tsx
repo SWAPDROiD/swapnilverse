@@ -88,14 +88,14 @@ export default function Projects() {
                       href={project.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-md bg-gradient-to-r from-primary to-secondary px-3 py-2 text-sm text-white"
+                      className="rounded-md bg-gradient-to-r from-indigo-500 to-purple-500 px-3 py-2 text-sm text-white shadow-md transition-all duration-300 ease-in-out hover:shadow-lg"
                     >
                       View Project
                     </a>
                     <button
                       type="button"
                       onClick={() => setOpenProject(project)}
-                      className="rounded-md border border-white/10 bg-transparent px-3 py-2 text-sm transition hover:bg-white/5"
+                      className="rounded-md border border-gray-300 bg-white/70 px-3 py-2 text-sm text-gray-700 transition-all duration-300 ease-in-out hover:bg-gray-100 dark:border-white/10 dark:bg-transparent dark:text-white dark:hover:bg-white/5"
                     >
                       View Details
                     </button>
@@ -121,7 +121,7 @@ export default function Projects() {
             <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
             <motion.div
               ref={modalRef}
-              className="glass relative z-10 mx-auto w-[94%] max-w-5xl overflow-hidden rounded-2xl border border-white/10 shadow-2xl"
+              className="glass relative z-10 mx-auto w-[94%] max-w-5xl overflow-hidden rounded-2xl border border-gray-200 shadow-2xl dark:border-white/10"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
@@ -136,7 +136,7 @@ export default function Projects() {
                 }}
               />
               <div className="relative z-10 max-h-[80vh] overflow-y-auto">
-                <div className="flex items-start justify-between gap-4 border-b border-white/10 p-6">
+                <div className="flex items-start justify-between gap-4 border-b border-gray-200 p-6 dark:border-white/10">
                   <div>
                     <h2 className="text-2xl font-bold text-slate-950 dark:text-white">
                       {openProject.details.fullTitle}
@@ -148,7 +148,7 @@ export default function Projects() {
                       {openProject.details.badges.map((badge) => (
                         <span
                           key={badge}
-                          className="rounded-full bg-white/10 px-2 py-1 text-xs text-slate-800 dark:text-white"
+                          className="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-700 dark:bg-white/10 dark:text-white"
                         >
                           {badge}
                         </span>
@@ -159,7 +159,7 @@ export default function Projects() {
                     type="button"
                     onClick={() => setOpenProject(null)}
                     aria-label="Close project details"
-                    className="rounded-md p-2 transition hover:bg-white/10"
+                    className="rounded-md p-2 transition hover:bg-gray-100 dark:hover:bg-white/10"
                   >
                     <svg className="h-5 w-5 text-slate-500 dark:text-slate-300" viewBox="0 0 24 24" fill="none">
                       <path
@@ -175,7 +175,7 @@ export default function Projects() {
 
                 <div className="space-y-6 p-6">
                   <div className="text-slate-700 dark:text-slate-300">
-                    <div className="mb-2 text-sm font-medium text-indigo-300">
+                    <div className="mb-2 text-sm font-medium text-indigo-600 dark:text-indigo-300">
                       {openProject.details.highlight}
                     </div>
                     <p className="leading-relaxed">{openProject.details.overview}</p>
@@ -207,7 +207,7 @@ export default function Projects() {
                       {openProject.details.tech.map((tech) => (
                         <span
                           key={tech}
-                          className="rounded-full bg-white/10 px-3 py-1 text-xs text-slate-800 dark:text-white"
+                          className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700 dark:bg-white/10 dark:text-white"
                         >
                           {tech}
                         </span>
@@ -224,7 +224,7 @@ export default function Projects() {
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="rounded-md bg-gradient-to-r from-indigo-500 to-pink-500 px-4 py-2 text-white transition hover:shadow-lg"
+                          className="rounded-md bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 text-white transition-all duration-300 ease-in-out hover:shadow-lg"
                         >
                           {link.label}
                         </a>

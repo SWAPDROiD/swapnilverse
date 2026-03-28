@@ -34,14 +34,14 @@ export default function About() {
             transition={{ staggerChildren: 0.12 }}
             className="grid gap-6 md:grid-cols-3"
           >
-            <motion.div variants={card} className="glass rounded-lg p-6">
+            <motion.div variants={card} className="glass rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-md">
               <div className="text-3xl font-bold text-slate-950 dark:text-white">20+</div>
               <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">
                 Applications Delivered
               </div>
             </motion.div>
 
-            <motion.div variants={card} className="glass rounded-lg p-6">
+            <motion.div variants={card} className="glass rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-md">
               <div className="font-semibold text-slate-950 dark:text-white">
                 Healthcare, Banking, CRM &amp; E-commerce Expertise
               </div>
@@ -50,7 +50,7 @@ export default function About() {
               </div>
             </motion.div>
 
-            <motion.div variants={card} className="glass rounded-lg p-6">
+            <motion.div variants={card} className="glass rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-md">
               <div className="font-semibold text-slate-950 dark:text-white">
                 Currently at{" "}
                 <a
@@ -81,14 +81,14 @@ export default function About() {
               onClick={() => setIsAboutModalOpen(true)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              className="relative inline-flex cursor-pointer items-center gap-3 rounded-full px-6 py-3 text-sm font-medium"
+              className="relative inline-flex cursor-pointer items-center gap-3 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 ease-in-out"
               style={{
                 background:
                   "linear-gradient(90deg, rgba(99,102,241,0.06), rgba(124,58,237,0.06))",
-                border: "1px solid rgba(255,255,255,0.06)",
+                border: "1px solid rgba(209,213,219,0.9)",
               }}
             >
-              <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text font-semibold text-transparent">
+              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text font-semibold text-transparent">
                 Get to know me
               </span>
               <svg className="h-4 w-4 text-slate-700 dark:text-white/80" viewBox="0 0 24 24" fill="none">

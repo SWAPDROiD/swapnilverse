@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { RESUME_URL } from "@/constants/links";
 
 const float = {
   animate: { y: [0, -10, 0], rotate: [0, 2, 0] },
@@ -25,10 +26,10 @@ export default function Hero() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="mb-4 text-sm text-slate-500 dark:text-slate-400">
+            <div className="mb-4 text-sm text-gray-500 dark:text-slate-400">
               Pune, Maharashtra, India
             </div>
-            <h1 className="text-4xl font-extrabold text-slate-950 dark:text-white md:text-5xl">
+            <h1 className="text-4xl font-extrabold tracking-wide text-gray-900 dark:text-white md:text-5xl">
               Swapnil Nandapure
             </h1>
 
@@ -48,10 +49,10 @@ export default function Hero() {
               />
             </a>
 
-            <p className="mt-2 font-semibold text-primary">
+            <p className="mt-2 font-semibold text-indigo-500 dark:text-primary">
               Designing and engineering resilient, scalable systems for modern digital products.
             </p>
-            <p className="mt-4 max-w-xl text-slate-600 dark:text-slate-400">
+            <p className="mt-4 max-w-xl leading-relaxed text-gray-700 dark:text-slate-400">
               I love designing and building digital products that solve real problems and make
               people&apos;s lives easier. Blending creativity with technology, I create scalable
               experiences across Banking, Healthcare, CRM, and E-commerce.
@@ -61,20 +62,22 @@ export default function Hero() {
               <button
                 type="button"
                 onClick={() => scrollToSection("projects")}
-                className="rounded-full bg-gradient-to-r from-primary to-secondary px-4 py-2 text-white transition-transform duration-300 hover:scale-105"
+                className="rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
               >
                 View Projects
               </button>
               <button
                 type="button"
                 onClick={() => scrollToSection("contact")}
-                className="rounded-full border border-white/10 px-4 py-2 text-sm transition hover:bg-white/5"
+                className="rounded-full border border-gray-300 px-4 py-2 text-sm text-gray-700 transition-all duration-300 ease-in-out hover:bg-gray-100 dark:border-white/10 dark:text-white dark:hover:bg-white/5"
               >
                 Contact Me
               </button>
               <a
-                href="/resume.pdf"
-                className="rounded-full border border-white/10 px-4 py-2 text-sm transition hover:bg-white/5"
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-gray-300 px-4 py-2 text-sm text-gray-700 transition-all duration-300 ease-in-out hover:bg-gray-100 dark:border-white/10 dark:text-white dark:hover:bg-white/5"
               >
                 Download Resume
               </a>
@@ -94,7 +97,7 @@ export default function Hero() {
                 style={{
                   background: "linear-gradient(90deg,#6366F1, #8B5CF6, #06B6D4)",
                   filter: "blur(30px)",
-                  opacity: 0.6,
+                  opacity: 0.28,
                 }}
               />
               <motion.div {...float} className="relative">
@@ -104,7 +107,7 @@ export default function Hero() {
                   width={384}
                   height={384}
                   priority
-                  className="h-72 w-72 rounded-full border-4 border-white/10 object-cover md:h-96 md:w-96"
+                  className="h-72 w-72 rounded-full border-4 border-white/70 object-cover shadow-[0_0_40px_rgba(99,102,241,0.15)] dark:border-white/10 md:h-96 md:w-96"
                 />
               </motion.div>
             </div>

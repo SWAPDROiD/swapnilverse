@@ -74,19 +74,19 @@ export default function SocialLinks({
           inline-flex
           items-center
           justify-center
-          text-slate-300
+          text-gray-600
           transition-all
           duration-300
           hover:scale-110
           focus-visible:outline-none
           focus-visible:ring-2
-          focus-visible:ring-white/40
+          focus-visible:ring-indigo-300
           ${selectedSize.button}
           ${hoverColor}
           ${
             isMinimal
-              ? "bg-transparent border-none rounded-none backdrop-blur-0"
-              : "bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg"
+              ? "bg-transparent border-none rounded-none backdrop-blur-0 dark:text-slate-300"
+              : "rounded-lg border border-gray-200 bg-white/70 backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:text-slate-300"
           }
         `.replace(/\s+/g, " ").trim();
 
@@ -102,7 +102,7 @@ export default function SocialLinks({
           >
             <Icon className={selectedSize.icon} aria-hidden="true" />
             {showTooltip ? (
-              <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-white/10 bg-slate-900/95 px-2 py-1 text-xs text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
+              <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-gray-200 bg-white/95 px-2 py-1 text-xs text-gray-800 opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 dark:border-white/10 dark:bg-slate-900/95 dark:text-white">
                 {name}
               </span>
             ) : null}

@@ -193,7 +193,7 @@ export default function Contact() {
               Open to full-time roles, freelance work, and collaborations.
             </p>
 
-            <div className="mt-4 flex flex-wrap gap-3">
+            <div className="mt-4 mb-4 flex flex-wrap gap-3">
               <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-sm">
                 10+ Years Experience
               </div>
@@ -213,8 +213,8 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="mt-8">
-              <p className="mb-3 mt-4 text-sm font-medium uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+            <div className="mt-8 pt-4">
+              <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
                 Reach me directly
               </p>
               <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">

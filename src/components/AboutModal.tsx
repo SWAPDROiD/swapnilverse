@@ -55,7 +55,7 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
             role="dialog"
             aria-modal="true"
             aria-labelledby="about-modal-title"
-            className="glass relative z-10 mx-auto max-h-[88vh] w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-slate-950/40"
+            className="glass relative z-10 mx-auto max-h-[88vh] w-full max-w-5xl overflow-hidden rounded-3xl border border-gray-200 shadow-2xl shadow-slate-300/50 dark:border-white/10 dark:shadow-slate-950/40"
             initial={{ opacity: 0, scale: 0.94, y: 18 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 12 }}
@@ -71,14 +71,14 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
             />
 
             <div className="relative z-10 max-h-[88vh] overflow-y-auto scroll-smooth">
-              <div className="flex items-start justify-between gap-4 border-b border-white/10 p-5 md:p-7">
+              <div className="flex items-start justify-between gap-4 border-b border-gray-200 p-5 md:p-7 dark:border-white/10">
                 <div>
-                  <p className="text-xs font-medium uppercase tracking-[0.28em] text-indigo-300/80">
+                  <p className="text-xs font-medium uppercase tracking-[0.28em] text-indigo-600/80 dark:text-indigo-300/80">
                     Get to know me
                   </p>
                   <h2
                     id="about-modal-title"
-                    className="mt-3 bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 bg-clip-text text-3xl font-bold text-transparent md:text-4xl"
+                    className="mt-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-3xl font-bold text-transparent md:text-4xl"
                   >
                     Welcome to my little corner of the internet!
                   </h2>
@@ -88,34 +88,34 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
                   type="button"
                   onClick={onClose}
                   aria-label="Close about modal"
-                  className="rounded-full border border-white/10 bg-white/[0.04] p-2 text-slate-300 transition hover:scale-105 hover:bg-white/[0.08] hover:text-white"
+                  className="rounded-full border border-gray-200 bg-white/70 p-2 text-gray-600 transition hover:scale-105 hover:bg-gray-100 hover:text-gray-900 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300 dark:hover:bg-white/[0.08] dark:hover:text-white"
                 >
                   <FiX className="h-5 w-5" />
                 </button>
               </div>
 
-              <div className="space-y-8 p-5 text-slate-300 md:p-7">
+              <div className="space-y-8 p-5 text-gray-700 md:p-7 dark:text-slate-300">
                 <section className="space-y-5">
-                  <p className="leading-8 text-slate-300/95">
+                  <p className="leading-8 text-gray-700 dark:text-slate-300/95">
                     👋🏻 Hi friends, My name is Swapnil. I was born and raised in{" "}
                     <a
                       href="https://www.google.com/maps/place/Nagpur,+Maharashtra/data=!4m2!3m1!1s0x3bd4c0a5a31faf13:0x19b37d06d0bb3e2b?sa=X&ved=1t:242&ictx=111"
                       target="_blank"
                       rel="noreferrer"
-                      className="font-medium text-indigo-200 underline decoration-indigo-300/50 underline-offset-4 transition hover:text-white"
+                      className="font-medium text-indigo-600 underline decoration-indigo-400/50 underline-offset-4 transition hover:text-purple-600 dark:text-indigo-200 dark:decoration-indigo-300/50 dark:hover:text-white"
                     >
                       Nagpur, Maharashtra, India
                     </a>
                     .
                   </p>
 
-                  <p className="leading-8 text-slate-300/95">
+                  <p className="leading-8 text-gray-700 dark:text-slate-300/95">
                     As a kid, I always wanted to be an artist. I just could not
                     wait for the art classes to start when I was in school. I
                     used to spend my weekends sketching, painting, and dancing.
                   </p>
 
-                  <p className="leading-8 text-slate-300/95">
+                  <p className="leading-8 text-gray-700 dark:text-slate-300/95">
                     After graduating with a Bachelor of Information Technology
                     degree, I started my career in a Nagpur-based company
                     located in MIHAN. Later, I got an opportunity to work with
@@ -124,7 +124,7 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
                       href="https://www.google.com/maps/place/Pune,+Maharashtra/data=!4m2!3m1!1s0x3bc2bf2e67461101:0x828d43bf9d9ee343?sa=X&ved=1t:242&ictx=111"
                       target="_blank"
                       rel="noreferrer"
-                      className="font-medium text-indigo-200 underline decoration-indigo-300/50 underline-offset-4 transition hover:text-white"
+                      className="font-medium text-indigo-600 underline decoration-indigo-400/50 underline-offset-4 transition hover:text-purple-600 dark:text-indigo-200 dark:decoration-indigo-300/50 dark:hover:text-white"
                     >
                       Pune, Maharashtra, India
                     </a>
@@ -132,32 +132,32 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
                   </p>
                 </section>
 
-                <div className="border-t border-white/10" />
+                <div className="border-t border-gray-200 dark:border-white/10" />
 
                 <section className="space-y-5">
                   <div className="flex items-center gap-2">
-                    <FiMapPin className="h-5 w-5 text-indigo-300" />
-                    <h3 className="text-2xl font-semibold text-white">
+                    <FiMapPin className="h-5 w-5 text-indigo-600 dark:text-indigo-300" />
+                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
                       How do I stay occupied?
                     </h3>
                   </div>
-                  <p className="max-w-3xl leading-8 text-slate-400">
+                  <p className="max-w-3xl leading-8 text-gray-500 dark:text-slate-400">
                     A healthy mix of coding, mentoring, learning, and DIY
                     projects keeps me energized and curious.
                   </p>
                   <BarGraph data={chartData} />
                 </section>
 
-                <div className="border-t border-white/10" />
+                <div className="border-t border-gray-200 dark:border-white/10" />
 
                 <section className="space-y-4">
-                  <p className="leading-8 text-slate-300/95">
+                  <p className="leading-8 text-gray-700 dark:text-slate-300/95">
                     I&apos;m currently a Senior Software Engineer at{" "}
                     <a
                       href="https://www.zendesk.com/in/"
                       target="_blank"
                       rel="noreferrer"
-                      className="font-medium text-indigo-200 underline decoration-indigo-300/50 underline-offset-4 transition hover:text-white"
+                      className="font-medium text-indigo-600 underline decoration-indigo-400/50 underline-offset-4 transition hover:text-purple-600 dark:text-indigo-200 dark:decoration-indigo-300/50 dark:hover:text-white"
                     >
                       Zendesk
                     </a>
@@ -172,7 +172,7 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
                     by design.
                   </p>
 
-                  <p className="leading-8 text-slate-300/95">
+                  <p className="leading-8 text-gray-700 dark:text-slate-300/95">
                     Outside of work, I enjoy traveling to new places, exploring
                     different experiences, spending time with friends, and
                     making the most of life with my wife and son — because for

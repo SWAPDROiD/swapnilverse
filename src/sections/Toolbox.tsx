@@ -11,9 +11,10 @@ const sectionVariants: Variants = {
 };
 
 const linkClass =
-  "text-pink-400 underline transition duration-300 hover:text-purple-400";
+  "text-indigo-600 underline transition duration-300 hover:text-purple-600 dark:text-pink-400 dark:hover:text-purple-400";
 
-const codeClass = "rounded bg-gray-800 px-1 py-0.5 text-sm text-purple-300";
+const codeClass =
+  "rounded bg-gray-100 px-1 py-0.5 text-sm text-purple-600 dark:bg-gray-800 dark:text-purple-300";
 
 export default function Toolbox() {
   const [open, setOpen] = useState(false);
@@ -74,14 +75,14 @@ export default function Toolbox() {
                 type="button"
                 onClick={openModal}
                 whileHover={{ scale: 1.05 }}
-                className="relative inline-flex cursor-pointer items-center gap-3 rounded-full px-6 py-3 text-sm font-medium"
+                className="relative inline-flex cursor-pointer items-center gap-3 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 ease-in-out"
                 style={{
                   background:
                     "linear-gradient(90deg, rgba(99,102,241,0.06), rgba(124,58,237,0.06))",
-                  border: "1px solid rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(209,213,219,0.9)",
                 }}
               >
-                <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text font-semibold text-transparent">
+                <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text font-semibold text-transparent">
                   View my toolbox
                 </span>
                 <svg className="h-4 w-4 text-slate-700 dark:text-white/80" viewBox="0 0 24 24" fill="none">
@@ -150,13 +151,13 @@ export default function Toolbox() {
           >
             <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
             <motion.div
-              className="glass relative z-10 mx-auto w-[92%] max-w-3xl overflow-hidden rounded-2xl border border-white/10 shadow-2xl"
+              className="glass relative z-10 mx-auto w-[92%] max-w-3xl overflow-hidden rounded-2xl border border-gray-200 shadow-2xl dark:border-white/10"
               initial={{ scale: 0.98, y: 8 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.98, y: 8 }}
               transition={{ duration: 0.18 }}
             >
-              <div className="flex items-center justify-between border-b border-white/10 p-5">
+              <div className="flex items-center justify-between border-b border-gray-200 p-5 dark:border-white/10">
                 <div>
                   <h2 className="text-xl font-semibold text-slate-950 dark:text-white">
                     What are my weapons?
@@ -184,12 +185,12 @@ export default function Toolbox() {
               </div>
 
               <div className="max-h-[70vh] overflow-y-auto p-6">
-                <div className="mx-auto max-w-4xl space-y-6 text-gray-300">
+                <div className="mx-auto max-w-4xl space-y-6 text-gray-700 dark:text-gray-300">
                   <h1 className="mb-4 text-3xl font-bold text-slate-950 dark:text-white">
                     What are my weapons?
                   </h1>
 
-                  <p className="leading-relaxed text-gray-400">
+                  <p className="leading-relaxed text-gray-500 dark:text-gray-400">
                     I love discovering new tools and resources that can power my productivity.
                     Here&apos;s a peek into the tools and technologies that I use and recommend. If
                     you know a pro tip, I&apos;m all ears!
@@ -197,7 +198,7 @@ export default function Toolbox() {
 
                   <div>
                     <h3 className="mb-2 text-xl font-semibold text-purple-400">Tech</h3>
-                    <ul className="list-inside list-disc space-y-3 text-gray-300">
+                    <ul className="list-inside list-disc space-y-3 text-gray-700 dark:text-gray-300">
                       <li>
                         <a
                           href="https://react.dev/"
@@ -316,11 +317,11 @@ export default function Toolbox() {
 
                   <div>
                     <h3 className="mb-2 text-xl font-semibold text-purple-400">Editor</h3>
-                    <p className="leading-relaxed text-gray-400">
+                    <p className="leading-relaxed text-gray-500 dark:text-gray-400">
                       If you are spending long hours looking at your editor, might as well have a
                       good setup
                     </p>
-                    <ul className="list-inside list-disc space-y-3 text-gray-300">
+                    <ul className="list-inside list-disc space-y-3 text-gray-700 dark:text-gray-300">
                       <li>
                         <a
                           href="https://code.visualstudio.com/"
@@ -361,10 +362,10 @@ export default function Toolbox() {
                     <h3 className="mb-2 text-xl font-semibold text-purple-400">
                       Productivity Tools
                     </h3>
-                    <p className="leading-relaxed text-gray-400">
+                    <p className="leading-relaxed text-gray-500 dark:text-gray-400">
                       These are some of the desktop apps and Chrome extensions that I use daily.
                     </p>
-                    <ul className="list-inside list-disc space-y-3 text-gray-300">
+                    <ul className="list-inside list-disc space-y-3 text-gray-700 dark:text-gray-300">
                       <li>Alfred App</li>
                       <li>Rectangle</li>
                       <li>Notion</li>
@@ -388,7 +389,7 @@ export default function Toolbox() {
                     <h3 className="mb-2 text-xl font-semibold text-purple-400">
                       Podcasts and books
                     </h3>
-                    <ul className="list-inside list-disc space-y-3 text-gray-300">
+                    <ul className="list-inside list-disc space-y-3 text-gray-700 dark:text-gray-300">
                       <li>
                         <a
                           href="https://open.spotify.com/show/1KBO1tSnm0XRlEILmqt7Em?si=f6b3a7f7f72a46ac"
@@ -504,7 +505,7 @@ export default function Toolbox() {
 
                   <div>
                     <h3 className="mb-2 text-xl font-semibold text-purple-400">Newsletters</h3>
-                    <ul className="list-inside list-disc space-y-3 text-gray-300">
+                    <ul className="list-inside list-disc space-y-3 text-gray-700 dark:text-gray-300">
                       <li>
                         <a
                           href="https://jamesclear.com/3-2-1"
