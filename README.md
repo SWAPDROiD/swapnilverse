@@ -5,10 +5,10 @@
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=32&duration=2800&pause=400&color=38BDF8&width=700&lines=Senior+Software+Engineer;React+Native+Developer;AI+Enthusiast;Building+Scalable+Applications)](https://git.io/typing-svg)
 
 ![React](https://img.shields.io/badge/React-Portfolio-61DAFB?style=for-the-badge&logo=react&logoColor=061A23)
-![Vite](https://img.shields.io/badge/Vite-Fast%20Build-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-App%20Router-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-Styled-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer%20Motion-Animated-0055FF?style=for-the-badge&logo=framer&logoColor=white)
-![EmailJS](https://img.shields.io/badge/EmailJS-Contact%20Ready-FFB000?style=for-the-badge&logo=maildotru&logoColor=111827)
+![Nodemailer](https://img.shields.io/badge/Nodemailer-Contact%20API-0F9D58?style=for-the-badge&logo=maildotru&logoColor=white)
 
 [![GitHub](https://img.shields.io/badge/GitHub-swapdroid-181717?style=for-the-badge&logo=github)](https://github.com/swapdroid)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Swapnil%20Nandapure-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/swapnil-nandapure-135129103/)
@@ -26,6 +26,21 @@
 - I bring experience across Banking, Healthcare, CRM, and E-commerce domains.
 
 > Designing resilient digital experiences with a product mindset and engineering depth.
+
+---
+
+## 🧭 Architecture
+
+This repository is now standardized around a `src/`-based Next.js App Router structure.
+
+- `src/app/` contains route entrypoints and framework-owned files only
+- `src/components/` contains reusable UI building blocks
+- `src/sections/` contains page-level portfolio sections
+- `src/constants/` contains shared content/config
+- `src/hooks/` contains reusable client hooks
+- `src/styles/` contains global styles
+- `public/` contains static assets
+- Legacy Vite code has been removed, and generated output under `dist/` has been removed
 
 ---
 
@@ -59,7 +74,7 @@ I actively use AI-assisted workflows to move faster, improve quality, and reduce
 - Dark/Light theme toggle with saved preference behavior
 - Interactive portfolio layout with dedicated content sections
 - Project showcase popup for detailed case-study style viewing
-- Contact form integration with EmailJS and graceful fallback handling
+- Contact form powered by a Next.js API route and Nodemailer
 
 ---
 
@@ -78,7 +93,7 @@ I actively use AI-assisted workflows to move faster, improve quality, and reduce
 
 ## 📦 Project Highlights
 
-- Built with `React`, `Vite`, and `Tailwind CSS`
+- Built with `Next.js`, `React`, `TypeScript`, and `Tailwind CSS`
 - Includes animated sections, portfolio storytelling, and responsive layouts
 - Showcases work across entertainment, healthcare, banking, and e-commerce products
 - Designed to feel like a personal portfolio landing page rather than a plain repository README

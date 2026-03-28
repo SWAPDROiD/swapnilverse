@@ -1,5 +1,10 @@
 node_modules/
 dist/
+.next/
+out/
+.vercel/
+coverage/
+*.tsbuildinfo
 
 # Logs
 *.log
@@ -8,6 +13,7 @@ dist/
 .env
 .env.*
 !.env.example
+!.env.local.example
 
 # OS / editor files
 .DS_Store

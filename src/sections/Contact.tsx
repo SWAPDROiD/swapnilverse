@@ -1,15 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+"use client";
+
+import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
-import emailjs, { type EmailJSResponseStatus } from "@emailjs/browser";
+import { useEffect, useRef, useState } from "react";
 import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
-import {
-  MAILTO,
-  TEL,
-  ZENDESK,
-  EMAIL,
-  PHONE,
-} from "../constants/links";
-import SocialLinks from "../common/SocialLinks";
+import Section from "@/components/Section";
+import SocialLinks from "@/components/SocialLinks";
+import { EMAIL, MAILTO, PHONE, TEL, ZENDESK } from "@/constants/links";
 
 interface ContactFormData {
   name: string;
@@ -22,54 +19,34 @@ interface StatusMessage {
   msg: string;
 }
 
-interface EmailJSError {
-  text?: string;
-  statusText?: string;
-  message?: string;
-}
-
-const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "";
-const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "";
-const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "";
-
 const sectionVariant = {
   hidden: { opacity: 0, y: 12 },
   show: { opacity: 1, y: 0 },
 };
+
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 const field = { hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } };
 
-const Contact: React.FC = () => {
+const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
+const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "";
+const CONTACT_TARGET = process.env.NEXT_PUBLIC_CONTACT_TO_EMAIL || EMAIL;
+
+export default function Contact() {
   const [form, setForm] = useState<ContactFormData>({
     name: "",
     email: "",
     message: "",
   });
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<StatusMessage | null>(null);
   const [toast, setToast] = useState<StatusMessage | null>(null);
   const toastTimeoutRef = useRef<number | null>(null);
 
-  // initialize emailjs if a public key is provided
-  useEffect(() => {
-    if (PUBLIC_KEY) {
-      try {
-        emailjs.init(PUBLIC_KEY);
-      } catch (e) {
-        console.warn("emailjs init failed", e);
-      }
-    }
-  }, []);
+  const validEmail = (mail: string) => /^\S+@\S+\.\S+$/.test(mail);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
-
-  const validEmail = (mail: string): boolean => /^\S+@\S+\.\S+$/.test(mail);
-
-  const showToast = (s: StatusMessage) => {
-    setToast(s);
+  const showToast = (message: StatusMessage) => {
+    setToast(message);
     if (toastTimeoutRef.current) {
       window.clearTimeout(toastTimeoutRef.current);
     }
@@ -77,6 +54,13 @@ const Contact: React.FC = () => {
   };
 
   useEffect(() => {
+    if (PUBLIC_KEY) {
+      emailjs.init({
+        publicKey: PUBLIC_KEY,
+        blockHeadless: true,
+      });
+    }
+
     return () => {
       if (toastTimeoutRef.current) {
         window.clearTimeout(toastTimeoutRef.current);
@@ -84,144 +68,139 @@ const Contact: React.FC = () => {
     };
   }, []);
 
-  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setForm((current) => ({
+      ...current,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     if (!form.name || !form.email || !form.message) {
-      const s = { type: "error", msg: "Please fill all fields" };
-      setStatus(s);
-      showToast(s);
-      return;
-    }
-    if (!validEmail(form.email)) {
-      const s = { type: "error", msg: "Please enter a valid email" };
-      setStatus(s);
-      showToast(s);
-      return;
-    }
-    setLoading(true);
-    setStatus(null);
-    // If EmailJS isn't configured, gracefully fallback to mailto so user can still contact
-    const emailjsConfigured = SERVICE_ID && TEMPLATE_ID && PUBLIC_KEY;
-    if (!emailjsConfigured) {
-      console.warn("EmailJS not configured - falling back to mailto");
-      const subject = encodeURIComponent(`Contact from ${form.name}`);
-      const body = encodeURIComponent(
-        `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`,
-      );
-      window.location.href = `${MAILTO}?subject=${subject}&body=${body}`;
-      const s = {
-        type: "success",
-        msg: "Opened mail client as fallback. Please send the message.",
-      };
-      setStatus(s);
-      showToast(s);
-      setLoading(false);
+      const nextStatus = { type: "error", msg: "Please fill all fields" } satisfies StatusMessage;
+      setStatus(nextStatus);
+      showToast(nextStatus);
       return;
     }
 
+    if (!validEmail(form.email)) {
+      const nextStatus = {
+        type: "error",
+        msg: "Please enter a valid email",
+      } satisfies StatusMessage;
+      setStatus(nextStatus);
+      showToast(nextStatus);
+      return;
+    }
+
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      const nextStatus = {
+        type: "error",
+        msg: "EmailJS is not configured. Add NEXT_PUBLIC_EMAILJS_* variables to .env.local.",
+      } satisfies StatusMessage;
+      setStatus(nextStatus);
+      showToast(nextStatus);
+      return;
+    }
+
+    setLoading(true);
+    setStatus(null);
+
     try {
-      const res: EmailJSResponseStatus = await emailjs.send(
+      await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
         {
           from_name: form.name,
           from_email: form.email,
-          message: `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`,
-          to_email: EMAIL,
+          message: form.message,
+          to_email: CONTACT_TARGET,
         },
         PUBLIC_KEY,
       );
-      console.debug("EmailJS send response", res);
-      const s = {
+
+      const nextStatus = {
         type: "success",
         msg: "Message sent successfully! I will reply soon.",
-      };
-      setStatus(s);
-      showToast(s);
+      } satisfies StatusMessage;
+      setStatus(nextStatus);
+      showToast(nextStatus);
       setForm({ name: "", email: "", message: "" });
-    } catch (err: unknown) {
-      console.error("EmailJS Error:", err);
-      const typedError = err as EmailJSError;
-      const msg =
-        typedError.text ||
-        typedError.statusText ||
-        (typedError.message && String(typedError.message)) ||
-        "Failed to send message. Please try again.";
-      const s = { type: "error", msg };
-      setStatus(s);
-      showToast(s);
-      // fallback: open mail client with prefilled content so user can still send
-      try {
-        const subject = encodeURIComponent(`Contact from ${form.name}`);
-        const body = encodeURIComponent(
-          `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`,
-        );
-        // Delay slightly so error message is visible before navigating
-        setTimeout(() => {
-          window.location.href = `${MAILTO}?subject=${subject}&body=${body}`;
-        }, 800);
-      } catch (e) {
-        console.warn("mailto fallback failed", e);
-      }
+    } catch (error) {
+      const nextStatus = {
+        type: "error",
+        msg: error instanceof Error ? error.message : "Failed to send message. Please try again.",
+      } satisfies StatusMessage;
+      setStatus(nextStatus);
+      showToast(nextStatus);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <motion.section
-      id="contact"
-      className="py-20 relative overflow-hidden"
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true }}
-      variants={sectionVariant}
-    >
-      {/* subtle animated background blobs */}
-      <div className="absolute -left-20 -top-20 w-72 h-72 bg-gradient-to-br from-purple-600 via-pink-500 to-indigo-400 opacity-20 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_infinite]" />
-      <div className="absolute -right-28 bottom-4 w-96 h-96 bg-gradient-to-tr from-indigo-500 via-purple-600 to-pink-400 opacity-18 rounded-full blur-3xl animate-[pulse_8s_ease-in-out_infinite]" />
+    <Section id="contact" className="relative overflow-hidden py-20">
+      <motion.div
+        className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-indigo-400 opacity-20 blur-3xl"
+        animate={{ scale: [1, 1.05, 1] }}
+        transition={{ duration: 6, repeat: Infinity }}
+      />
+      <motion.div
+        className="absolute -right-28 bottom-4 h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-600 to-pink-400 opacity-20 blur-3xl"
+        animate={{ scale: [1, 1.04, 1] }}
+        transition={{ duration: 8, repeat: Infinity }}
+      />
 
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Toast (top-right) */}
-        {toast && (
+      <div className="relative mx-auto max-w-6xl px-6">
+        {toast ? (
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.18 }}
             className="fixed right-4 top-4 z-50"
+            aria-live="polite"
           >
             <div
-              className={`max-w-xs px-4 py-3 rounded-lg shadow-lg text-white ${toast.type === "success" ? "bg-green-600" : "bg-red-600"}`}
+              className={`max-w-xs rounded-lg px-4 py-3 text-white shadow-lg ${
+                toast.type === "success" ? "bg-green-600" : "bg-red-600"
+              }`}
             >
               {toast.msg}
             </div>
           </motion.div>
-        )}
+        ) : null}
+
         <motion.h2
-          className="text-3xl font-bold mb-6 text-white"
+          className="mb-6 text-3xl font-bold text-slate-950 dark:text-white"
           variants={sectionVariant}
         >
-          Let's Build Something Amazing 🚀
+          Let&apos;s Build Something Amazing
         </motion.h2>
 
         <motion.div
-          className="grid lg:grid-cols-2 gap-8 items-start"
+          className="grid items-start gap-8 lg:grid-cols-2"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
           variants={stagger}
         >
-          {/* LEFT SIDE */}
           <motion.div className="space-y-4" variants={field}>
-            <p className="mt-4 text-lg text-[#cbd5e1]">
+            <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
               Open to full-time roles, freelance work, and collaborations.
             </p>
 
-            <div className="flex flex-wrap gap-3 mt-4">
-              <div className="px-4 py-2 rounded-full bg-white/6 backdrop-blur-sm border border-white/6 text-sm font-medium">
+            <div className="mt-4 flex flex-wrap gap-3">
+              <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-sm">
                 10+ Years Experience
               </div>
-              <div className="px-4 py-2 rounded-full bg-white/6 backdrop-blur-sm border border-white/6 text-sm font-medium">
+              <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-sm">
                 20+ Applications Delivered
               </div>
-              <div className="px-4 py-2 rounded-full bg-white/6 backdrop-blur-sm border border-white/6 text-sm font-medium">
+              <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-sm">
                 Currently at{" "}
                 <a
                   href={ZENDESK}
@@ -235,33 +214,34 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="mt-8">
-              <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#94A3B8]">
+              <p className="mb-3 mt-4 text-sm font-medium uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
                 Reach me directly
               </p>
               <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href={MAILTO}
-                  className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50"
+                  className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-900 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 dark:text-white"
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary">
                     <FaEnvelope aria-hidden="true" />
                   </span>
                   <span className="flex flex-col">
-                    <span className="text-xs uppercase tracking-[0.16em] text-[#94A3B8]">
+                    <span className="text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
                       Email
                     </span>
                     <span className="hover:underline">{EMAIL}</span>
                   </span>
                 </a>
+
                 <a
                   href={TEL}
-                  className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50"
+                  className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-900 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 dark:text-white"
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary">
                     <FaPhoneAlt aria-hidden="true" />
                   </span>
                   <span className="flex flex-col">
-                    <span className="text-xs uppercase tracking-[0.16em] text-[#94A3B8]">
+                    <span className="text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
                       Phone
                     </span>
                     <span className="hover:underline">{PHONE}</span>
@@ -269,79 +249,88 @@ const Contact: React.FC = () => {
                 </a>
               </div>
             </div>
-            
+
             <SocialLinks size="lg" variant="default" showTooltip />
           </motion.div>
 
-          {/* RIGHT SIDE - FORM */}
           <motion.div variants={field} className="relative mt-4 lg:mt-6">
             <form
               onSubmit={submit}
-              className="relative glass p-6 rounded-2xl backdrop-blur-md border border-white/6 shadow-lg"
+              className="glass relative rounded-2xl border border-white/10 p-6 shadow-lg"
             >
               <motion.div variants={stagger} className="grid gap-4">
                 <div className="relative">
                   <input
+                    id="name"
                     name="name"
                     value={form.name}
                     onChange={handleChange}
                     placeholder=" "
-                    className="peer w-full bg-transparent border border-white/8 rounded-lg px-4 py-3 outline-none transition-transform duration-300 ease-in-out transform focus:scale-[1.02] focus:shadow-[0_0_18px_rgba(139,92,246,0.18)]"
+                    className="peer w-full rounded-lg border border-white/10 bg-transparent px-4 py-3 outline-none transition-transform duration-300 ease-in-out focus:scale-[1.02] focus:shadow-[0_0_18px_rgba(139,92,246,0.18)]"
                   />
-                  {!form.name && (
-                    <label className="absolute left-4 top-[calc(50%+2px)] -translate-y-1/2 text-sm text-[#94A3B8] pointer-events-none transition-all duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs">
+                  {!form.name ? (
+                    <label
+                      htmlFor="name"
+                      className="pointer-events-none absolute left-4 top-[calc(50%+2px)] -translate-y-1/2 text-sm text-slate-500 transition-all duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs dark:text-slate-400"
+                    >
                       Name
                     </label>
-                  )}
+                  ) : null}
                 </div>
 
                 <div className="relative">
                   <input
+                    id="email"
                     name="email"
                     value={form.email}
                     onChange={handleChange}
                     placeholder=" "
-                    className="peer w-full bg-transparent border border-white/8 rounded-lg px-4 py-3 outline-none transition-transform duration-300 ease-in-out transform focus:scale-[1.02] focus:shadow-[0_0_18px_rgba(236,72,153,0.14)]"
+                    className="peer w-full rounded-lg border border-white/10 bg-transparent px-4 py-3 outline-none transition-transform duration-300 ease-in-out focus:scale-[1.02] focus:shadow-[0_0_18px_rgba(236,72,153,0.14)]"
                   />
-                  {!form.email && (
-                    <label className="absolute left-4 top-[calc(50%+2px)] -translate-y-1/2 text-sm text-[#94A3B8] pointer-events-none transition-all duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs">
+                  {!form.email ? (
+                    <label
+                      htmlFor="email"
+                      className="pointer-events-none absolute left-4 top-[calc(50%+2px)] -translate-y-1/2 text-sm text-slate-500 transition-all duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs dark:text-slate-400"
+                    >
                       Email
                     </label>
-                  )}
+                  ) : null}
                 </div>
 
                 <div className="relative">
                   <textarea
+                    id="message"
                     name="message"
                     value={form.message}
                     onChange={handleChange}
                     placeholder=" "
                     rows={6}
-                    className="peer w-full bg-transparent border border-white/8 rounded-lg px-4 py-3 outline-none resize-none transition-transform duration-300 ease-in-out transform focus:scale-[1.01] focus:shadow-[0_0_22px_rgba(99,102,241,0.12)]"
+                    className="peer w-full resize-none rounded-lg border border-white/10 bg-transparent px-4 py-3 outline-none transition-transform duration-300 ease-in-out focus:scale-[1.01] focus:shadow-[0_0_22px_rgba(99,102,241,0.12)]"
                   />
-                  {!form.message && (
-                    <label className="absolute left-4 top-[calc(1rem+2px)] text-sm text-[#94A3B8] pointer-events-none transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs">
+                  {!form.message ? (
+                    <label
+                      htmlFor="message"
+                      className="pointer-events-none absolute left-4 top-[calc(1rem+2px)] text-sm text-slate-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs dark:text-slate-400"
+                    >
                       Message
                     </label>
-                  )}
+                  ) : null}
                 </div>
 
                 <div className="flex items-center justify-between gap-4">
                   <button
                     type="submit"
                     disabled={loading}
-                    className={`inline-flex items-center justify-center gap-3 px-6 py-3 rounded-full text-white transform transition-all duration-300 ${loading ? "opacity-70 cursor-not-allowed" : "hover:scale-105"}`}
+                    className={`inline-flex items-center justify-center gap-3 rounded-full px-6 py-3 text-white transition-all duration-300 ${
+                      loading ? "cursor-not-allowed opacity-70" : "hover:scale-105"
+                    }`}
                     style={{
                       background:
                         "linear-gradient(90deg,#6366F1 0%,#7C3AED 50%,#EC4899 100%)",
                     }}
                   >
-                    {loading && (
-                      <svg
-                        className="w-4 h-4 animate-spin"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
+                    {loading ? (
+                      <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
                         <circle
                           cx="12"
                           cy="12"
@@ -356,19 +345,16 @@ const Contact: React.FC = () => {
                           strokeLinecap="round"
                         />
                       </svg>
-                    )}
-                    <span className="font-medium">
-                      {loading ? "Sending..." : "Send Message 🚀"}
-                    </span>
+                    ) : null}
+                    <span className="font-medium">{loading ? "Sending..." : "Send Message"}</span>
                   </button>
                 </div>
+
               </motion.div>
             </form>
           </motion.div>
         </motion.div>
       </div>
-    </motion.section>
+    </Section>
   );
-};
-
-export default Contact;
+}

@@ -1,61 +1,42 @@
-import React from "react";
+"use client";
+
 import { motion } from "framer-motion";
+import Section from "@/components/Section";
+import { SKILL_CATEGORIES } from "@/constants/skills";
 
-type SkillCategory = {
-  title: string;
-  items: string[];
-};
-
-const categories: SkillCategory[] = [
-  { title: "Web", items: ["React", "TypeScript", "JavaScript"] },
-  { title: "Mobile", items: ["Android (Java,Kotlin)", "iOS", "React Native"] },
-  { title: "Backend", items: ["Ruby on Rails", "Scala"] },
-  {
-    title: "DevOps & Testing",
-    items: ["Jenkins", "CI/CD Pipelines", "Cypress"],
-  },
-  {
-    title: "AI & Developer Tools",
-    items: ["GitHub Copilot", "ChatGPT", "Claude AI", "Cursor"],
-  },
-  { title: "Concepts", items: ["Microservices", "REST APIs"] },
-];
-
-const Skills: React.FC = () => {
+export default function Skills() {
   return (
-    <section id="skills" className="py-20">
-      <div className="max-w-6xl mx-auto px-6">
+    <Section id="skills" className="py-20">
+      <div className="mx-auto max-w-6xl px-6">
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-2xl font-bold mb-6"
+          className="mb-6 text-2xl font-bold text-slate-950 dark:text-white"
         >
           Skills
         </motion.h2>
-        <div className="grid md:grid-cols-4 gap-4">
-          {categories.map((cat) => (
+
+        <div className="grid gap-4 md:grid-cols-4">
+          {SKILL_CATEGORIES.map((category) => (
             <motion.div
-              key={cat.title}
+              key={category.title}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass p-4 rounded-lg"
+              className="glass rounded-lg p-4"
             >
-              <div className="font-semibold mb-2">{cat.title}</div>
+              <div className="mb-2 font-semibold text-slate-950 dark:text-white">
+                {category.title}
+              </div>
               <div className="flex flex-col gap-2">
-                {cat.items.map((i) => (
-                  <div
-                    key={i}
-                    className="flex items-center justify-between text-sm"
-                  >
-                    <div>{i}</div>
-                    <div className="w-24 h-2 bg-white/6 rounded-md overflow-hidden">
+                {category.items.map((item) => (
+                  <div key={item.label} className="flex items-center justify-between gap-3 text-sm">
+                    <div className="text-slate-700 dark:text-slate-300">{item.label}</div>
+                    <div className="h-2 w-24 overflow-hidden rounded-md bg-black/5 dark:bg-white/10">
                       <div
                         className="h-full bg-gradient-to-r from-primary to-accent"
-                        style={{
-                          width: Math.floor(60 + Math.random() * 35) + "%",
-                        }}
+                        style={{ width: `${item.level}%` }}
                       />
                     </div>
                   </div>
@@ -65,8 +46,6 @@ const Skills: React.FC = () => {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
-};
-
-export default Skills;
+}

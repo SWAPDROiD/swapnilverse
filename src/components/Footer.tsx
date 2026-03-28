@@ -1,15 +1,14 @@
-import React from 'react'
-import SocialLinks from '../common/SocialLinks'
+import SocialLinks from "@/components/SocialLinks";
 
-const Footer: React.FC = () => {
+export default function Footer() {
   return (
-    <footer className="mt-20 py-10 border-t border-white/5">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-sm text-[#94A3B8]">© {new Date().getFullYear()} Swapnil Nandapure </div>
+    <footer className="mt-20 border-t border-white/10 py-10">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
+        <div className="text-sm text-slate-600 dark:text-slate-400">
+          © {new Date().getFullYear()} Swapnil Nandapure
+        </div>
         <SocialLinks size="md" variant="minimal" className="gap-0" />
       </div>
     </footer>
-  )
+  );
 }
-
-export default Footer

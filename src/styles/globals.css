@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f8fafc;
+  --bg-elevated: rgba(255, 255, 255, 0.7);
+  --text: #0f172a;
+  --muted: #475569;
+  --glass-border: rgba(15, 23, 42, 0.08);
+}
+
+.dark {
+  --bg: #0f172a;
+  --bg-elevated: rgba(255, 255, 255, 0.04);
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(1000px 400px at 10% 10%, rgba(99, 102, 241, 0.08), transparent),
+    radial-gradient(800px 300px at 90% 80%, rgba(6, 182, 212, 0.06), transparent),
+    var(--bg);
+  color: var(--text);
+  transition:
+    background-color 250ms ease,
+    color 250ms ease;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+section {
+  scroll-margin-top: 96px;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.28);
+  color: white;
+}
+
+.glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), var(--bg-elevated));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+}
+
+.neon {
+  box-shadow:
+    0 12px 40px rgba(99, 102, 241, 0.18),
+    0 0 40px rgba(139, 92, 246, 0.05) inset;
+}
