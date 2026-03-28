@@ -9,8 +9,8 @@ import Contact from './sections/Contact'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 
-export default function App(){
-  const [active, setActive] = useState('home')
+const App: React.FC = () => {
+  const [active, setActive] = useState<string>('home')
 
   useEffect(()=>{
     const secs = document.querySelectorAll('section')
@@ -41,3 +41,5 @@ export default function App(){
     </div>
   )
 }
+
+export default App

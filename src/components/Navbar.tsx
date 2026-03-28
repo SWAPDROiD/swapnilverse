@@ -2,7 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { HiMenu } from 'react-icons/hi'
 import favicon from '../assets/favicon.png'
 
-const links = [
+type Theme = 'dark' | 'light'
+
+interface NavbarProps {
+  active: string
+}
+
+const links: Array<{ id: string; label: string }> = [
   {id:'home', label:'Home'},
   {id:'about', label:'About'},
   {id:'skills', label:'Skills'},
@@ -11,10 +17,10 @@ const links = [
   {id:'contact', label:'Contact'}
 ]
 
-export default function Navbar({active}){
-  const [open,setOpen] = useState(false)
-  const [theme, setTheme] = useState('dark')
-  const [isScrolled, setIsScrolled] = useState(false)
+const Navbar: React.FC<NavbarProps> = ({ active }) => {
+  const [open,setOpen] = useState<boolean>(false)
+  const [theme, setTheme] = useState<Theme>('dark')
+  const [isScrolled, setIsScrolled] = useState<boolean>(false)
 
   useEffect(()=>{
     // initialize theme from localStorage or system preference
@@ -46,7 +52,7 @@ export default function Navbar({active}){
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const toggleTheme = ()=>{
+  const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark'
     setTheme(next)
     localStorage.setItem('theme', next)
@@ -54,11 +60,11 @@ export default function Navbar({active}){
     document.documentElement.classList.toggle('dark', next === 'dark')
   }
 
-  const scrollTo = (id)=>{
+  const scrollTo = (id: string) => {
     setOpen(false)
     const el = document.getElementById(id)
     if(!el) return
-    const headerEl = document.querySelector('header')
+    const headerEl = document.querySelector('header') as HTMLElement | null
     const headerHeight = headerEl ? headerEl.offsetHeight : 72
     const top = el.getBoundingClientRect().top + window.pageYOffset - headerHeight - 8
     window.scrollTo({ top, behavior: 'smooth' })
@@ -145,3 +151,5 @@ export default function Navbar({active}){
     </header>
   )
 }
+
+export default Navbar

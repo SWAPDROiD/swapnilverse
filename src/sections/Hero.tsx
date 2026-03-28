@@ -1,12 +1,12 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 
-const float = {
+const float: Variants = {
   animate: { y: [0, -10, 0], rotate: [0, 2, 0] },
   transition: { duration: 6, repeat: Infinity, ease: 'easeInOut' }
 }
 
-export default function Hero(){
+const Hero: React.FC = () => {
   return (
     <section id="home" className="min-h-screen flex items-center" style={{paddingTop:72}}>
       <div className="max-w-6xl mx-auto px-6 w-full">
@@ -42,3 +42,5 @@ export default function Hero(){
     </section>
   )
 }
+
+export default Hero

@@ -1,7 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const categories = [
+type SkillCategory = {
+  title: string;
+  items: string[];
+};
+
+const categories: SkillCategory[] = [
   { title: "Web", items: ["React", "TypeScript", "JavaScript"] },
   { title: "Mobile", items: ["Android (Java,Kotlin)", "iOS", "React Native"] },
   { title: "Backend", items: ["Ruby on Rails", "Scala"] },
@@ -16,7 +21,7 @@ const categories = [
   { title: "Concepts", items: ["Microservices", "REST APIs"] },
 ];
 
-export default function Skills() {
+const Skills: React.FC = () => {
   return (
     <section id="skills" className="py-20">
       <div className="max-w-6xl mx-auto px-6">
@@ -62,4 +67,6 @@ export default function Skills() {
       </div>
     </section>
   );
-}
+};
+
+export default Skills;

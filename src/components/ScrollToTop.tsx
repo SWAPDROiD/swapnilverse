@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { FaArrowUp } from 'react-icons/fa'
 
-export default function ScrollToTop(){
-  const [show,setShow] = useState(false)
+const ScrollToTop: React.FC = () => {
+  const [show,setShow] = useState<boolean>(false)
   useEffect(()=>{
     const onScroll = ()=> setShow(window.scrollY>600)
     window.addEventListener('scroll', onScroll)
@@ -16,3 +16,5 @@ export default function ScrollToTop(){
     </button>
   )
 }
+
+export default ScrollToTop

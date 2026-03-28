@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
+import emailjs, { type EmailJSResponseStatus } from "@emailjs/browser";
 import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import {
   MAILTO,
@@ -10,6 +10,23 @@ import {
   PHONE,
 } from "../constants/links";
 import SocialLinks from "../common/SocialLinks";
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+interface StatusMessage {
+  type: "success" | "error";
+  msg: string;
+}
+
+interface EmailJSError {
+  text?: string;
+  statusText?: string;
+  message?: string;
+}
 
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "";
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "";
@@ -22,14 +39,19 @@ const sectionVariant = {
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 const field = { hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } };
 
-export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState(null);
-  const [toast, setToast] = useState(null);
+const Contact: React.FC = () => {
+  const [form, setForm] = useState<ContactFormData>({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState<boolean>(false);
+  const [status, setStatus] = useState<StatusMessage | null>(null);
+  const [toast, setToast] = useState<StatusMessage | null>(null);
+  const toastTimeoutRef = useRef<number | null>(null);
 
   // initialize emailjs if a public key is provided
-  React.useEffect(() => {
+  useEffect(() => {
     if (PUBLIC_KEY) {
       try {
         emailjs.init(PUBLIC_KEY);
@@ -39,20 +61,30 @@ export default function Contact() {
     }
   }, []);
 
-  const handleChange = (e) =>
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const validEmail = (mail) => /^\S+@\S+\.\S+$/.test(mail);
+  const validEmail = (mail: string): boolean => /^\S+@\S+\.\S+$/.test(mail);
 
-  const showToast = (s) => {
+  const showToast = (s: StatusMessage) => {
     setToast(s);
-    try {
-      window.clearTimeout(window._cv_toast_timeout);
-    } catch (e) {}
-    window._cv_toast_timeout = setTimeout(() => setToast(null), 4000);
+    if (toastTimeoutRef.current) {
+      window.clearTimeout(toastTimeoutRef.current);
+    }
+    toastTimeoutRef.current = window.setTimeout(() => setToast(null), 4000);
   };
 
-  const submit = async (e) => {
+  useEffect(() => {
+    return () => {
+      if (toastTimeoutRef.current) {
+        window.clearTimeout(toastTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) {
       const s = { type: "error", msg: "Please fill all fields" };
@@ -88,7 +120,7 @@ export default function Contact() {
     }
 
     try {
-      const res = await emailjs.send(
+      const res: EmailJSResponseStatus = await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
         {
@@ -107,12 +139,13 @@ export default function Contact() {
       setStatus(s);
       showToast(s);
       setForm({ name: "", email: "", message: "" });
-    } catch (err) {
+    } catch (err: unknown) {
       console.error("EmailJS Error:", err);
+      const typedError = err as EmailJSError;
       const msg =
-        err?.text ||
-        err?.statusText ||
-        (err?.message && String(err.message)) ||
+        typedError.text ||
+        typedError.statusText ||
+        (typedError.message && String(typedError.message)) ||
         "Failed to send message. Please try again.";
       const s = { type: "error", msg };
       setStatus(s);
@@ -336,4 +369,6 @@ export default function Contact() {
       </div>
     </motion.section>
   );
-}
+};
+
+export default Contact;

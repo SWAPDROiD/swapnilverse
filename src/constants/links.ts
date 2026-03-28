@@ -11,7 +11,7 @@ export const INSTAGRAM = 'https://www.instagram.com/its_swapdroid'
 export const FACEBOOK = 'https://www.facebook.com/swapnil.nandapure'
 export const YOUTUBE = 'https://youtube.com/@swapnilnandapure495'
 
-export default {
+const links = {
   LINKEDIN,
   GITHUB,
   ZENDESK,
@@ -24,3 +24,5 @@ export default {
   PHONE,
   TEL,
 }
+
+export default links

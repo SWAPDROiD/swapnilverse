@@ -1,12 +1,46 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import bankingImg from '../assets/banking.png'
+import entertainmentImg from '../assets/entertainment.png'
+import healthcareImg from '../assets/healthcare.png'
+import shoppingImg from '../assets/shopping.png'
 
-const projects = [
+interface ProjectLink {
+  label: string
+  href: string
+}
+
+interface ProjectDetails {
+  fullTitle: string
+  subtitle: string
+  roleTitle?: string
+  duration?: string
+  team?: string
+  badges: string[]
+  highlight: string
+  overview: string
+  features: string[]
+  role: string[]
+  tech: string[]
+  links: ProjectLink[]
+  highlights?: string[]
+  environment?: string[]
+}
+
+interface Project {
+  title: string
+  tech: string
+  url: string
+  image: string
+  details: ProjectDetails
+}
+
+const projects: Project[] = [
   {
     title: 'Slasher',
     tech: 'Entertainment',
     url: 'https://www.slasher.tv/',
-    image: '/src/assets/entertainment.png',
+    image: entertainmentImg,
     details: {
       fullTitle: 'Slasher – Horror Social Network',
       subtitle: 'Real-time Social Platform for Horror Community',
@@ -50,7 +84,7 @@ const projects = [
     title: 'Splynt',
     tech: 'Healthcare',
     url: 'https://splynt.co/',
-    image: '/src/assets/healthcare.png',
+    image: healthcareImg,
     details: {
       fullTitle: 'Splynt Instant Telehealth App',
       subtitle: 'Sr. React Native Developer',
@@ -84,7 +118,7 @@ const projects = [
     title: 'IDFC First Bank (Trade FX)',
     tech: 'Banking',
     url: 'https://my.idfcfirst.bank.in/',
-    image: '/src/assets/banking.png',
+    image: bankingImg,
     details: {
       fullTitle: 'Trade FX – Inward Remittance',
       subtitle: 'Lead Software Engineer',
@@ -119,7 +153,7 @@ const projects = [
     title: 'The Collective',
     tech: 'E-commerce',
     url: 'https://www.thecollective.in/',
-    image: '/src/assets/shopping.png',
+    image: shoppingImg,
     details: {
       fullTitle: 'The Collective',
       subtitle: 'Sr. React Native Developer',
@@ -137,19 +171,19 @@ const projects = [
   }
 ]
 
-export default function Projects(){
-  const [openProject, setOpenProject] = useState(null)
-  const overlayRef = useRef(null)
-  const modalRef = useRef(null)
+const Projects: React.FC = () => {
+  const [openProject, setOpenProject] = useState<Project | null>(null)
+  const overlayRef = useRef<HTMLDivElement | null>(null)
+  const modalRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(()=>{
-    const onKey = (e)=>{
+    const onKey = (e: KeyboardEvent) => {
       if(e.key === 'Escape') setOpenProject(null)
       if(e.key === 'Tab' && openProject){
         // simple focus trap
         const modal = modalRef.current
         if(!modal) return
-        const focusable = modal.querySelectorAll('a,button,[tabindex]:not([tabindex="-1"])')
+        const focusable = modal.querySelectorAll<HTMLElement>('a,button,[tabindex]:not([tabindex="-1"])')
         if(focusable.length === 0) return
         const first = focusable[0]
         const last = focusable[focusable.length-1]
@@ -169,8 +203,8 @@ export default function Projects(){
     return ()=>{ window.removeEventListener('keydown', onKey); document.body.style.overflow = '' }
   },[openProject])
 
-  const openDetails = (p) => setOpenProject(p)
-  const closeDetails = ()=> setOpenProject(null)
+  const openDetails = (project: Project) => setOpenProject(project)
+  const closeDetails = () => setOpenProject(null)
 
   return (
     <>
@@ -180,7 +214,7 @@ export default function Projects(){
         <p className="text-sm text-[#94A3B8] mb-6">Highlights from 20+ applications I have built</p>
 
         <div className="grid md:grid-cols-4 gap-6">
-          {projects.map((p,idx)=> (
+          {projects.map((p)=> (
             <motion.div key={p.title} initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="rounded-lg overflow-hidden glass">
               <div className="relative">
                 <img src={p.image} alt={p.title} className="w-full h-40 object-cover" />
@@ -202,7 +236,16 @@ export default function Projects(){
     {/* Modal for project details */}
     <AnimatePresence>
       {openProject && (
-        <motion.div className="fixed inset-0 z-50 flex items-center justify-center" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} ref={overlayRef} onMouseDown={(e)=>{ if(e.target === overlayRef.current) closeDetails() }}>
+        <motion.div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          initial={{opacity:0}}
+          animate={{opacity:1}}
+          exit={{opacity:0}}
+          ref={overlayRef}
+          onMouseDown={(e: React.MouseEvent<HTMLDivElement>) => {
+            if (e.target === e.currentTarget) closeDetails()
+          }}
+        >
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
           <motion.div ref={modalRef} className="relative z-10 w-[94%] max-w-5xl mx-auto glass border border-transparent rounded-2xl shadow-2xl overflow-hidden" initial={{opacity:0, scale:0.95}} animate={{opacity:1, scale:1}} exit={{opacity:0, scale:0.98}} transition={{duration:0.28}} style={{maxHeight:'80vh'}}>
             <div className="absolute -inset-px rounded-2xl pointer-events-none" style={{background:'linear-gradient(90deg, rgba(99,102,241,0.06), rgba(124,58,237,0.06))', filter:'blur(24px)'}} />
@@ -274,3 +317,5 @@ export default function Projects(){
     </>
   )
 }
+
+export default Projects

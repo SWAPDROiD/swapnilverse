@@ -1,13 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useEffect, useRef, useState } from 'react'
+import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import toolsImg from '../assets/tools.png'
 
-export default function Toolbox(){
-  const [open, setOpen] = useState(false)
-  const overlayRef = useRef(null)
+const section: Variants = { hidden:{opacity:0,y:10}, show:{opacity:1,y:0} }
+
+const Toolbox: React.FC = () => {
+  const [open, setOpen] = useState<boolean>(false)
+  const overlayRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(()=>{
-    const onKey = (e)=>{ if(e.key === 'Escape') setOpen(false) }
+    const onKey = (e: KeyboardEvent) => { if(e.key === 'Escape') setOpen(false) }
     if(open){
       document.body.style.overflow = 'hidden'
       window.addEventListener('keydown', onKey)
@@ -17,10 +19,8 @@ export default function Toolbox(){
     return ()=>{ window.removeEventListener('keydown', onKey); document.body.style.overflow = '' }
   },[open])
 
-  const openModal = ()=> setOpen(true)
-  const closeModal = ()=> setOpen(false)
-
-  const section = { hidden:{opacity:0,y:10}, show:{opacity:1,y:0} }
+  const openModal = () => setOpen(true)
+  const closeModal = () => setOpen(false)
 
   return (
     <section id="toolbox" className="py-20">
@@ -80,7 +80,16 @@ export default function Toolbox(){
       {/* Modal - simple toolbox content */}
       <AnimatePresence>
         {open && (
-          <motion.div className="fixed inset-0 z-50 flex items-center justify-center" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} ref={overlayRef} onMouseDown={(e)=>{ if(e.target === overlayRef.current) closeModal() }}>
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center"
+            initial={{opacity:0}}
+            animate={{opacity:1}}
+            exit={{opacity:0}}
+            ref={overlayRef}
+            onMouseDown={(e: React.MouseEvent<HTMLDivElement>) => {
+              if (e.target === e.currentTarget) closeModal()
+            }}
+          >
             <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
             <motion.div className="relative z-10 w-[92%] max-w-3xl mx-auto glass border border-white/6 rounded-2xl shadow-2xl overflow-hidden" initial={{scale:0.98, y:8}} animate={{scale:1, y:0}} exit={{scale:0.98, y:8}} transition={{duration:0.18}}>
               <div className="flex items-center justify-between p-5 border-b border-white/6">
@@ -169,3 +178,5 @@ export default function Toolbox(){
     </section>
   )
 }
+
+export default Toolbox

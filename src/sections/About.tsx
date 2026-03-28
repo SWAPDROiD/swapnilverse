@@ -1,9 +1,9 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 
-const card = { hidden:{opacity:0,y:10}, show:{opacity:1,y:0} }
+const card: Variants = { hidden:{opacity:0,y:10}, show:{opacity:1,y:0} }
 
-export default function About(){
+const About: React.FC = () => {
   return (
     <section id="about" className="py-20">
       <div className="max-w-6xl mx-auto px-6">
@@ -31,3 +31,5 @@ export default function About(){
     </section>
   )
 }
+
+export default About

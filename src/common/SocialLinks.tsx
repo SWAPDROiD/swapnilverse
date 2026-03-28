@@ -1,4 +1,5 @@
 import React from "react";
+import type { IconType } from "react-icons";
 import {
   FaFacebook,
   FaGithub,
@@ -16,7 +17,14 @@ import {
   YOUTUBE,
 } from "../constants/links";
 
-export const SOCIAL_LINKS = [
+type SocialLink = {
+  name: string;
+  url: string;
+  icon: IconType;
+  hoverColor: string;
+};
+
+export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: "LinkedIn",
     url: LINKEDIN,
@@ -55,7 +63,10 @@ export const SOCIAL_LINKS = [
   },
 ];
 
-const sizeClasses = {
+type SocialLinkSize = "sm" | "md" | "lg";
+type SocialLinkVariant = "default" | "minimal";
+
+const sizeClasses: Record<SocialLinkSize, { button: string; icon: string }> = {
   sm: {
     button: "p-1.5",
     icon: "text-sm",
@@ -70,12 +81,19 @@ const sizeClasses = {
   },
 };
 
-export default function SocialLinks({
+interface SocialLinksProps {
+  size?: SocialLinkSize;
+  variant?: SocialLinkVariant;
+  showTooltip?: boolean;
+  className?: string;
+}
+
+const SocialLinks: React.FC<SocialLinksProps> = ({
   size = "md",
   variant = "default",
   showTooltip = false,
   className = "",
-}) {
+}) => {
   const selectedSize = sizeClasses[size] || sizeClasses.md;
   const isMinimal = variant === "minimal";
   const wrapperClassName = `flex items-center gap-3 ${className}`.trim();
@@ -126,4 +144,6 @@ export default function SocialLinks({
       })}
     </div>
   );
-}
+};
+
+export default SocialLinks;
