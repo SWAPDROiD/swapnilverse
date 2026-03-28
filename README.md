@@ -8,7 +8,7 @@
 ![Next.js](https://img.shields.io/badge/Next.js-App%20Router-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-Styled-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer%20Motion-Animated-0055FF?style=for-the-badge&logo=framer&logoColor=white)
-![Nodemailer](https://img.shields.io/badge/Nodemailer-Contact%20API-0F9D58?style=for-the-badge&logo=maildotru&logoColor=white)
+![EmailJS](https://img.shields.io/badge/EmailJS-Client%20Contact-FFB000?style=for-the-badge&logo=maildotru&logoColor=111827)
 
 [![GitHub](https://img.shields.io/badge/GitHub-swapdroid-181717?style=for-the-badge&logo=github)](https://github.com/swapdroid)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Swapnil%20Nandapure-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/swapnil-nandapure-135129103/)
@@ -71,10 +71,9 @@ I actively use AI-assisted workflows to move faster, improve quality, and reduce
 ## ✨ Features
 
 - Modern UI with smooth animations powered by Framer Motion
-- Dark/Light theme toggle with saved preference behavior
 - Interactive portfolio layout with dedicated content sections
 - Project showcase popup for detailed case-study style viewing
-- Contact form powered by a Next.js API route and Nodemailer
+- Client-side contact form powered by EmailJS
 
 ---
 
