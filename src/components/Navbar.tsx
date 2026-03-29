@@ -55,9 +55,9 @@ export default function Navbar() {
           aria-label="Go to home section"
         >
           <div className="h-10 w-10 overflow-hidden rounded-full">
-            <Image src="/favicon.png" alt="SwapnilVerse logo" width={40} height={40} />
+            <Image src="/favicon.png" alt="SWAPDROiD logo" width={40} height={40} />
           </div>
-          <div className="font-semibold text-white">swapnilverse</div>
+          <div className="font-semibold text-white">SWAPDROiD</div>
         </button>
 
         <nav className="hidden items-center gap-6 text-sm text-slate-400 md:flex">

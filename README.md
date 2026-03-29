@@ -1,5 +1,3 @@
-# Swapnilverse
-
 ### My Personal Developer Portfolio
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=32&duration=2800&pause=400&color=38BDF8&width=700&lines=Senior+Software+Engineer;React+Native+Developer;AI+Enthusiast;Building+Scalable+Applications)](https://git.io/typing-svg)
@@ -19,7 +17,7 @@
 
 ## 🌌 About
 
-`swapnilverse` is my personal developer portfolio crafted to present experience, projects, and capabilities in a clean, interactive, and modern way.
+`swapdroid` is my personal developer portfolio crafted to present experience, projects, and capabilities in a clean, interactive, and modern way.
 
 - I love designing and building digital products.
 - I focus on solving real-world problems through thoughtful engineering.
@@ -79,7 +77,7 @@ I actively use AI-assisted workflows to move faster, improve quality, and reduce
 
 ## 🚀 Live Demo
 
-[![Live Demo](https://img.shields.io/badge/Visit-Live%20Demo-22C55E?style=for-the-badge&logo=vercel&logoColor=white)](http://swapnilverse.com/)
+[![Live Demo](https://img.shields.io/badge/Visit-Live%20Demo-22C55E?style=for-the-badge&logo=vercel&logoColor=white)](https://swapdroid.vercel.app/)
 
 ---
 

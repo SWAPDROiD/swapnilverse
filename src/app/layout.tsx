@@ -2,18 +2,20 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://swapnilverse.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://swapdroid.vercel.app/";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "SwapnilVerse | Senior Software Engineer",
+  title: "Swapnil Nandapure | Senior Software Engineer",
   description:
-    "SwapnilVerse is the personal portfolio of Swapnil Nandapure, a Senior Software Engineer building scalable digital products across mobile, web, AI, and product platforms.",
+    "SWAPDROiD is the personal portfolio of Swapnil Nandapure, a Senior Software Engineer building scalable digital products across mobile, web, AI, and product platforms.",
   keywords: [
-    "SwapnilVerse",
+    "SWAPDROiD",
+    "swapdroid",
     "Swapnil Nandapure",
     "Senior Software Engineer",
     "React Native Developer",
+    "React Developer",
     "Next.js Portfolio",
     "TypeScript",
     "Frontend Engineer",
@@ -25,17 +27,17 @@ export const metadata: Metadata = {
     apple: "/favicon.png",
   },
   openGraph: {
-    title: "SwapnilVerse | Senior Software Engineer",
+    title: "Swapnil Nandapure | Senior Software Engineer",
     description:
       "Explore Swapnil Nandapure's portfolio featuring premium UI, scalable products, and engineering work across banking, healthcare, CRM, and e-commerce.",
     url: siteUrl,
-    siteName: "SwapnilVerse",
+    siteName: "SWAPDROiD",
     images: [
       {
         url: "/profile.jpg",
         width: 1200,
         height: 630,
-        alt: "SwapnilVerse portfolio preview",
+        alt: "SWAPDROiD portfolio preview",
       },
     ],
     locale: "en_US",
@@ -43,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SwapnilVerse | Senior Software Engineer",
+    title: "Swapnil Nandapure | Senior Software Engineer",
     description:
       "Personal portfolio of Swapnil Nandapure with projects, toolbox, and contact experience built for a premium product feel.",
     images: ["/profile.jpg"],
