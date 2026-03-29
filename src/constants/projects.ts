@@ -33,16 +33,16 @@ export const PROJECTS: Project[] = [
     title: "Slasher",
     tech: "Entertainment",
     url: "https://www.slasher.tv/",
-    image: "/images/entertainment.png",
+    image: "/images/entertainment.webp",
     details: {
       fullTitle: "Slasher – Horror Social Network",
       subtitle: "Real-time Social Platform for Horror Community",
       roleTitle: "React Native Developer",
       badges: ["Social Network", "Real-time Chat", "Video Streaming", "Entertainment"],
       highlight:
-        "Built for a niche global horror community focused on real-time social interaction and multimedia sharing",
+        "Helped scale real-time community features for a niche social platform with stronger engagement and faster communication flows",
       overview:
-        "Slasher is a unique social networking platform built specifically for horror enthusiasts. It provides a space where users can freely share horror content, connect with like-minded people, and explore horror media without restrictions.",
+        "Slasher is a horror-first social network built for highly engaged real-time interaction. I worked on performance-sensitive communication features that improved responsiveness, supported richer live experiences, and made the platform easier to scale as user activity grew.",
       features: [
         "Social timeline to share horror content",
         "Real-time messaging and chat system",
@@ -56,7 +56,7 @@ export const PROJECTS: Project[] = [
       role: [
         "Developed and enhanced real-time chat functionality",
         "Implemented video calling and streaming features",
-        "Worked on messaging performance and scalability",
+        "Improved messaging performance and scalability for higher engagement sessions",
         "Integrated real-time communication modules",
         "Improved user interaction experience",
         "Collaborated with cross-functional teams for feature delivery",
@@ -69,6 +69,11 @@ export const PROJECTS: Project[] = [
         "Streaming APIs",
         "Push Notifications",
         "REST APIs",
+      ],
+      highlights: [
+        "Improved responsiveness across chat and communication journeys",
+        "Scaled real-time features for an active niche global community",
+        "Delivered calling and streaming workflows with a performance-first focus",
       ],
       links: [
         {
@@ -87,14 +92,15 @@ export const PROJECTS: Project[] = [
     title: "Splynt",
     tech: "Healthcare",
     url: "https://splynt.co/",
-    image: "/images/healthcare.png",
+    image: "/images/healthcare.webp",
     details: {
       fullTitle: "Splynt Instant Telehealth App",
       subtitle: "Sr. React Native Developer",
       badges: ["Healthcare", "Mobile App", "Real-time Communication"],
-      highlight: "Designed for high-performance athlete healthcare communication",
+      highlight:
+        "Built communication-heavy healthcare workflows designed for speed, trust, and reliability",
       overview:
-        "A healthcare platform designed for athletes and providers enabling real-time communication, appointment scheduling, and injury analysis.",
+        "Splynt is a telehealth platform for athletes and providers where reliability directly affects the user experience. I helped deliver communication, booking, and consultation workflows that made the product easier to use while supporting real-time interactions and secure operational flows.",
       features: [
         "Real-time urgent call communication",
         "Appointment booking and scheduling",
@@ -109,6 +115,11 @@ export const PROJECTS: Project[] = [
         "Built appointment and communication features",
         "Implemented chat, video call, and document workflows",
         "Delivered demo and handled core modules",
+      ],
+      highlights: [
+        "Led delivery of core booking, consultation, and communication journeys",
+        "Improved usability for both athlete and provider workflows",
+        "Balanced real-time UX requirements with secure mobile performance",
       ],
       tech: [
         "React Native",
@@ -138,7 +149,7 @@ export const PROJECTS: Project[] = [
     title: "IDFC First Bank (Trade FX)",
     tech: "Banking",
     url: "https://my.idfcfirst.bank.in/",
-    image: "/images/banking.png",
+    image: "/images/banking.webp",
     details: {
       fullTitle: "Trade FX – Inward Remittance",
       subtitle: "Lead Software Engineer",
@@ -146,9 +157,9 @@ export const PROJECTS: Project[] = [
       team: "Team size: 12",
       badges: ["Banking", "Web", "Mobile"],
       highlight:
-        "Inward remittance application for business users to convert foreign currency to INR",
+        "Delivered a banking workflow that simplified inward remittance handling across web and mobile",
       overview:
-        "The application was developed for both mobile and web platforms, enabling business users to convert remittances in other currencies to Indian rupees, book deals at market rates, and submit them through an integrated workflow.",
+        "Trade FX streamlined inward remittance processing for business users, enabling them to convert foreign currency to INR, book deals at live rates, and complete the full workflow with better operational clarity across web and mobile experiences.",
       features: [
         "Multi-platform delivery across mobile and web",
         "Deal booking at live market rates",
@@ -161,6 +172,11 @@ export const PROJECTS: Project[] = [
         "Designed and developed disposal workflows",
         "Implemented upload/download of documents and records",
         "Delivered demos and collaborated with stakeholders",
+      ],
+      highlights: [
+        "Improved operational clarity for disposal and remittance workflows",
+        "Delivered cross-platform banking flows used across mobile and web",
+        "Supported scalable document handling and workflow completion journeys",
       ],
       tech: [
         "React",
@@ -187,14 +203,15 @@ export const PROJECTS: Project[] = [
     title: "The Collective",
     tech: "E-commerce",
     url: "https://www.thecollective.in/",
-    image: "/images/shopping.png",
+    image: "/images/shopping.webp",
     details: {
       fullTitle: "The Collective",
       subtitle: "Sr. React Native Developer",
       badges: ["E-commerce", "Mobile", "Web"],
-      highlight: "Curated product listings with integrated payments",
+      highlight:
+        "Improved product discovery and checkout journeys for a premium e-commerce experience",
       overview:
-        "Worked on showcasing product lists and integrating payment gateways across mobile and web platforms to improve conversion and user experience.",
+        "The Collective focused on elegant shopping experiences across mobile and web. My work centered on responsive product discovery, smoother payment flows, and cleaner conversion-oriented journeys that supported a more polished buying experience.",
       features: [
         "Product listing and discovery",
         "Responsive product cards",
@@ -205,6 +222,11 @@ export const PROJECTS: Project[] = [
         "Developed product listing interfaces",
         "Integrated payment gateway and checkout",
         "Implemented mobile-first UX improvements",
+      ],
+      highlights: [
+        "Improved checkout readiness with smoother payment integration",
+        "Enhanced browsing and product discovery across responsive surfaces",
+        "Delivered mobile-first UX improvements aimed at better conversion flow",
       ],
       tech: ["React Native", "Next.js", "Node.js", "Stripe"],
       links: [

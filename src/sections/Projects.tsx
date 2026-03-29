@@ -76,6 +76,7 @@ export default function Projects() {
                   alt={project.title}
                   width={640}
                   height={420}
+                  loading="lazy"
                   className="h-40 w-full object-cover"
                 />
                 <div className="p-4">
@@ -180,6 +181,19 @@ export default function Projects() {
                     </div>
                     <p className="leading-relaxed">{openProject.details.overview}</p>
                   </div>
+
+                  {openProject.details.highlights?.length ? (
+                    <div className="space-y-3">
+                      <h3 className="text-lg font-semibold text-slate-950 dark:text-white">
+                        Impact &amp; Outcomes
+                      </h3>
+                      <ul className="grid list-inside list-disc gap-2 text-slate-700 dark:text-slate-300 md:grid-cols-2">
+                        {openProject.details.highlights.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
 
                   <div className="space-y-3">
                     <h3 className="text-lg font-semibold text-slate-950 dark:text-white">Features</h3>

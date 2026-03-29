@@ -30,48 +30,33 @@ export default function Hero() {
               Pune, Maharashtra, India
             </div>
             <h1 className="text-4xl font-extrabold tracking-wide text-gray-900 dark:text-white md:text-5xl">
-              Swapnil Nandapure
+              Hi, I&apos;m Swapnil Nandapure
             </h1>
-
-            <a
-              href="https://git.io/typing-svg"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Typing SVG profile roles"
-              className="mt-3 block"
-            >
-              <img
-                src="https://readme-typing-svg.demolab.com?font=Poppins&duration=3000&pause=200&color=F0DB4F&width=500&lines=Senior+Software+Engineer;React+Native+Developer;AI+Enthusiast;Building+Scalable+Applications"
-                alt="Typing roles: Senior Software Engineer, React Native Developer, AI Enthusiast, Building Scalable Applications"
-                width={500}
-                height={56}
-                className="mt-2"
-              />
-            </a>
-
-            <p className="mt-2 font-semibold text-indigo-500 dark:text-primary">
-              Designing and engineering resilient, scalable systems for modern digital products.
+            <p className="mt-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-lg font-semibold tracking-wide text-transparent md:text-2xl">
+              Senior Software Engineer | React | Java | GenAI Specialist
             </p>
-            <p className="mt-4 max-w-xl leading-relaxed text-gray-700 dark:text-slate-400">
-              I love designing and building digital products that solve real problems and make
-              people&apos;s lives easier. Blending creativity with technology, I create scalable
-              experiences across Banking, Healthcare, CRM, and E-commerce.
+            <p className="mt-4 max-w-2xl leading-relaxed text-gray-700 dark:text-slate-400">
+              I bring 10+ years of experience building scalable, high-performance applications
+              across frontend and full-stack systems, with hands-on exposure to cloud, CI/CD,
+              observability, and modern engineering workflows. My toolkit spans React, Java,
+              TypeScript, GenAI, Jenkins, Cypress, Spinnaker, DataDog, and product-focused delivery
+              for teams that care about both reliability and real user impact.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
               <button
                 type="button"
-                onClick={() => scrollToSection("projects")}
+                onClick={() => scrollToSection("contact")}
                 className="rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
               >
-                View Projects
+                Hire Me
               </button>
               <button
                 type="button"
-                onClick={() => scrollToSection("contact")}
+                onClick={() => scrollToSection("projects")}
                 className="rounded-full border border-gray-300 px-4 py-2 text-sm text-gray-700 transition-all duration-300 ease-in-out hover:bg-gray-100 dark:border-white/10 dark:text-white dark:hover:bg-white/5"
               >
-                Contact Me
+                View Projects
               </button>
               <a
                 href={RESUME_URL}
@@ -102,7 +87,7 @@ export default function Hero() {
               />
               <motion.div {...float} className="relative">
                 <Image
-                  src="/profile.jpg"
+                  src="/profile.webp"
                   alt="Swapnil Nandapure"
                   width={384}
                   height={384}

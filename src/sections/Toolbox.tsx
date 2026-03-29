@@ -114,7 +114,7 @@ export default function Toolbox() {
               }}
             >
               <Image
-                src="/images/tools.png"
+                src="/images/tools.webp"
                 alt="Developer toolbox preview"
                 width={420}
                 height={520}
