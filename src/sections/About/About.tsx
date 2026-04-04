@@ -11,6 +11,28 @@ const card: Variants = {
   show: { opacity: 1, y: 0 },
 };
 
+const iconVariants: Variants = {
+  initial: { rotate: 0 },
+  hover: {
+    rotate: 360,
+    transition: {
+      duration: 0.6,
+      ease: "easeInOut",
+    },
+  },
+};
+
+const aboutButtonVariants: Variants = {
+  initial: { scale: 1 },
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+};
+
 export default function About() {
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
 
@@ -79,7 +101,9 @@ export default function About() {
             <motion.button
               type="button"
               onClick={() => setIsAboutModalOpen(true)}
-              whileHover={{ scale: 1.05 }}
+              initial="initial"
+              whileHover="hover"
+              variants={aboutButtonVariants}
               whileTap={{ scale: 0.98 }}
               className="relative inline-flex cursor-pointer items-center gap-3 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 ease-in-out"
               style={{
@@ -91,7 +115,12 @@ export default function About() {
               <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text font-semibold text-transparent">
                 Get to know me
               </span>
-              <svg className="h-4 w-4 text-slate-700 dark:text-white/80" viewBox="0 0 24 24" fill="none">
+              <motion.svg
+                variants={iconVariants}
+                className="h-4 w-4 text-slate-700 dark:text-white/80"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
                 <path
                   d="M5 12h14M12 5l7 7-7 7"
                   stroke="currentColor"
@@ -99,7 +128,7 @@ export default function About() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
-              </svg>
+              </motion.svg>
             </motion.button>
           </motion.div>
         </div>

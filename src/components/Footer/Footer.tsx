@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="text-sm text-slate-600 dark:text-slate-400">
           © {new Date().getFullYear()} Swapnil Nandapure
         </div>
-        <SocialLinks size="md" variant="minimal" className="gap-0" />
+        <SocialLinks variant="minimal" className="gap-1" />
       </div>
     </footer>
   );

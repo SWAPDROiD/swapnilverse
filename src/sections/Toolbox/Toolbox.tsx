@@ -10,6 +10,28 @@ const sectionVariants: Variants = {
   show: { opacity: 1, y: 0 },
 };
 
+const iconVariants: Variants = {
+  initial: { rotate: 0 },
+  hover: {
+    rotate: 360,
+    transition: {
+      duration: 0.6,
+      ease: "easeInOut",
+    },
+  },
+};
+
+const toolboxButtonVariants: Variants = {
+  initial: { scale: 1 },
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+};
+
 const linkClass =
   "text-indigo-600 underline transition duration-300 hover:text-purple-600 dark:text-pink-400 dark:hover:text-purple-400";
 
@@ -74,7 +96,9 @@ export default function Toolbox() {
               <motion.button
                 type="button"
                 onClick={openModal}
-                whileHover={{ scale: 1.05 }}
+                initial="initial"
+                whileHover="hover"
+                variants={toolboxButtonVariants}
                 className="relative inline-flex cursor-pointer items-center gap-3 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 ease-in-out"
                 style={{
                   background:
@@ -85,7 +109,12 @@ export default function Toolbox() {
                 <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text font-semibold text-transparent">
                   View my toolbox
                 </span>
-                <svg className="h-4 w-4 text-slate-700 dark:text-white/80" viewBox="0 0 24 24" fill="none">
+                <motion.svg
+                  variants={iconVariants}
+                  className="h-4 w-4 text-slate-700 dark:text-white/80"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
                   <path
                     d="M5 12h14M12 5l7 7-7 7"
                     stroke="currentColor"
@@ -93,7 +122,7 @@ export default function Toolbox() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
-                </svg>
+                </motion.svg>
               </motion.button>
             </motion.div>
           </motion.div>
@@ -186,10 +215,6 @@ export default function Toolbox() {
 
               <div className="max-h-[70vh] overflow-y-auto p-6">
                 <div className="mx-auto max-w-4xl space-y-6 text-gray-700 dark:text-gray-300">
-                  <h1 className="mb-4 text-3xl font-bold text-slate-950 dark:text-white">
-                    What are my weapons?
-                  </h1>
-
                   <p className="leading-relaxed text-gray-500 dark:text-gray-400">
                     I love discovering new tools and resources that can power my productivity.
                     Here&apos;s a peek into the tools and technologies that I use and recommend. If
@@ -331,16 +356,16 @@ export default function Toolbox() {
                         >
                           Visual Studio Code
                         </a>
-                        : I switched to VSCode back in 2017 and have never looked back since then.
+                        : I switched to VSCode back in 2019 and have never looked back since then.
                       </li>
                       <li>
                         <a
-                          href="https://marketplace.visualstudio.com/items?itemName=sdras.night-owl"
+                          href="https://marketplace.visualstudio.com/items?itemName=liviuschera.noctis"
                           target="_blank"
                           rel="noopener noreferrer"
                           className={linkClass}
                         >
-                          Night Owl editor theme
+                          Noctis editor theme
                         </a>
                         : I love this theme. It has been my default theme for a while now.
                       </li>

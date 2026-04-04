@@ -1,104 +1,210 @@
-### My Personal Developer Portfolio
+# swapdroid
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=32&duration=2800&pause=400&color=38BDF8&width=700&lines=Senior+Software+Engineer;React+Native+Developer;AI+Enthusiast;Building+Scalable+Applications)](https://git.io/typing-svg)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=nextdotjs)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Enabled-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Coverage](https://img.shields.io/badge/Coverage-91%25-22c55e)](/Users/swapnil.nandapure/Documents/GitHub/swapnilverse/coverage/lcov-report/index.html)
+[![Storybook](https://img.shields.io/badge/Storybook-10-ff4785?logo=storybook&logoColor=white)](https://storybook.js.org/)
 
-![React](https://img.shields.io/badge/React-Portfolio-61DAFB?style=for-the-badge&logo=react&logoColor=061A23)
-![Next.js](https://img.shields.io/badge/Next.js-App%20Router-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-Styled-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![Framer Motion](https://img.shields.io/badge/Framer%20Motion-Animated-0055FF?style=for-the-badge&logo=framer&logoColor=white)
-![EmailJS](https://img.shields.io/badge/EmailJS-Client%20Contact-FFB000?style=for-the-badge&logo=maildotru&logoColor=111827)
+Personal portfolio application built with Next.js, React, and TypeScript to showcase experience, projects, skills, and contact workflows in a polished, interactive interface. The project is structured for maintainability with co-located tests and Storybook stories, making it easier to evolve UI and behavior with confidence.
 
-[![GitHub](https://img.shields.io/badge/GitHub-swapdroid-181717?style=for-the-badge&logo=github)](https://github.com/swapdroid)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Swapnil%20Nandapure-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/swapnil-nandapure-135129103/)
+Live site: [https://swapdroid.vercel.app/](https://swapdroid.vercel.app/)
 
-</div>
+## Project Overview
 
----
+This repository contains a production-ready portfolio built with a modern frontend stack and a developer-friendly workflow.
 
-## 🌌 About
+Core technologies:
 
-`swapdroid` is my personal developer portfolio crafted to present experience, projects, and capabilities in a clean, interactive, and modern way.
+- Next.js App Router
+- React
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Jest + Testing Library
+- Storybook
+- EmailJS
 
-- I love designing and building digital products.
-- I focus on solving real-world problems through thoughtful engineering.
-- I bring experience across Banking, Healthcare, CRM, and E-commerce domains.
+## Features
 
-> Designing resilient digital experiences with a product mindset and engineering depth.
+- Responsive portfolio experience with animated sections
+- Project showcase with detailed modal views
+- Contact form integration with EmailJS
+- Co-located component tests for faster maintenance
+- Storybook stories for isolated UI development
+- Root-level coverage reporting for verification and review
 
----
+## Getting Started
 
-## 🧭 Architecture
+### Prerequisites
 
-This repository is now standardized around a `src/`-based Next.js App Router structure.
+- Node.js 18+
+- npm
 
-- `src/app/` contains route entrypoints and framework-owned files only
-- `src/components/` contains reusable UI building blocks
-- `src/sections/` contains page-level portfolio sections
-- `src/constants/` contains shared content/config
-- `src/hooks/` contains reusable client hooks
-- `src/styles/` contains global styles
-- `public/` contains static assets
-- Legacy Vite code has been removed, and generated output under `dist/` has been removed
+### Install dependencies
 
----
+```bash
+npm install
+```
 
-## 🛠️ Tech Stack
+### Run the development server
 
-<div align="center">
-  <img src="https://skillicons.dev/icons?i=react,ts,js,nodejs,java,androidstudio,redux,firebase,jenkins,github&perline=6" alt="Tech stack icons" />
-</div>
+```bash
+npm run dev
+```
 
-<div align="center">
-  <img src="https://img.shields.io/badge/iOS-Mobile%20Apps-000000?style=flat-square&logo=ios&logoColor=white" alt="iOS" />
-  <img src="https://img.shields.io/badge/Cypress-Testing-69D3A7?style=flat-square&logo=cypress&logoColor=white" alt="Cypress" />
-</div>
+Open [http://localhost:3000](http://localhost:3000) in the browser.
 
----
+### Build the project
 
-## 🤖 AI & Tools
+```bash
+npm run build
+```
 
-I actively use AI-assisted workflows to move faster, improve quality, and reduce repetitive work across development and product delivery.
+### Start the production server
 
-- `GitHub Copilot` for code suggestions and faster implementation
-- `ChatGPT` for ideation, debugging, and architecture support
-- `Claude AI` for problem exploration and structured reasoning
-- `Cursor` for AI-powered coding productivity
+```bash
+npm run start
+```
 
----
+## Testing
 
-## ✨ Features
+Tests are co-located with the components and sections they cover, which keeps behavior close to implementation and makes refactoring easier.
 
-- Modern UI with smooth animations powered by Framer Motion
-- Interactive portfolio layout with dedicated content sections
-- Project showcase popup for detailed case-study style viewing
-- Client-side contact form powered by EmailJS
+Example:
 
----
+```text
+src/components/Footer/
+├── Footer.tsx
+├── Footer.test.tsx
+├── Footer.stories.tsx
+└── index.ts
+```
 
-## 🚀 Live Demo
+### Run tests
 
-[![Live Demo](https://img.shields.io/badge/Visit-Live%20Demo-22C55E?style=for-the-badge&logo=vercel&logoColor=white)](https://swapdroid.vercel.app/)
+```bash
+npm run test
+```
 
----
+### Run tests in watch mode
 
-## 🔗 Connect
+```bash
+npm run test:watch
+```
 
-[![GitHub Profile](https://img.shields.io/badge/GitHub-@swapdroid-181717?style=for-the-badge&logo=github)](https://github.com/swapdroid)
-[![LinkedIn Profile](https://img.shields.io/badge/LinkedIn-Connect%20with%20me-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/swapnil-nandapure-135129103/)
+### Generate a coverage report
 
----
+```bash
+npm run test:coverage
+```
 
-## 📦 Project Highlights
+Coverage output is generated in the root-level `coverage/` folder.
 
-- Built with `Next.js`, `React`, `TypeScript`, and `Tailwind CSS`
-- Includes animated sections, portfolio storytelling, and responsive layouts
-- Showcases work across entertainment, healthcare, banking, and e-commerce products
-- Designed to feel like a personal portfolio landing page rather than a plain repository README
+## Storybook
 
----
+Storybook is used for isolated UI development, visual review, and validating component states outside the full application shell.
 
-<div align="center">
+### Run Storybook locally
 
-### Building meaningful digital experiences, one project at a time 🚀
+```bash
+npm run storybook
+```
 
-</div>
+### Build the static Storybook bundle
+
+```bash
+npm run build-storybook
+```
+
+Stories are co-located with their components and sections so usage examples stay close to the implementation.
+
+## Folder Structure
+
+```text
+src/
+├── app/
+│   ├── layout.tsx
+│   ├── layout.test.tsx
+│   ├── page.tsx
+│   └── page.test.tsx
+├── components/
+│   ├── Footer/
+│   ├── Navbar/
+│   ├── ScrollToTopButton/
+│   ├── Section/
+│   └── SocialLinks/
+├── constants/
+├── hooks/
+├── sections/
+│   ├── About/
+│   ├── Contact/
+│   ├── Hero/
+│   ├── Projects/
+│   ├── Skills/
+│   └── Toolbox/
+├── styles/
+└── utils/               # reserved for shared helpers when introduced
+```
+
+### Co-location Pattern
+
+Each UI module follows a consistent folder-based structure:
+
+```text
+src/components/ComponentName/
+├── ComponentName.tsx
+├── ComponentName.test.tsx
+├── ComponentName.stories.tsx
+└── index.ts
+```
+
+Benefits of this structure:
+
+- Easier discovery of related files
+- Safer refactors
+- Better onboarding for new contributors
+- Clear separation between implementation, tests, and stories
+
+## Development Guidelines
+
+- Keep components reusable, focused, and modular
+- Prefer readable behavior-driven tests over implementation-heavy assertions
+- Co-locate tests and stories with the component they describe
+- Avoid duplicate files and stale generated artifacts in source folders
+- Maintain consistent naming such as `ComponentName.tsx`, `ComponentName.test.tsx`, and `ComponentName.stories.tsx`
+- Keep shared configuration in dedicated files instead of scattering logic across components
+- Favor accessible markup and semantic HTML where possible
+
+## Scripts
+
+```bash
+npm run dev
+npm run build
+npm run start
+npm run test
+npm run test:watch
+npm run test:coverage
+npm run storybook
+npm run build-storybook
+```
+
+## Deployment
+
+Production URL: [https://swapdroid.vercel.app/](https://swapdroid.vercel.app/)
+
+The app is designed to be deployed as a standard Next.js application. Storybook can be published separately as a static build if needed.
+
+## Notes For Contributors
+
+- Static constants under `src/constants/` do not need tests unless logic is introduced
+- Coverage reports should remain outside `src/`
+- Storybook stories should cover default states, relevant variants, and notable edge cases where applicable
+
+## Contact
+
+If you would like to discuss the project, collaboration, or engineering opportunities:
+
+- Portfolio: [https://swapdroid.vercel.app/](https://swapdroid.vercel.app/)
+- GitHub: [https://github.com/swapdroid](https://github.com/swapdroid)
+- LinkedIn: [https://www.linkedin.com/in/swapnil-nandapure-135129103/](https://www.linkedin.com/in/swapnil-nandapure-135129103/)

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     apple: "/favicon.png",
   },
   openGraph: {
-    title: "Swapnil Nandapure | Software Engineer Portfolio",
+    title: "Swapnil Nandapure | Senior Software Engineer | React Java TypeScript GenAI",
     description,
     url: "https://swapdroid.vercel.app/",
     siteName: "swapdroid",

@@ -27,10 +27,14 @@ const sectionVariant = {
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 const field = { hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } };
 
-const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
-const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
-const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "";
-const CONTACT_TARGET = process.env.NEXT_PUBLIC_CONTACT_TO_EMAIL || EMAIL;
+function getEmailConfig() {
+  return {
+    serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
+    templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
+    publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "",
+    contactTarget: process.env.NEXT_PUBLIC_CONTACT_TO_EMAIL || EMAIL,
+  };
+}
 
 export default function Contact() {
   const [form, setForm] = useState<ContactFormData>({
@@ -54,9 +58,11 @@ export default function Contact() {
   };
 
   useEffect(() => {
-    if (PUBLIC_KEY) {
+    const { publicKey } = getEmailConfig();
+
+    if (publicKey) {
       emailjs.init({
-        publicKey: PUBLIC_KEY,
+        publicKey,
         blockHeadless: true,
       });
     }
@@ -79,6 +85,7 @@ export default function Contact() {
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const { serviceId, templateId, publicKey, contactTarget } = getEmailConfig();
 
     if (!form.name || !form.email || !form.message) {
       const nextStatus = { type: "error", msg: "Please fill all fields" } satisfies StatusMessage;
@@ -97,7 +104,7 @@ export default function Contact() {
       return;
     }
 
-    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+    if (!serviceId || !templateId || !publicKey) {
       const nextStatus = {
         type: "error",
         msg: "EmailJS is not configured. Add NEXT_PUBLIC_EMAILJS_* variables to .env.local.",
@@ -112,15 +119,15 @@ export default function Contact() {
 
     try {
       await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
+        serviceId,
+        templateId,
         {
           from_name: form.name,
           from_email: form.email,
           message: form.message,
-          to_email: CONTACT_TARGET,
+          to_email: contactTarget,
         },
-        PUBLIC_KEY,
+        publicKey,
       );
 
       const nextStatus = {
@@ -250,7 +257,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <SocialLinks size="lg" variant="default" showTooltip />
+            <SocialLinks size="lg" variant="rounded" showTooltip />
           </motion.div>
 
           <motion.div variants={field} className="relative mt-4 lg:mt-6">
