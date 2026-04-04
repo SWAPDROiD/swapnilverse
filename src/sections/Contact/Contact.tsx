@@ -152,12 +152,12 @@ export default function Contact() {
   return (
     <Section id="contact" className="relative overflow-hidden py-20">
       <motion.div
-        className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-indigo-400 opacity-20 blur-3xl"
+        className="absolute left-0 top-0 h-72 w-72 -translate-x-1/3 -translate-y-1/3 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-indigo-400 opacity-20 blur-3xl"
         animate={{ scale: [1, 1.05, 1] }}
         transition={{ duration: 6, repeat: Infinity }}
       />
       <motion.div
-        className="absolute -right-28 bottom-4 h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-600 to-pink-400 opacity-20 blur-3xl"
+        className="absolute bottom-4 right-0 h-96 w-96 translate-x-1/3 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-600 to-pink-400 opacity-20 blur-3xl"
         animate={{ scale: [1, 1.04, 1] }}
         transition={{ duration: 8, repeat: Infinity }}
       />
@@ -195,7 +195,7 @@ export default function Contact() {
           viewport={{ once: true }}
           variants={stagger}
         >
-          <motion.div className="space-y-4" variants={field}>
+          <motion.div className="min-w-0 space-y-4" variants={field}>
             <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
               Open to full-time roles, freelance work, and collaborations.
             </p>
@@ -224,30 +224,30 @@ export default function Contact() {
               <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
                 Reach me directly
               </p>
-              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href={MAILTO}
-                  className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-900 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 dark:text-white"
+                  className="inline-flex min-w-0 items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-900 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 dark:text-white"
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary">
                     <FaEnvelope aria-hidden="true" />
                   </span>
-                  <span className="flex flex-col">
+                  <span className="flex min-w-0 flex-col">
                     <span className="text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
                       Email
                     </span>
-                    <span className="hover:underline">{EMAIL}</span>
+                    <span className="break-all hover:underline">{EMAIL}</span>
                   </span>
                 </a>
 
                 <a
                   href={TEL}
-                  className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-900 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 dark:text-white"
+                  className="inline-flex min-w-0 items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-900 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 dark:text-white"
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary">
                     <FaPhoneAlt aria-hidden="true" />
                   </span>
-                  <span className="flex flex-col">
+                  <span className="flex min-w-0 flex-col">
                     <span className="text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
                       Phone
                     </span>
@@ -260,7 +260,7 @@ export default function Contact() {
             <SocialLinks size="lg" variant="rounded" showTooltip />
           </motion.div>
 
-          <motion.div variants={field} className="relative mt-4 lg:mt-6">
+          <motion.div variants={field} className="relative mt-4 min-w-0 lg:mt-6">
             <form
               onSubmit={submit}
               className="glass relative rounded-2xl border border-white/10 p-6 shadow-lg"

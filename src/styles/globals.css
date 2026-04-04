@@ -21,6 +21,8 @@
 html,
 body {
   min-height: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 html {
@@ -36,6 +38,13 @@ body {
   transition:
     background-color 250ms ease,
     color 250ms ease;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
 }
 
 a,

@@ -1,4 +1,4 @@
-# swapdroid
+# SwapnilVerse
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=nextdotjs)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=black)](https://react.dev/)
@@ -8,7 +8,9 @@
 
 Personal portfolio application built with Next.js, React, and TypeScript to showcase experience, projects, skills, and contact workflows in a polished, interactive interface. The project is structured for maintainability with co-located tests and Storybook stories, making it easier to evolve UI and behavior with confidence.
 
-Live site: [https://swapdroid.vercel.app/](https://swapdroid.vercel.app/)
+## 🚀 Live Demo
+
+[![Live Demo](https://img.shields.io/badge/Visit-Live%20Demo-22C55E?style=for-the-badge&logo=vercel&logoColor=white)](https://swapdroid.vercel.app/)
 
 ## Project Overview
 
@@ -201,10 +203,9 @@ The app is designed to be deployed as a standard Next.js application. Storybook 
 - Coverage reports should remain outside `src/`
 - Storybook stories should cover default states, relevant variants, and notable edge cases where applicable
 
-## Contact
+## 🔗 Contact
 
 If you would like to discuss the project, collaboration, or engineering opportunities:
 
-- Portfolio: [https://swapdroid.vercel.app/](https://swapdroid.vercel.app/)
-- GitHub: [https://github.com/swapdroid](https://github.com/swapdroid)
-- LinkedIn: [https://www.linkedin.com/in/swapnil-nandapure-135129103/](https://www.linkedin.com/in/swapnil-nandapure-135129103/)
+[![GitHub Profile](https://img.shields.io/badge/GitHub-@swapdroid-181717?style=for-the-badge&logo=github)](https://github.com/swapdroid)
+[![LinkedIn Profile](https://img.shields.io/badge/LinkedIn-Connect%20with%20me-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/swapnil-nandapure-135129103/)

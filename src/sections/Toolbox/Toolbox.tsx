@@ -64,10 +64,10 @@ export default function Toolbox() {
   const closeModal = () => setOpen(false);
 
   return (
-    <Section id="toolbox" className="relative py-20">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-[-10%] top-0 h-72 w-72 rounded-full bg-gradient-to-br from-purple-700 via-indigo-800 to-pink-600 opacity-10 blur-3xl" />
-        <div className="absolute bottom-0 right-[-10%] h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-700 via-purple-600 to-pink-500 opacity-10 blur-3xl" />
+    <Section id="toolbox" className="relative overflow-hidden py-20">
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute left-0 top-0 h-72 w-72 -translate-x-1/3 rounded-full bg-gradient-to-br from-purple-700 via-indigo-800 to-pink-600 opacity-10 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-96 w-96 translate-x-1/3 rounded-full bg-gradient-to-tr from-indigo-700 via-purple-600 to-pink-500 opacity-10 blur-3xl" />
       </div>
 
       <div className="mx-auto max-w-6xl px-6">
@@ -79,7 +79,7 @@ export default function Toolbox() {
           variants={sectionVariants}
         >
           <motion.div
-            className="space-y-6"
+            className="min-w-0 space-y-6"
             variants={{
               hidden: { opacity: 0, y: 8 },
               show: { opacity: 1, y: 0, transition: { staggerChildren: 0.08 } },
@@ -128,11 +128,11 @@ export default function Toolbox() {
           </motion.div>
 
           <motion.div
-            className="flex justify-center md:justify-end"
+            className="min-w-0 flex justify-center md:justify-end"
             variants={{ hidden: { opacity: 0, x: 30 }, show: { opacity: 1, x: 0 } }}
           >
             <motion.div
-              className="relative overflow-hidden rounded-2xl"
+              className="relative w-full max-w-sm overflow-hidden rounded-2xl"
               whileHover={{ scale: 1.02 }}
               initial={{ y: 0 }}
               animate={{ y: [0, -8, 0] }}
@@ -147,7 +147,7 @@ export default function Toolbox() {
                 alt="Developer toolbox preview"
                 width={420}
                 height={520}
-                className="block w-full max-w-sm rounded-2xl"
+                className="block h-auto w-full rounded-2xl"
               />
               <div
                 className="pointer-events-none absolute inset-0 rounded-2xl"
@@ -214,7 +214,7 @@ export default function Toolbox() {
               </div>
 
               <div className="max-h-[70vh] overflow-y-auto p-6">
-                <div className="mx-auto max-w-4xl space-y-6 text-gray-700 dark:text-gray-300">
+                <div className="mx-auto max-w-4xl space-y-6 break-words text-gray-700 dark:text-gray-300">
                   <p className="leading-relaxed text-gray-500 dark:text-gray-400">
                     I love discovering new tools and resources that can power my productivity.
                     Here&apos;s a peek into the tools and technologies that I use and recommend. If

@@ -60,10 +60,11 @@ export default function Hero() {
   }, [isDeleting, lineIndex, typedText]);
 
   return (
-    <section id="home" className="flex min-h-screen items-center pt-[72px]">
+    <section id="home" className="overflow-hidden pt-[72px]">
       <div className="mx-auto w-full max-w-6xl px-6">
         <div className="grid items-center gap-8 md:grid-cols-2">
           <motion.div
+            className="min-w-0"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -75,11 +76,15 @@ export default function Hero() {
             <h1 className="text-4xl font-extrabold tracking-wide text-gray-900 dark:text-white md:text-5xl">
               Hi, I&apos;m Swapnil Nandapure
             </h1>
-            <p className="mt-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-lg font-semibold tracking-wide text-transparent md:text-2xl">
+            <p className="mt-4 break-words bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-lg font-semibold tracking-wide text-transparent md:text-2xl">
               {typedText}
               <span className="ml-1 inline-block text-pink-500">|</span>
             </p>
-            <p className="mt-4 text-[#94A3B8] max-w-xl">I love designing and building digital products that solve real problems and make people&apos;s lives easier. Blending creativity with technology, I create scalable experiences across Banking, Healthcare, CRM, and E-Commerce.</p>
+            <p className="mt-4 max-w-xl text-[#94A3B8]">
+              I love designing and building digital products that solve real problems and make
+              people&apos;s lives easier. Blending creativity with technology, I create scalable
+              experiences across Banking, Healthcare, CRM, and E-Commerce.
+            </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
               <button
@@ -108,7 +113,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            className="flex justify-center md:justify-end"
+            className="min-w-0 flex justify-center md:justify-end"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -130,7 +135,7 @@ export default function Hero() {
                   width={384}
                   height={384}
                   priority
-                  className="h-72 w-72 rounded-full border-4 border-white/70 object-cover shadow-[0_0_40px_rgba(99,102,241,0.15)] dark:border-white/10 md:h-96 md:w-96"
+                  className="h-auto w-full max-w-[18rem] rounded-full border-4 border-white/70 object-cover shadow-[0_0_40px_rgba(99,102,241,0.15)] dark:border-white/10 md:max-w-[24rem]"
                 />
               </motion.div>
             </div>

@@ -96,7 +96,7 @@ export default function SocialLinks({
 }: SocialLinksProps) {
   const selectedSize = sizeClasses[size];
   const isMinimal = variant === "minimal";
-  const wrapperClassName = `flex items-center gap-4 ${className}`.trim();
+  const wrapperClassName = `flex min-w-0 flex-wrap items-center gap-4 ${className}`.trim();
 
   return (
     <div className={wrapperClassName}>
@@ -154,7 +154,7 @@ export default function SocialLinks({
           >
             <Icon className={selectedSize.icon} aria-hidden="true" />
             {showTooltip ? (
-              <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-gray-200 bg-white/95 px-2 py-1 text-xs text-gray-800 opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 dark:border-white/10 dark:bg-slate-900/95 dark:text-white">
+              <span className="pointer-events-none absolute -top-10 left-1/2 max-w-[12rem] -translate-x-1/2 break-words rounded-md border border-gray-200 bg-white/95 px-2 py-1 text-center text-xs text-gray-800 opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 dark:border-white/10 dark:bg-slate-900/95 dark:text-white">
                 {name}
               </span>
             ) : null}
