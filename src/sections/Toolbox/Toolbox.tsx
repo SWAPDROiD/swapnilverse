@@ -89,7 +89,8 @@ export default function Toolbox() {
               Curious to checkout my toolbox?
             </motion.h2>
             <motion.p className="text-slate-600 dark:text-slate-300">
-              I maintain an up-to-date &apos;uses&apos; page that lists all the things I use.
+              I maintain an up-to-date &apos;uses&apos; page that lists all the
+              things I use.
             </motion.p>
 
             <motion.div>
@@ -129,7 +130,10 @@ export default function Toolbox() {
 
           <motion.div
             className="min-w-0 flex justify-center md:justify-end"
-            variants={{ hidden: { opacity: 0, x: 30 }, show: { opacity: 1, x: 0 } }}
+            variants={{
+              hidden: { opacity: 0, x: 30 },
+              show: { opacity: 1, x: 0 },
+            }}
           >
             <motion.div
               className="relative w-full max-w-sm overflow-hidden rounded-2xl"
@@ -159,7 +163,10 @@ export default function Toolbox() {
               />
               <div
                 className="pointer-events-none absolute inset-0 rounded-2xl"
-                style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02))" }}
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02))",
+                }}
               />
             </motion.div>
           </motion.div>
@@ -201,7 +208,11 @@ export default function Toolbox() {
                   aria-label="Close toolbox modal"
                   className="rounded-md p-2 transition-all duration-150 hover:scale-105"
                 >
-                  <svg className="h-5 w-5 text-slate-500 dark:text-slate-300" viewBox="0 0 24 24" fill="none">
+                  <svg
+                    className="h-5 w-5 text-slate-500 dark:text-slate-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
                     <path
                       d="M6 18L18 6M6 6l12 12"
                       stroke="currentColor"
@@ -216,13 +227,16 @@ export default function Toolbox() {
               <div className="max-h-[70vh] overflow-y-auto p-6">
                 <div className="mx-auto max-w-4xl space-y-6 break-words text-gray-700 dark:text-gray-300">
                   <p className="leading-relaxed text-gray-500 dark:text-gray-400">
-                    I love discovering new tools and resources that can power my productivity.
-                    Here&apos;s a peek into the tools and technologies that I use and recommend. If
-                    you know a pro tip, I&apos;m all ears!
+                    I love discovering new tools and resources that can power my
+                    productivity. Here&apos;s a peek into the tools and
+                    technologies that I use and recommend. If you know a pro
+                    tip, I&apos;m all ears!
                   </p>
 
                   <div>
-                    <h3 className="mb-2 text-xl font-semibold text-purple-400">Tech</h3>
+                    <h3 className="mb-2 text-xl font-semibold text-purple-400">
+                      Tech
+                    </h3>
                     <ul className="list-inside list-disc space-y-3 text-gray-700 dark:text-gray-300">
                       <li>
                         <a
@@ -233,8 +247,8 @@ export default function Toolbox() {
                         >
                           React
                         </a>
-                        : It is more than a library, an architecture, or even an ecosystem. React
-                        is a community!
+                        : It is more than a library, an architecture, or even an
+                        ecosystem. React is a community!
                       </li>
                       <li>
                         <a
@@ -245,8 +259,9 @@ export default function Toolbox() {
                         >
                           TypeScript
                         </a>
-                        : Javascript on steroids! I love seeing <code className={codeClass}>.ts</code>{" "}
-                        files over <code className={codeClass}>.js</code>
+                        : Javascript on steroids! I love seeing{" "}
+                        <code className={codeClass}>.ts</code> files over{" "}
+                        <code className={codeClass}>.js</code>
                       </li>
                       <li>
                         <a
@@ -257,8 +272,9 @@ export default function Toolbox() {
                         >
                           NextJs
                         </a>
-                        : I&apos;ve been playing around with NextJS 13 lately. So far, enjoying the
-                        framework. This site is built with NextJS.
+                        : I&apos;ve been playing around with NextJS 13 lately.
+                        So far, enjoying the framework. This site is built with
+                        NextJS.
                       </li>
                       <li>
                         <a
@@ -291,8 +307,8 @@ export default function Toolbox() {
                         >
                           Cypress.io
                         </a>
-                        : Cypress is a great tool for E2E testing. Bummed that it still doesn&apos;t
-                        have{" "}
+                        : Cypress is a great tool for E2E testing. Bummed that
+                        it still doesn&apos;t have{" "}
                         <a
                           href="https://docs.cypress.io/api/commands/type#Typing-tab-key-does-not-work"
                           target="_blank"
@@ -312,7 +328,8 @@ export default function Toolbox() {
                         >
                           Tailwind CSS
                         </a>
-                        : Once you know the utility classes, it&apos;s the best way to write CSS.
+                        : Once you know the utility classes, it&apos;s the best
+                        way to write CSS.
                       </li>
                       <li>
                         <a
@@ -323,8 +340,8 @@ export default function Toolbox() {
                         >
                           styled-components
                         </a>
-                        : The fact that you can write actual CSS in your JavaScript is awesome. I
-                        use this at my work.
+                        : The fact that you can write actual CSS in your
+                        JavaScript is awesome. I use this at my work.
                       </li>
                       <li>
                         <a
@@ -335,16 +352,19 @@ export default function Toolbox() {
                         >
                           Storybook
                         </a>
-                        : Great tool for building UI components and pages in isolation.
+                        : Great tool for building UI components and pages in
+                        isolation.
                       </li>
                     </ul>
                   </div>
 
                   <div>
-                    <h3 className="mb-2 text-xl font-semibold text-purple-400">Editor</h3>
+                    <h3 className="mb-2 text-xl font-semibold text-purple-400">
+                      Editor
+                    </h3>
                     <p className="leading-relaxed text-gray-500 dark:text-gray-400">
-                      If you are spending long hours looking at your editor, might as well have a
-                      good setup
+                      If you are spending long hours looking at your editor,
+                      might as well have a good setup
                     </p>
                     <ul className="list-inside list-disc space-y-3 text-gray-700 dark:text-gray-300">
                       <li>
@@ -356,7 +376,8 @@ export default function Toolbox() {
                         >
                           Visual Studio Code
                         </a>
-                        : I switched to VSCode back in 2019 and have never looked back since then.
+                        : I switched to VSCode back in 2019 and have never
+                        looked back since then.
                       </li>
                       <li>
                         <a
@@ -367,7 +388,8 @@ export default function Toolbox() {
                         >
                           Noctis editor theme
                         </a>
-                        : I love this theme. It has been my default theme for a while now.
+                        : I love this theme. It has been my default theme for a
+                        while now.
                       </li>
                       <li>
                         <a
@@ -388,7 +410,8 @@ export default function Toolbox() {
                       Productivity Tools
                     </h3>
                     <p className="leading-relaxed text-gray-500 dark:text-gray-400">
-                      These are some of the desktop apps and Chrome extensions that I use daily.
+                      These are some of the desktop apps and Chrome extensions
+                      that I use daily.
                     </p>
                     <ul className="list-inside list-disc space-y-3 text-gray-700 dark:text-gray-300">
                       <li>Alfred App</li>
@@ -425,9 +448,10 @@ export default function Toolbox() {
                         >
                           Ladybug Podcast
                         </a>
-                        : I recently discovered this podcast. Four seasoned software developers
-                        working in different sectors share their experiences and advice on different
-                        topics related to software engineering. It&apos;s great, check it out!
+                        : I recently discovered this podcast. Four seasoned
+                        software developers working in different sectors share
+                        their experiences and advice on different topics related
+                        to software engineering. It&apos;s great, check it out!
                       </li>
                       <li>
                         <a
@@ -439,9 +463,10 @@ export default function Toolbox() {
                         >
                           The Joe Rogan Experience
                         </a>
-                        : I&apos;m a big Joe Rogan fan. I love the different perspectives that he
-                        brings to the table. From comedians to scientists, he has a wide range of
-                        guests on his show.
+                        : I&apos;m a big Joe Rogan fan. I love the different
+                        perspectives that he brings to the table. From comedians
+                        to scientists, he has a wide range of guests on his
+                        show.
                       </li>
                       <li>
                         <a
@@ -453,9 +478,9 @@ export default function Toolbox() {
                         >
                           The Call Kent Podcast
                         </a>
-                        : I love listening to Kent&apos;s podcast. He answers questions from his
-                        listeners and shares his thoughts on different topics related to software
-                        engineering.
+                        : I love listening to Kent&apos;s podcast. He answers
+                        questions from his listeners and shares his thoughts on
+                        different topics related to software engineering.
                       </li>
                       <li>
                         <a
@@ -467,9 +492,10 @@ export default function Toolbox() {
                         >
                           Deep Dive with Ali Abdaal
                         </a>
-                        : This podcast delves into the minds of entrepreneurs, creators, and other
-                        inspiring people to uncover the philosophies, strategies, and tools that
-                        help us live happier, healthier, and more productive lives.
+                        : This podcast delves into the minds of entrepreneurs,
+                        creators, and other inspiring people to uncover the
+                        philosophies, strategies, and tools that help us live
+                        happier, healthier, and more productive lives.
                       </li>
                       <li>
                         <a
@@ -481,8 +507,8 @@ export default function Toolbox() {
                         >
                           React Podcast
                         </a>
-                        : I got to know about many people in React/JS community through this
-                        podcast.
+                        : I got to know about many people in React/JS community
+                        through this podcast.
                       </li>
                       <li>
                         <a
@@ -494,8 +520,9 @@ export default function Toolbox() {
                         >
                           Refactoring UI
                         </a>
-                        : I have finished a few pages of the book and I loved it. I haven&apos;t
-                        had a chance to go through the rest of the book yet.
+                        : I have finished a few pages of the book and I loved
+                        it. I haven&apos;t had a chance to go through the rest
+                        of the book yet.
                       </li>
                       <li>
                         <a
@@ -507,9 +534,10 @@ export default function Toolbox() {
                         >
                           Epic React
                         </a>
-                        : This course provides comprehensive and in-depth learning resources for
-                        mastering React. It is designed to help developers enhance their React
-                        skills and become more proficient in building robust and scalable
+                        : This course provides comprehensive and in-depth
+                        learning resources for mastering React. It is designed
+                        to help developers enhance their React skills and become
+                        more proficient in building robust and scalable
                         applications.
                       </li>
                       <li>
@@ -522,14 +550,17 @@ export default function Toolbox() {
                         >
                           Maggie Appleton
                         </a>
-                        : Maggie makes visual essays about programming and design using real-life
-                        metaphors through her illustrations. I love her work.
+                        : Maggie makes visual essays about programming and
+                        design using real-life metaphors through her
+                        illustrations. I love her work.
                       </li>
                     </ul>
                   </div>
 
                   <div>
-                    <h3 className="mb-2 text-xl font-semibold text-purple-400">Newsletters</h3>
+                    <h3 className="mb-2 text-xl font-semibold text-purple-400">
+                      Newsletters
+                    </h3>
                     <ul className="list-inside list-disc space-y-3 text-gray-700 dark:text-gray-300">
                       <li>
                         <a
@@ -541,9 +572,9 @@ export default function Toolbox() {
                         >
                           The 3-2-1 Newsletter
                         </a>
-                        : I love this newsletter by James Clear. It&apos;s a weekly newsletter
-                        that has 3 ideas from him, 2 quotes from others, and 1 question for you to
-                        ponder.
+                        : I love this newsletter by James Clear. It&apos;s a
+                        weekly newsletter that has 3 ideas from him, 2 quotes
+                        from others, and 1 question for you to ponder.
                       </li>
                       <li>
                         <a
@@ -555,9 +586,10 @@ export default function Toolbox() {
                         >
                           Dense Discovery
                         </a>
-                        : A weekly newsletter that provides a curated collection of useful apps,
-                        tools, websites, books, accessories, art and design projects, as well as
-                        thought-provoking things.
+                        : A weekly newsletter that provides a curated collection
+                        of useful apps, tools, websites, books, accessories, art
+                        and design projects, as well as thought-provoking
+                        things.
                       </li>
                       <li>
                         <a
@@ -569,9 +601,9 @@ export default function Toolbox() {
                         >
                           Ali Abdaal
                         </a>
-                        : Ali sends out a weekly newsletter with his thoughts on productivity,
-                        books, cool things he found on the internet, and a summary of his latest
-                        YouTube videos.
+                        : Ali sends out a weekly newsletter with his thoughts on
+                        productivity, books, cool things he found on the
+                        internet, and a summary of his latest YouTube videos.
                       </li>
                       <li>
                         <a
@@ -583,9 +615,9 @@ export default function Toolbox() {
                         >
                           Kent C. Dodds
                         </a>
-                        : Kent has really good blogs. Subscribing to his newsletter allows me to
-                        get notified when he publishes a new blog or goes through some of his
-                        classic blogs.
+                        : Kent has really good blogs. Subscribing to his
+                        newsletter allows me to get notified when he publishes a
+                        new blog or goes through some of his classic blogs.
                       </li>
                     </ul>
                   </div>

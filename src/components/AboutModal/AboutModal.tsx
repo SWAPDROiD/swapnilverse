@@ -10,6 +10,14 @@ type AboutModalProps = {
   onClose: () => void;
 };
 
+type AboutModalLinkProps = {
+  href: string;
+  text: string;
+};
+
+const codeClass =
+  "rounded bg-gray-100 px-1 py-0.5 text-sm text-purple-600 dark:bg-gray-800 dark:text-purple-300";
+
 const chartData: BarGraphDatum[] = [
   { name: "Coding", value: 90, color: "#3B82F6" },
   { name: "Mentoring", value: 60, color: "#9ecae1" },
@@ -18,6 +26,19 @@ const chartData: BarGraphDatum[] = [
   { name: "AI Exploration", value: 70, color: "#9ecae1" },
   { name: "DIY projects", value: 60, color: "#deebf7" },
 ];
+
+function AboutModalLink({ href, text }: AboutModalLinkProps) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="font-medium text-indigo-600 underline decoration-indigo-400/50 underline-offset-4 transition hover:text-purple-600 dark:text-indigo-200 dark:decoration-indigo-300/50 dark:hover:text-white"
+    >
+      {text}
+    </a>
+  );
+}
 
 export default function AboutModal({ open, onClose }: AboutModalProps) {
   useEffect(() => {
@@ -98,14 +119,10 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
                 <section className="space-y-5">
                   <p className="leading-8 text-gray-700 dark:text-slate-300/95">
                     👋🏻 Hi friends, My name is Swapnil. I was born and raised in{" "}
-                    <a
+                    <AboutModalLink
                       href="https://www.google.com/maps/place/Nagpur,+Maharashtra/data=!4m2!3m1!1s0x3bd4c0a5a31faf13:0x19b37d06d0bb3e2b?sa=X&ved=1t:242&ictx=111"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-medium text-indigo-600 underline decoration-indigo-400/50 underline-offset-4 transition hover:text-purple-600 dark:text-indigo-200 dark:decoration-indigo-300/50 dark:hover:text-white"
-                    >
-                      Nagpur, Maharashtra, India
-                    </a>
+                      text="Nagpur, Maharashtra, India"
+                    />
                     .
                   </p>
 
@@ -120,14 +137,10 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
                     degree, I started my career in a Nagpur-based company
                     located in MIHAN. Later, I got an opportunity to work with
                     an MNC and moved to the beautiful city of{" "}
-                    <a
+                    <AboutModalLink
                       href="https://www.google.com/maps/place/Pune,+Maharashtra/data=!4m2!3m1!1s0x3bc2bf2e67461101:0x828d43bf9d9ee343?sa=X&ved=1t:242&ictx=111"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-medium text-indigo-600 underline decoration-indigo-400/50 underline-offset-4 transition hover:text-purple-600 dark:text-indigo-200 dark:decoration-indigo-300/50 dark:hover:text-white"
-                    >
-                      Pune, Maharashtra, India
-                    </a>
+                      text="Pune, Maharashtra, India"
+                    />
                     .
                   </p>
                 </section>
@@ -152,15 +165,76 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
 
                 <section className="space-y-4">
                   <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                    I&apos;m currently a Senior Software Engineer at{" "}
-                    <a
+                    From a curious engineering graduate to a seasoned software
+                    engineer, my journey has been a continuous pursuit of
+                    growth, learning, and building meaningful digital
+                    experiences.
+                  </p>
+
+                  <p className="leading-8 text-gray-700 dark:text-slate-300/95">
+                    After completing my Bachelor&apos;s degree in Information
+                    Technology in 2015, I began my professional journey as an
+                    Android application developer at{" "}
+                    <AboutModalLink
+                      href="https://www.amsworld.net/"
+                      text="Automations Manifold Services Pvt Ltd"
+                    />
+                    . Being part of a startup environment gave me the
+                    opportunity to wear multiple hats — I wasn&apos;t just
+                    building native Android applications, but also crafting
+                    RESTful APIs using JSP, Servlets, and Spring Boot,
+                    integrating them with web applications, and managing
+                    databases like PostgreSQL. From development to deployment —
+                    including publishing apps on the Play Store and hosting web
+                    applications — I was deeply involved in the complete product
+                    lifecycle. This phase shaped me into a true full-stack
+                    engineer and taught me the value of ownership.
+                  </p>
+
+                  <p className="leading-8 text-gray-700 dark:text-slate-300/95">
+                    I then expanded my horizons by working with Conviction
+                    Softwares and later{" "}
+                    <AboutModalLink
+                      href="https://www.smartdatainc.com/"
+                      text="smartData Enterprises (I) Ltd"
+                    />
+                    . where I spent over four years building scalable
+                    applications across healthcare and e-commerce domains.
+                    During this time, I transitioned into modern web
+                    technologies like React and React Native, while also
+                    stepping into leadership responsibilities as a team lead —
+                    mentoring developers and driving project delivery.
+                  </p>
+
+                  <p className="leading-8 text-gray-700 dark:text-slate-300/95">
+                    A pivotal chapter in my journey came with{" "}
+                    <AboutModalLink
+                      href="https://www.persistent.com/"
+                      text="Persistent Systems"
+                    />
+                    , where I worked as an Engineering Lead for nearly four
+                    years. Here, I gained deep exposure to the banking domain
+                    and enterprise-grade systems. It was during this phase that
+                    a defining opportunity came my way — I joined{" "}
+                    <AboutModalLink
                       href="https://www.zendesk.com/in/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-medium text-indigo-600 underline decoration-indigo-400/50 underline-offset-4 transition hover:text-purple-600 dark:text-indigo-200 dark:decoration-indigo-300/50 dark:hover:text-white"
-                    >
-                      Zendesk
-                    </a>
+                      text="Zendesk"
+                    />{" "}
+                    as part of the{" "}
+                    <strong>
+                      <code className={codeClass}>BOT team</code>
+                    </strong>
+                    , and within just six months, I was converted into a
+                    full-time employee. That transition marked a significant
+                    milestone in my career.
+                  </p>
+
+                  <p className="leading-8 text-gray-700 dark:text-slate-300/95">
+                    Today, I&apos;m Senior Software Engineer at{" "}
+                    <AboutModalLink
+                      href="https://www.zendesk.com/in/"
+                      text="Zendesk"
+                    />
                     , where I&apos;ve had the opportunity to build and scale
                     meaningful products that impact real users. I started by
                     contributing to Admin Center features around pricing and

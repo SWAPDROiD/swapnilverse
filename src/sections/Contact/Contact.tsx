@@ -85,10 +85,14 @@ export default function Contact() {
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { serviceId, templateId, publicKey, contactTarget } = getEmailConfig();
+    const { serviceId, templateId, publicKey, contactTarget } =
+      getEmailConfig();
 
     if (!form.name || !form.email || !form.message) {
-      const nextStatus = { type: "error", msg: "Please fill all fields" } satisfies StatusMessage;
+      const nextStatus = {
+        type: "error",
+        msg: "Please fill all fields",
+      } satisfies StatusMessage;
       setStatus(nextStatus);
       showToast(nextStatus);
       return;
@@ -140,7 +144,10 @@ export default function Contact() {
     } catch (error) {
       const nextStatus = {
         type: "error",
-        msg: error instanceof Error ? error.message : "Failed to send message. Please try again.",
+        msg:
+          error instanceof Error
+            ? error.message
+            : "Failed to send message. Please try again.",
       } satisfies StatusMessage;
       setStatus(nextStatus);
       showToast(nextStatus);
@@ -207,8 +214,8 @@ export default function Contact() {
               <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-sm">
                 20+ Applications Delivered
               </div>
-              <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-sm">
-                Currently at{" "}
+              <div className="inline-flex flex-wrap items-center gap-1 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-sm">
+                <span>Currently at</span>
                 <a
                   href={ZENDESK}
                   target="_blank"
@@ -260,7 +267,10 @@ export default function Contact() {
             <SocialLinks size="lg" variant="rounded" showTooltip />
           </motion.div>
 
-          <motion.div variants={field} className="relative mt-4 min-w-0 lg:mt-6">
+          <motion.div
+            variants={field}
+            className="relative mt-4 min-w-0 lg:mt-6"
+          >
             <form
               onSubmit={submit}
               className="glass relative rounded-2xl border border-white/10 p-6 shadow-lg"
@@ -329,7 +339,9 @@ export default function Contact() {
                     type="submit"
                     disabled={loading}
                     className={`inline-flex items-center justify-center gap-3 rounded-full px-6 py-3 text-white transition-all duration-300 ${
-                      loading ? "cursor-not-allowed opacity-70" : "hover:scale-105"
+                      loading
+                        ? "cursor-not-allowed opacity-70"
+                        : "hover:scale-105"
                     }`}
                     style={{
                       background:
@@ -337,7 +349,11 @@ export default function Contact() {
                     }}
                   >
                     {loading ? (
-                      <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                      <svg
+                        className="h-4 w-4 animate-spin"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
                         <circle
                           cx="12"
                           cy="12"
@@ -353,10 +369,11 @@ export default function Contact() {
                         />
                       </svg>
                     ) : null}
-                    <span className="font-medium">{loading ? "Sending..." : "Send Message"}</span>
+                    <span className="font-medium">
+                      {loading ? "Sending..." : "Send Message"}
+                    </span>
                   </button>
                 </div>
-
               </motion.div>
             </form>
           </motion.div>

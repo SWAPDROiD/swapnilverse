@@ -60,7 +60,10 @@ export default function Hero() {
   }, [isDeleting, lineIndex, typedText]);
 
   return (
-    <section id="home" className="overflow-hidden pt-[72px]">
+    <section
+      id="home"
+      className="flex min-h-[calc(100svh-72px)] w-full items-center overflow-hidden"
+    >
       <div className="mx-auto w-full max-w-6xl px-6">
         <div className="grid items-center gap-8 md:grid-cols-2">
           <motion.div

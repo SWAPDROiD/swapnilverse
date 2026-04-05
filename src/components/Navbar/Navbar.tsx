@@ -46,7 +46,9 @@ export default function Navbar() {
     : "bg-transparent";
 
   return (
-    <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${headerClass}`}>
+    <header
+      className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${headerClass}`}
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <button
           type="button"
