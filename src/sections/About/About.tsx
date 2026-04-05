@@ -56,14 +56,22 @@ export default function About() {
             transition={{ staggerChildren: 0.12 }}
             className="grid gap-6 md:grid-cols-3"
           >
-            <motion.div variants={card} className="glass rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-md">
-              <div className="text-3xl font-bold text-slate-950 dark:text-white">20+</div>
+            <motion.div
+              variants={card}
+              className="glass rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-md"
+            >
+              <div className="text-3xl font-bold text-slate-950 dark:text-white">
+                20+
+              </div>
               <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">
                 Applications Delivered
               </div>
             </motion.div>
 
-            <motion.div variants={card} className="glass rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-md">
+            <motion.div
+              variants={card}
+              className="glass rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-md"
+            >
               <div className="font-semibold text-slate-950 dark:text-white">
                 Healthcare, Banking, CRM &amp; E-commerce Expertise
               </div>
@@ -72,9 +80,12 @@ export default function About() {
               </div>
             </motion.div>
 
-            <motion.div variants={card} className="glass rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-md">
-              <div className="font-semibold text-slate-950 dark:text-white">
-                Currently at{" "}
+            <motion.div
+              variants={card}
+              className="glass rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-md"
+            >
+              <div className="inline-flex flex-wrap items-center gap-1 font-semibold text-slate-950 dark:text-white">
+                <span>Currently at</span>
                 <a
                   href={ZENDESK}
                   target="_blank"
@@ -82,12 +93,12 @@ export default function About() {
                   className="text-primary hover:underline"
                 >
                   Zendesk
-                </a>{" "}
-                Pune
+                </a>
+                <span>Pune</span>
               </div>
               <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-                Building scalable customer experience platforms powered by AI and intelligent
-                agents.
+                Building scalable customer experience platforms powered by AI
+                and intelligent agents.
               </div>
             </motion.div>
           </motion.div>
@@ -134,7 +145,10 @@ export default function About() {
         </div>
       </Section>
 
-      <AboutModal open={isAboutModalOpen} onClose={() => setIsAboutModalOpen(false)} />
+      <AboutModal
+        open={isAboutModalOpen}
+        onClose={() => setIsAboutModalOpen(false)}
+      />
     </>
   );
 }
