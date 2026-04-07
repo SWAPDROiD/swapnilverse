@@ -186,6 +186,9 @@ export default function Toolbox() {
           >
             <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="toolbox-modal-title"
               className="glass relative z-10 mx-auto w-[92%] max-w-3xl overflow-hidden rounded-2xl border border-gray-200 shadow-2xl dark:border-white/10"
               initial={{ scale: 0.98, y: 8 }}
               animate={{ scale: 1, y: 0 }}
@@ -194,7 +197,7 @@ export default function Toolbox() {
             >
               <div className="flex items-center justify-between border-b border-gray-200 p-5 dark:border-white/10">
                 <div>
-                  <h2 className="mt-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-2xl font-bold text-transparent md:text-3xl">
+                  <h2 id="toolbox-modal-title" className="mt-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-2xl font-bold text-transparent md:text-3xl">
                     What are my weapons?
                   </h2>
                   <div className="text-sm text-slate-600 dark:text-slate-400">

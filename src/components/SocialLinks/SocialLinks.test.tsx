@@ -25,4 +25,10 @@ describe("SocialLinks", () => {
     const link = screen.getByRole("link", { name: "GitHub" });
     expect(link.className).toContain("bg-transparent");
   });
+
+  it("applies large sizing classes when requested", () => {
+    render(<SocialLinks size="lg" />);
+
+    expect(screen.getByRole("link", { name: "GitHub" }).className).toContain("p-3");
+  });
 });

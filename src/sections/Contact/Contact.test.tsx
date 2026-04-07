@@ -30,6 +30,16 @@ describe("Contact", () => {
     expect(screen.getByDisplayValue("Hello there")).toBeInTheDocument();
   });
 
+  it("renders the small Ko-fi support link below social links", () => {
+    render(<Contact />);
+
+    expect(screen.getByText("Enjoyed my work? Fuel my next idea.")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Buy me a coffee/i })).toHaveAttribute(
+      "href",
+      "https://ko-fi.com/swapdroid",
+    );
+  });
+
   it("shows validation errors for missing and invalid input", async () => {
     render(<Contact />);
 
@@ -59,6 +69,17 @@ describe("Contact", () => {
     ).toBeInTheDocument();
   });
 
+  it("initializes emailjs when a public key is provided", () => {
+    process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY = "public";
+
+    render(<Contact />);
+
+    expect(emailjs.init).toHaveBeenCalledWith({
+      publicKey: "public",
+      blockHeadless: true,
+    });
+  });
+
   it("submits successfully when configured", async () => {
     process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID = "service";
     process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID = "template";
@@ -73,6 +94,16 @@ describe("Contact", () => {
     fireEvent.click(screen.getByRole("button", { name: "Send Message" }));
 
     await waitFor(() => expect(emailjs.send).toHaveBeenCalled());
+    expect(emailjs.send).toHaveBeenCalledWith(
+      "service",
+      "template",
+      expect.objectContaining({
+        from_name: "Swapnil",
+        from_email: "hi@example.com",
+        message: "Hello",
+      }),
+      "public",
+    );
     expect(await screen.findByText("Message sent successfully! I will reply soon.")).toBeInTheDocument();
   });
 

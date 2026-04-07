@@ -7,5 +7,6 @@ describe("Footer", () => {
 
     expect(screen.getByText(new RegExp(`${new Date().getFullYear()}`))).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "LinkedIn" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "GitHub" }).className).toContain("bg-transparent");
   });
 });

@@ -17,6 +17,8 @@ describe("Page", () => {
 
     expect(screen.getByText("Navbar mock")).toBeInTheDocument();
     expect(screen.getByText("Hero section mock")).toBeInTheDocument();
+    expect(screen.getByText("Toolbox section mock")).toBeInTheDocument();
+    expect(screen.getByText("Contact section mock")).toBeInTheDocument();
     expect(screen.getByText("Footer mock")).toBeInTheDocument();
   });
 });

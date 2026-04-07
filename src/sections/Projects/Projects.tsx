@@ -124,6 +124,9 @@ export default function Projects() {
             <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
             <motion.div
               ref={modalRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="project-details-title"
               className="glass relative z-10 mx-auto flex max-h-[90vh] w-[92%] max-w-3xl flex-col overflow-hidden rounded-2xl border border-gray-200 shadow-2xl dark:border-white/10 md:max-h-[80vh]"
               initial={{ scale: 0.98, y: 8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -140,7 +143,7 @@ export default function Projects() {
               <div className="relative z-10 flex min-h-0 flex-1 flex-col">
                 <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 p-5 dark:border-white/10">
                   <div>
-                    <h2 className="mt-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-2xl font-bold text-transparent md:text-3xl">
+                    <h2 id="project-details-title" className="mt-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-2xl font-bold text-transparent md:text-3xl">
                       {openProject.details.fullTitle}
                     </h2>
                     <div className="text-sm text-slate-600 dark:text-slate-400">
