@@ -24,6 +24,7 @@ describe("Hero", () => {
     render(<Hero />);
 
     expect(screen.getByText("Hi, I'm Swapnil Nandapure")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Download Resume" })).toHaveAttribute("target", "_blank");
     fireEvent.click(screen.getByRole("button", { name: "Hire Me" }));
     fireEvent.click(screen.getByRole("button", { name: "View Projects" }));
 
@@ -40,5 +41,15 @@ describe("Hero", () => {
 
     const typingLine = container.querySelector("p");
     expect(typingLine?.textContent).toContain("S");
+  });
+
+  it("does not fail when target sections are missing", () => {
+    document.body.innerHTML = "";
+    render(<Hero />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Hire Me" }));
+    fireEvent.click(screen.getByRole("button", { name: "View Projects" }));
+
+    expect(window.scrollTo).not.toHaveBeenCalled();
   });
 });

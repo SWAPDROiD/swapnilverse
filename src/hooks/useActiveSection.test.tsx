@@ -27,4 +27,20 @@ describe("useActiveSection", () => {
 
     expect(result.current).toBe("skills");
   });
+
+  it("ignores non-intersecting entries", () => {
+    document.body.innerHTML = '<section id="contact"></section>';
+
+    const { result } = renderHook(() => useActiveSection("home"));
+    const section = document.getElementById("contact") as HTMLElement;
+
+    act(() => {
+      global.__intersectionObservers.at(-1)?.callback(
+        [{ isIntersecting: false, target: section } as IntersectionObserverEntry],
+        {} as IntersectionObserver,
+      );
+    });
+
+    expect(result.current).toBe("home");
+  });
 });

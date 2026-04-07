@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import Section from "@/components/Section";
 import SocialLinks from "@/components/SocialLinks";
-import { EMAIL, MAILTO, PHONE, TEL, ZENDESK } from "@/constants/links";
+import { EMAIL, KOFI, MAILTO, PHONE, TEL, ZENDESK } from "@/constants/links";
 
 interface ContactFormData {
   name: string;
@@ -265,6 +265,23 @@ export default function Contact() {
             </div>
 
             <SocialLinks size="lg" variant="rounded" showTooltip />
+
+            <div className="pt-3">
+              <div className="inline-flex max-w-xl flex-col items-start gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-left backdrop-blur-sm">
+                <p className="text-sm font-medium text-slate-900 dark:text-white">
+                  Enjoyed my work? Fuel my next idea.
+                </p>
+                <a
+                  href={KOFI}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_25px_rgba(124,58,237,0.35)]"
+                >
+                  <span aria-hidden="true">☕</span>
+                  <span>Buy me a coffee</span>
+                </a>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div

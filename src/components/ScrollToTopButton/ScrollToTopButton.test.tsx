@@ -15,4 +15,13 @@ describe("ScrollToTopButton", () => {
 
     expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
   });
+
+  it("stays hidden when the page is near the top", () => {
+    Object.defineProperty(window, "scrollY", { value: 100, writable: true });
+    render(<ScrollToTopButton />);
+
+    fireEvent.scroll(window);
+
+    expect(screen.queryByRole("button", { name: "Scroll to top" })).not.toBeInTheDocument();
+  });
 });

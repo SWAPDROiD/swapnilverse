@@ -210,4 +210,4 @@ If you would like to discuss the project, collaboration, or engineering opportun
 [![GitHub Profile](https://img.shields.io/badge/GitHub-@swapdroid-181717?style=for-the-badge&logo=github)](https://github.com/swapdroid)
 [![LinkedIn Profile](https://img.shields.io/badge/LinkedIn-Connect%20with%20me-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/swapnil-nandapure-135129103/)
 
-<a href="https://buymeacoffee.com/its_swapdroid"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="200" /></a>
+<a href="https://ko-fi.com/swapdroid"><img src="https://storage.ko-fi.com/cdn/kofi2.png" width="200" /></a>

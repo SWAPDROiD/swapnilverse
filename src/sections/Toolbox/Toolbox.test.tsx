@@ -16,4 +16,13 @@ describe("Toolbox", () => {
     fireEvent.keyDown(window, { key: "Escape" });
     expect(screen.queryByText("A curated list of tools, editors, and resources I use daily.")).not.toBeInTheDocument();
   });
+
+  it("closes the modal on outside click", () => {
+    render(<Toolbox />);
+    fireEvent.click(screen.getByRole("button", { name: /View my toolbox/i }));
+
+    fireEvent.mouseDown(screen.getByRole("dialog").parentElement as HTMLElement);
+
+    expect(screen.queryByRole("button", { name: "Close toolbox modal" })).not.toBeInTheDocument();
+  });
 });
