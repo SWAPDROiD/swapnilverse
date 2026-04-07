@@ -68,7 +68,9 @@ export default function Projects() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass overflow-hidden rounded-lg"
+              whileHover={{ scale: 1.02, y: -4 }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
+              className="glass overflow-hidden rounded-lg transition-all duration-300 ease-in-out hover:shadow-md"
             >
               <div className="relative">
                 <Image
@@ -119,15 +121,14 @@ export default function Projects() {
               if (event.target === event.currentTarget) setOpenProject(null);
             }}
           >
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
             <motion.div
               ref={modalRef}
-              className="glass relative z-10 mx-auto w-[94%] max-w-5xl overflow-hidden rounded-2xl border border-gray-200 shadow-2xl dark:border-white/10"
-              initial={{ opacity: 0, scale: 0.95 }}
+              className="glass relative z-10 mx-auto flex max-h-[90vh] w-[92%] max-w-3xl flex-col overflow-hidden rounded-2xl border border-gray-200 shadow-2xl dark:border-white/10 md:max-h-[80vh]"
+              initial={{ scale: 0.98, y: 8 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.28 }}
-              style={{ maxHeight: "80vh" }}
+              exit={{ scale: 0.98, y: 8 }}
+              transition={{ duration: 0.18 }}
             >
               <div
                 className="pointer-events-none absolute -inset-px rounded-2xl"
@@ -136,10 +137,10 @@ export default function Projects() {
                   filter: "blur(24px)",
                 }}
               />
-              <div className="relative z-10 max-h-[80vh] overflow-y-auto">
-                <div className="flex items-start justify-between gap-4 border-b border-gray-200 p-6 dark:border-white/10">
+              <div className="relative z-10 flex min-h-0 flex-1 flex-col">
+                <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 p-5 dark:border-white/10">
                   <div>
-                    <h2 className="text-2xl font-bold text-slate-950 dark:text-white">
+                    <h2 className="mt-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-2xl font-bold text-transparent md:text-3xl">
                       {openProject.details.fullTitle}
                     </h2>
                     <div className="text-sm text-slate-600 dark:text-slate-400">
@@ -160,7 +161,7 @@ export default function Projects() {
                     type="button"
                     onClick={() => setOpenProject(null)}
                     aria-label="Close project details"
-                    className="rounded-md p-2 transition hover:bg-gray-100 dark:hover:bg-white/10"
+                    className="rounded-md p-2 transition-all duration-150 hover:scale-105"
                   >
                     <svg className="h-5 w-5 text-slate-500 dark:text-slate-300" viewBox="0 0 24 24" fill="none">
                       <path
@@ -174,7 +175,8 @@ export default function Projects() {
                   </button>
                 </div>
 
-                <div className="space-y-6 p-6">
+                <div className="min-h-0 flex-1 overflow-y-auto scroll-smooth p-6">
+                  <div className="space-y-6">
                   <div className="text-slate-700 dark:text-slate-300">
                     <div className="mb-2 text-sm font-medium text-indigo-600 dark:text-indigo-300">
                       {openProject.details.highlight}
@@ -244,6 +246,7 @@ export default function Projects() {
                         </a>
                       ))}
                     </div>
+                  </div>
                   </div>
                 </div>
               </div>

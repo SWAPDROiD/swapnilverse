@@ -89,8 +89,7 @@ export default function Toolbox() {
               Curious to checkout my toolbox?
             </motion.h2>
             <motion.p className="text-slate-600 dark:text-slate-300">
-              I maintain an up-to-date &apos;uses&apos; page that lists all the
-              things I use.
+              Here&apos;s a curated collection of what I use to design, build, and ship modern digital experiences.
             </motion.p>
 
             <motion.div>
@@ -185,7 +184,7 @@ export default function Toolbox() {
               if (event.target === event.currentTarget) closeModal();
             }}
           >
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
             <motion.div
               className="glass relative z-10 mx-auto w-[92%] max-w-3xl overflow-hidden rounded-2xl border border-gray-200 shadow-2xl dark:border-white/10"
               initial={{ scale: 0.98, y: 8 }}
@@ -195,7 +194,7 @@ export default function Toolbox() {
             >
               <div className="flex items-center justify-between border-b border-gray-200 p-5 dark:border-white/10">
                 <div>
-                  <h2 className="text-xl font-semibold text-slate-950 dark:text-white">
+                  <h2 className="mt-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-2xl font-bold text-transparent md:text-3xl">
                     What are my weapons?
                   </h2>
                   <div className="text-sm text-slate-600 dark:text-slate-400">

@@ -24,7 +24,7 @@ export default function Skills() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass rounded-lg p-4"
+              className="glass rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-md"
             >
               <div className="mb-2 font-semibold text-slate-950 dark:text-white">
                 {category.title}
