@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { RESUME_URL } from "@/constants/links";
+import { i18n } from "@/i18n";
 
 const float = {
   animate: { y: [0, -10, 0], rotate: [0, 2, 0] },
@@ -16,17 +17,11 @@ function scrollToSection(id: string) {
   element.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-const typingLines = [
-  "Senior Software Engineer",
-  "Mentor",
-  "Problem Solver",
-  "AI & AI Agents Builder",
-];
-
 export default function Hero() {
   const [lineIndex, setLineIndex] = useState(0);
   const [typedText, setTypedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const typingLines = i18n.hero.typingLines;
 
   useEffect(() => {
     const currentLine = typingLines[lineIndex];
@@ -74,19 +69,17 @@ export default function Hero() {
             transition={{ duration: 0.7 }}
           >
             <div className="mb-4 text-sm text-gray-500 dark:text-slate-400">
-              Pune, Maharashtra, India
+              {i18n.hero.location}
             </div>
             <h1 className="text-4xl font-extrabold tracking-wide text-gray-900 dark:text-white md:text-5xl">
-              Hi, I&apos;m Swapnil Nandapure
+              {i18n.hero.title}
             </h1>
             <p className="mt-4 break-words bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-lg font-semibold tracking-wide text-transparent md:text-2xl">
               {typedText}
               <span className="ml-1 inline-block text-pink-500">|</span>
             </p>
             <p className="mt-4 max-w-xl text-[#94A3B8]">
-              I love designing and building digital products that solve real problems and make
-              people&apos;s lives easier. Blending creativity with technology, I create scalable
-              experiences across Banking, Healthcare, CRM, and E-Commerce.
+              {i18n.hero.description}
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -95,7 +88,7 @@ export default function Hero() {
                 onClick={() => scrollToSection("contact")}
                 className="rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
               >
-                Hire Me
+                {i18n.hero.hireMe}
               </button>
               <button
                 type="button"

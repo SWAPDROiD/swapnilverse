@@ -7,6 +7,7 @@ import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import Section from "@/components/Section";
 import SocialLinks from "@/components/SocialLinks";
 import { EMAIL, KOFI, MAILTO, PHONE, TEL, ZENDESK } from "@/constants/links";
+import { i18n } from "@/i18n";
 
 interface ContactFormData {
   name: string;
@@ -91,7 +92,7 @@ export default function Contact() {
     if (!form.name || !form.email || !form.message) {
       const nextStatus = {
         type: "error",
-        msg: "Please fill all fields",
+        msg: i18n.contact.validation.fillAllFields,
       } satisfies StatusMessage;
       setStatus(nextStatus);
       showToast(nextStatus);
@@ -101,7 +102,7 @@ export default function Contact() {
     if (!validEmail(form.email)) {
       const nextStatus = {
         type: "error",
-        msg: "Please enter a valid email",
+        msg: i18n.contact.validation.validEmail,
       } satisfies StatusMessage;
       setStatus(nextStatus);
       showToast(nextStatus);
@@ -111,7 +112,7 @@ export default function Contact() {
     if (!serviceId || !templateId || !publicKey) {
       const nextStatus = {
         type: "error",
-        msg: "EmailJS is not configured. Add NEXT_PUBLIC_EMAILJS_* variables to .env.local.",
+        msg: i18n.contact.validation.configError,
       } satisfies StatusMessage;
       setStatus(nextStatus);
       showToast(nextStatus);
@@ -136,7 +137,7 @@ export default function Contact() {
 
       const nextStatus = {
         type: "success",
-        msg: "Message sent successfully! I will reply soon.",
+        msg: i18n.contact.messages.success,
       } satisfies StatusMessage;
       setStatus(nextStatus);
       showToast(nextStatus);
@@ -147,7 +148,7 @@ export default function Contact() {
         msg:
           error instanceof Error
             ? error.message
-            : "Failed to send message. Please try again.",
+            : i18n.contact.messages.error,
       } satisfies StatusMessage;
       setStatus(nextStatus);
       showToast(nextStatus);
@@ -204,32 +205,32 @@ export default function Contact() {
         >
           <motion.div className="min-w-0 space-y-4" variants={field}>
             <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-              Open to full-time roles, freelance work, and collaborations.
+              {i18n.contact.openTo}
             </p>
 
             <div className="mt-4 mb-4 flex flex-wrap gap-3">
               <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-sm">
-                10+ Years Experience
+                {i18n.contact.experience}
               </div>
               <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-sm">
-                20+ Applications Delivered
+                {i18n.contact.applicationsDelivered}
               </div>
               <div className="inline-flex flex-wrap items-center gap-1 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-sm">
-                <span>Currently at</span>
+                <span>{i18n.contact.currentlyAt}</span>
                 <a
                   href={ZENDESK}
                   target="_blank"
                   rel="noreferrer"
                   className="text-primary hover:underline"
                 >
-                  Zendesk Pune
+                  {i18n.contact.zendesk}
                 </a>
               </div>
             </div>
 
             <div className="mt-8 pt-4">
               <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                Reach me directly
+                {i18n.contact.reachMeDirectly}
               </p>
               <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
@@ -241,7 +242,7 @@ export default function Contact() {
                   </span>
                   <span className="flex min-w-0 flex-col">
                     <span className="text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                      Email
+                      {i18n.contact.email}
                     </span>
                     <span className="break-all hover:underline">{EMAIL}</span>
                   </span>
@@ -256,7 +257,7 @@ export default function Contact() {
                   </span>
                   <span className="flex min-w-0 flex-col">
                     <span className="text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                      Phone
+                      {i18n.contact.phone}
                     </span>
                     <span className="hover:underline">{PHONE}</span>
                   </span>
@@ -269,7 +270,7 @@ export default function Contact() {
             <div className="pt-3">
               <div className="inline-flex max-w-xl flex-col items-start gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-left backdrop-blur-sm">
                 <p className="text-sm font-medium text-slate-900 dark:text-white">
-                  Enjoyed my work? Fuel my next idea.
+                  {i18n.contact.enjoyed}
                 </p>
                 <a
                   href={KOFI}
@@ -278,7 +279,7 @@ export default function Contact() {
                   className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_25px_rgba(124,58,237,0.35)]"
                 >
                   <span aria-hidden="true">☕</span>
-                  <span>Buy me a coffee</span>
+                  <span>{i18n.contact.buyMeCoffee}</span>
                 </a>
               </div>
             </div>
@@ -307,7 +308,7 @@ export default function Contact() {
                       htmlFor="name"
                       className="pointer-events-none absolute left-4 top-[calc(50%+2px)] -translate-y-1/2 text-sm text-slate-500 transition-all duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs dark:text-slate-400"
                     >
-                      Name
+                      {i18n.contact.placeholders.name}
                     </label>
                   ) : null}
                 </div>
@@ -326,7 +327,7 @@ export default function Contact() {
                       htmlFor="email"
                       className="pointer-events-none absolute left-4 top-[calc(50%+2px)] -translate-y-1/2 text-sm text-slate-500 transition-all duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs dark:text-slate-400"
                     >
-                      Email
+                      {i18n.contact.placeholders.email}
                     </label>
                   ) : null}
                 </div>
@@ -346,7 +347,7 @@ export default function Contact() {
                       htmlFor="message"
                       className="pointer-events-none absolute left-4 top-[calc(1rem+2px)] text-sm text-slate-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs dark:text-slate-400"
                     >
-                      Message
+                      {i18n.contact.placeholders.message}
                     </label>
                   ) : null}
                 </div>

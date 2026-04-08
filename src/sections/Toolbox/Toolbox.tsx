@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Section from "@/components/Section";
+import { i18n } from "@/i18n";
 
 const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 10 },
@@ -86,10 +87,10 @@ export default function Toolbox() {
             }}
           >
             <motion.h2 className="text-3xl font-bold text-slate-950 dark:text-white">
-              Curious to checkout my toolbox?
+              {i18n.toolbox.title}
             </motion.h2>
             <motion.p className="text-slate-600 dark:text-slate-300">
-              Here&apos;s a curated collection of what I use to design, build, and ship modern digital experiences.
+              {i18n.toolbox.description}
             </motion.p>
 
             <motion.div>
@@ -107,7 +108,7 @@ export default function Toolbox() {
                 }}
               >
                 <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text font-semibold text-transparent">
-                  View my toolbox
+                  {i18n.toolbox.viewToolbox}
                 </span>
                 <motion.svg
                   variants={iconVariants}
@@ -198,10 +199,10 @@ export default function Toolbox() {
               <div className="flex items-center justify-between border-b border-gray-200 p-5 dark:border-white/10">
                 <div>
                   <h2 id="toolbox-modal-title" className="mt-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-2xl font-bold text-transparent md:text-3xl">
-                    What are my weapons?
+                    {i18n.toolbox.modalTitle}
                   </h2>
                   <div className="text-sm text-slate-600 dark:text-slate-400">
-                    A curated list of tools, editors, and resources I use daily.
+                    {i18n.toolbox.modalSubtitle}
                   </div>
                 </div>
                 <button
@@ -229,10 +230,7 @@ export default function Toolbox() {
               <div className="max-h-[70vh] overflow-y-auto p-6">
                 <div className="mx-auto max-w-4xl space-y-6 break-words text-gray-700 dark:text-gray-300">
                   <p className="leading-relaxed text-gray-500 dark:text-gray-400">
-                    I love discovering new tools and resources that can power my
-                    productivity. Here&apos;s a peek into the tools and
-                    technologies that I use and recommend. If you know a pro
-                    tip, I&apos;m all ears!
+                    {i18n.toolbox.toolboxIntro}
                   </p>
 
                   <div>

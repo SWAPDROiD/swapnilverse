@@ -4,6 +4,15 @@ import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiMapPin, FiUser, FiX } from "react-icons/fi";
 import BarGraph, { type BarGraphDatum } from "@/components/BarGraph";
+import { i18n } from "@/i18n";
+import {
+  NAGPUR_LOCATION,
+  PUNE_LOCATION,
+  AMS_WORLD,
+  SMART_DATA,
+  PERSISTENT,
+  ZENDESK,
+} from "@/constants/links";
 
 type AboutModalProps = {
   open: boolean;
@@ -98,10 +107,10 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
                     id="about-modal-title"
                     className="mt-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-2xl font-bold text-transparent md:text-3xl"
                   >
-                    Welcome to my little corner of the internet!
+                    {i18n.aboutModal.title}
                   </h2>
                   <div className="text-sm text-slate-600 dark:text-slate-400">
-                    A glimpse into my journey, passions, and purpose
+                    {i18n.aboutModal.subtitle}
                   </div>
                 </div>
 
@@ -119,30 +128,23 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
                 <div className="space-y-8 text-gray-700 dark:text-slate-300">
                   <section className="space-y-5">
                     <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      👋🏻 Hi friends, My name is Swapnil. I was born and raised
-                      in{" "}
+                      👋🏻 {i18n.aboutModal.section1Intro}{" "}
                       <AboutModalLink
-                        href="https://www.google.com/maps/place/Nagpur,+Maharashtra/data=!4m2!3m1!1s0x3bd4c0a5a31faf13:0x19b37d06d0bb3e2b?sa=X&ved=1t:242&ictx=111"
-                        text="Nagpur, Maharashtra, India"
+                        href={NAGPUR_LOCATION}
+                        text={i18n.aboutModal.nagpur}
                       />
                       .
                     </p>
 
                     <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      As a kid, I always wanted to be an artist. I just could
-                      not wait for the art classes to start when I was in
-                      school. I used to spend my weekends sketching, painting,
-                      and dancing.
+                      {i18n.aboutModal.childhood}
                     </p>
 
                     <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      After graduating with a Bachelor of Information Technology
-                      degree, I started my career in a Nagpur-based company
-                      located in MIHAN. Later, I got an opportunity to work with
-                      an MNC and moved to the beautiful city of{" "}
+                      {i18n.aboutModal.education}{" "}
                       <AboutModalLink
-                        href="https://www.google.com/maps/place/Pune,+Maharashtra/data=!4m2!3m1!1s0x3bc2bf2e67461101:0x828d43bf9d9ee343?sa=X&ved=1t:242&ictx=111"
-                        text="Pune, Maharashtra, India"
+                        href={PUNE_LOCATION}
+                        text={i18n.aboutModal.pune}
                       />
                       .
                     </p>
@@ -154,12 +156,11 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
                     <div className="flex items-center gap-2">
                       <FiMapPin className="h-5 w-5 text-indigo-600 dark:text-indigo-300" />
                       <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
-                        How do I stay occupied?
+                        {i18n.aboutModal.occupiedTitle}
                       </h3>
                     </div>
                     <p className="max-w-3xl leading-8 text-gray-500 dark:text-slate-400">
-                      A healthy mix of coding, mentoring, learning, and DIY
-                      projects keeps me energized and curious.
+                      {i18n.aboutModal.occupiedDescription}
                     </p>
                     <BarGraph data={chartData} />
                   </section>
@@ -168,93 +169,52 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
 
                   <section className="space-y-4">
                     <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      From a curious engineering graduate to a seasoned software
-                      engineer, my journey has been a continuous pursuit of
-                      growth, learning, and building meaningful digital
-                      experiences.
+                      {i18n.aboutModal.journeyPart1}
                     </p>
 
                     <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      After completing my Bachelor&apos;s degree in Information
-                      Technology in 2015, I began my professional journey as an
-                      Android application developer at{" "}
+                      {i18n.aboutModal.journeyPart2}{" "}
                       <AboutModalLink
-                        href="https://www.amsworld.net/"
-                        text="Automations Manifold Services Pvt Ltd"
+                        href={AMS_WORLD}
+                        text={i18n.aboutModal.amsPvtLtd}
                       />
-                      . Being part of a startup environment gave me the
-                      opportunity to wear multiple hats — I wasn&apos;t just
-                      building native Android applications, but also crafting
-                      RESTful APIs using JSP, Servlets, and Spring Boot,
-                      integrating them with web applications, and managing
-                      databases like PostgreSQL. From development to deployment
-                      — including publishing apps on the Play Store and hosting
-                      web applications — I was deeply involved in the complete
-                      product lifecycle. This phase shaped me into a true
-                      full-stack engineer and taught me the value of ownership.
+                      {i18n.aboutModal.amsPart2}
                     </p>
 
                     <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      I then expanded my horizons by working with Conviction
-                      Softwares and later{" "}
+                      {i18n.aboutModal.convictionPart1}{" "}
                       <AboutModalLink
-                        href="https://www.smartdatainc.com/"
-                        text="smartData Enterprises (I) Ltd"
+                        href={SMART_DATA}
+                        text={i18n.aboutModal.smartData}
                       />
-                      . where I spent over four years building scalable
-                      applications across healthcare and e-commerce domains.
-                      During this time, I transitioned into modern web
-                      technologies like React and React Native, while also
-                      stepping into leadership responsibilities as a team lead —
-                      mentoring developers and driving project delivery.
+                      {i18n.aboutModal.smartDataPart2}
                     </p>
 
                     <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      A pivotal chapter in my journey came with{" "}
+                      {i18n.aboutModal.persistentPart1}{" "}
                       <AboutModalLink
-                        href="https://www.persistent.com/"
-                        text="Persistent Systems"
+                        href={PERSISTENT}
+                        text={i18n.aboutModal.persistent}
                       />
-                      , where I worked as an Engineering Lead for nearly four
-                      years. Here, I gained deep exposure to the banking domain
-                      and enterprise-grade systems. It was during this phase
-                      that a defining opportunity came my way — I joined{" "}
+                      {i18n.aboutModal.persistentPart2}{" "}
                       <AboutModalLink
-                        href="https://www.zendesk.com/in/"
-                        text="Zendesk"
+                        href={ZENDESK}
+                        text={i18n.aboutModal.zendesk}
                       />{" "}
-                      as part of the{" "}
-                      <strong>
-                        <code className={codeClass}>BOT team</code>
-                      </strong>
-                      , and within just six months, I was converted into a
-                      full-time employee. That transition marked a significant
-                      milestone in my career.
+                      {i18n.aboutModal.zendeskBotPart1}
                     </p>
 
                     <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      Currently, I&apos;m Senior Software Engineer at{" "}
+                      {i18n.aboutModal.currentlyPart1}{" "}
                       <AboutModalLink
-                        href="https://www.zendesk.com/in/"
-                        text="Zendesk"
+                        href={ZENDESK}
+                        text={i18n.aboutModal.zendesk}
                       />
-                      , where I&apos;ve had the opportunity to build and scale
-                      meaningful products that impact real users. I started by
-                      contributing to Admin Center features around pricing and
-                      plans, working on a micro-frontend architecture using
-                      Rails, React, TypeScript, and Redux. Today, I&apos;m
-                      focused on the team management domain, crafting intuitive
-                      and scalable experiences that grow with customers, while
-                      also advocating for accessibility to ensure everything we
-                      build is inclusive by design.
+                      {i18n.aboutModal.currentlyPart2}
                     </p>
 
                     <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      Outside of work, I enjoy traveling to new places,
-                      exploring different experiences, spending time with
-                      friends, and making the most of life with my wife and son
-                      — because for me, building great software matters, but so
-                      does building a great life.
+                      {i18n.aboutModal.outside}
                     </p>
                   </section>
                 </div>

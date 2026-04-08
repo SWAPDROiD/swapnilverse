@@ -21,9 +21,15 @@ describe("Contact", () => {
   it("accepts input values", () => {
     render(<Contact />);
 
-    fireEvent.change(screen.getByLabelText("Name"), { target: { value: "Swapnil" } });
-    fireEvent.change(screen.getByLabelText("Email"), { target: { value: "hi@example.com" } });
-    fireEvent.change(screen.getByLabelText("Message"), { target: { value: "Hello there" } });
+    fireEvent.change(screen.getByLabelText("Name"), {
+      target: { value: "Swapnil" },
+    });
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "hi@example.com" },
+    });
+    fireEvent.change(screen.getByLabelText("Message"), {
+      target: { value: "Hello there" },
+    });
 
     expect(screen.getByDisplayValue("Swapnil")).toBeInTheDocument();
     expect(screen.getByDisplayValue("hi@example.com")).toBeInTheDocument();
@@ -33,33 +39,50 @@ describe("Contact", () => {
   it("renders the small Ko-fi support link below social links", () => {
     render(<Contact />);
 
-    expect(screen.getByText("Enjoyed my work? Fuel my next idea.")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Buy me a coffee/i })).toHaveAttribute(
-      "href",
-      "https://ko-fi.com/swapdroid",
-    );
+    expect(
+      screen.getByText("Enjoyed my work? Fuel my next idea."),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Buy me a coffee/i }),
+    ).toHaveAttribute("href", "https://ko-fi.com/swapdroid");
   });
 
   it("shows validation errors for missing and invalid input", async () => {
     render(<Contact />);
 
     fireEvent.click(screen.getByRole("button", { name: "Send Message" }));
-    expect(await screen.findByText("Please fill all fields")).toBeInTheDocument();
+    expect(
+      await screen.findByText("Please fill all fields"),
+    ).toBeInTheDocument();
 
-    fireEvent.change(screen.getByLabelText("Name"), { target: { value: "Swapnil" } });
-    fireEvent.change(screen.getByLabelText("Email"), { target: { value: "invalid" } });
-    fireEvent.change(screen.getByLabelText("Message"), { target: { value: "Hello" } });
+    fireEvent.change(screen.getByLabelText("Name"), {
+      target: { value: "Swapnil" },
+    });
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "invalid" },
+    });
+    fireEvent.change(screen.getByLabelText("Message"), {
+      target: { value: "Hello" },
+    });
     fireEvent.click(screen.getByRole("button", { name: "Send Message" }));
 
-    expect(await screen.findByText("Please enter a valid email")).toBeInTheDocument();
+    expect(
+      await screen.findByText("Please enter a valid email"),
+    ).toBeInTheDocument();
   });
 
   it("shows configuration error when emailjs env vars are missing", async () => {
     render(<Contact />);
 
-    fireEvent.change(screen.getByLabelText("Name"), { target: { value: "Swapnil" } });
-    fireEvent.change(screen.getByLabelText("Email"), { target: { value: "hi@example.com" } });
-    fireEvent.change(screen.getByLabelText("Message"), { target: { value: "Hello" } });
+    fireEvent.change(screen.getByLabelText("Name"), {
+      target: { value: "Swapnil" },
+    });
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "hi@example.com" },
+    });
+    fireEvent.change(screen.getByLabelText("Message"), {
+      target: { value: "Hello" },
+    });
     fireEvent.click(screen.getByRole("button", { name: "Send Message" }));
 
     expect(
@@ -88,9 +111,15 @@ describe("Contact", () => {
 
     render(<Contact />);
 
-    fireEvent.change(screen.getByLabelText("Name"), { target: { value: "Swapnil" } });
-    fireEvent.change(screen.getByLabelText("Email"), { target: { value: "hi@example.com" } });
-    fireEvent.change(screen.getByLabelText("Message"), { target: { value: "Hello" } });
+    fireEvent.change(screen.getByLabelText("Name"), {
+      target: { value: "Swapnil" },
+    });
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "hi@example.com" },
+    });
+    fireEvent.change(screen.getByLabelText("Message"), {
+      target: { value: "Hello" },
+    });
     fireEvent.click(screen.getByRole("button", { name: "Send Message" }));
 
     await waitFor(() => expect(emailjs.send).toHaveBeenCalled());
@@ -104,20 +133,30 @@ describe("Contact", () => {
       }),
       "public",
     );
-    expect(await screen.findByText("Message sent successfully! I will reply soon.")).toBeInTheDocument();
+    expect(
+      await screen.findByText("Message sent successfully! I will reply soon."),
+    ).toBeInTheDocument();
   });
 
   it("renders an error state when email sending fails", async () => {
     process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID = "service";
     process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID = "template";
     process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY = "public";
-    (emailjs.send as jest.Mock).mockRejectedValueOnce(new Error("Network issue"));
+    (emailjs.send as jest.Mock).mockRejectedValueOnce(
+      new Error("Network issue"),
+    );
 
     render(<Contact />);
 
-    fireEvent.change(screen.getByLabelText("Name"), { target: { value: "Swapnil" } });
-    fireEvent.change(screen.getByLabelText("Email"), { target: { value: "hi@example.com" } });
-    fireEvent.change(screen.getByLabelText("Message"), { target: { value: "Hello" } });
+    fireEvent.change(screen.getByLabelText("Name"), {
+      target: { value: "Swapnil" },
+    });
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "hi@example.com" },
+    });
+    fireEvent.change(screen.getByLabelText("Message"), {
+      target: { value: "Hello" },
+    });
     fireEvent.click(screen.getByRole("button", { name: "Send Message" }));
 
     expect(await screen.findByText("Network issue")).toBeInTheDocument();
