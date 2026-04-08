@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Section from "@/components/Section";
 import { PROJECTS, type Project } from "@/constants/projects";
+import { i18n } from "@/i18n";
 
 export default function Projects() {
   const [openProject, setOpenProject] = useState<Project | null>(null);
@@ -55,10 +56,10 @@ export default function Projects() {
           viewport={{ once: true }}
           className="mb-6 text-2xl font-bold text-slate-950 dark:text-white"
         >
-          Featured Projects
+          {i18n.projects.title}
         </motion.h2>
         <p className="mb-6 text-sm text-slate-600 dark:text-slate-400">
-          Highlights from 20+ applications I have built
+          {i18n.projects.subtitle}
         </p>
 
         <div className="grid gap-6 md:grid-cols-4">
@@ -93,14 +94,14 @@ export default function Projects() {
                       rel="noreferrer"
                       className="rounded-md bg-gradient-to-r from-indigo-500 to-purple-500 px-3 py-2 text-sm text-white shadow-md transition-all duration-300 ease-in-out hover:shadow-lg"
                     >
-                      View Project
+                      {i18n.projects.viewProject}
                     </a>
                     <button
                       type="button"
                       onClick={() => setOpenProject(project)}
                       className="rounded-md border border-gray-300 bg-white/70 px-3 py-2 text-sm text-gray-700 transition-all duration-300 ease-in-out hover:bg-gray-100 dark:border-white/10 dark:bg-transparent dark:text-white dark:hover:bg-white/5"
                     >
-                      View Details
+                      {i18n.projects.details}
                     </button>
                   </div>
                 </div>

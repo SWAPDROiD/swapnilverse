@@ -207,7 +207,7 @@ export const PROJECTS: Project[] = [
     details: {
       fullTitle: "The Collective",
       subtitle: "Sr. React Native Developer",
-      badges: ["E-commerce", "Mobile", "Web"],
+      badges: ["E-Commerce", "Mobile", "Web"],
       highlight:
         "Improved product discovery and checkout journeys for a premium e-commerce experience",
       overview:

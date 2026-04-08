@@ -5,6 +5,7 @@ import { motion, type Variants } from "framer-motion";
 import AboutModal from "@/components/AboutModal";
 import Section from "@/components/Section";
 import { ZENDESK } from "@/constants/links";
+import { i18n } from "@/i18n";
 
 const card: Variants = {
   hidden: { opacity: 0, y: 10 },
@@ -46,7 +47,7 @@ export default function About() {
             viewport={{ once: true }}
             className="mb-6 text-2xl font-bold text-slate-950 dark:text-white"
           >
-            About Me
+            {i18n.about.title}
           </motion.h2>
 
           <motion.div
@@ -61,10 +62,10 @@ export default function About() {
               className="glass rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-md"
             >
               <div className="text-3xl font-bold text-slate-950 dark:text-white">
-                20+
+                {i18n.about.applicationsDeliveredCount}
               </div>
               <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-                Applications Delivered
+                {i18n.about.applicationsDelivered}
               </div>
             </motion.div>
 
@@ -73,10 +74,10 @@ export default function About() {
               className="glass rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-md"
             >
               <div className="font-semibold text-slate-950 dark:text-white">
-                Healthcare, Banking, CRM &amp; E-commerce Expertise
+                {i18n.about.expertise}
               </div>
               <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-                Cross-domain product and platform experience
+                {i18n.about.expertiseDescription}
               </div>
             </motion.div>
 
@@ -85,19 +86,19 @@ export default function About() {
               className="glass rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-md"
             >
               <div className="inline-flex flex-wrap items-center gap-1 font-semibold text-slate-950 dark:text-white">
-                <span>Currently at</span>
+                <span>{i18n.about.currentlyAt}</span>
                 <a
                   href={ZENDESK}
                   target="_blank"
                   rel="noreferrer"
                   className="text-primary hover:underline"
                 >
-                  Zendesk
+                  {i18n.about.zendesk}
                 </a>
-                <span>Pune</span>
+                <span>{i18n.about.zendeskLocation}</span>
               </div>
               <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-                Building scalable customer experience platforms powered by AI
+                {i18n.about.zendeskDescription}
                 and intelligent agents.
               </div>
             </motion.div>

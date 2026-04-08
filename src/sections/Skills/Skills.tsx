@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Section from "@/components/Section";
 import { SKILL_CATEGORIES } from "@/constants/skills";
+import { i18n } from "@/i18n";
 
 export default function Skills() {
   return (
@@ -14,7 +15,7 @@ export default function Skills() {
           viewport={{ once: true }}
           className="mb-6 text-2xl font-bold text-slate-950 dark:text-white"
         >
-          Skills
+          {i18n.skills.title}
         </motion.h2>
 
         <div className="grid gap-4 md:grid-cols-4">

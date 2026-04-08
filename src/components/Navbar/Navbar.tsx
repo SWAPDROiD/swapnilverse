@@ -6,6 +6,7 @@ import { HiMenu } from "react-icons/hi";
 import { RESUME_URL } from "@/constants/links";
 import { NAV_LINKS } from "@/constants/navigation";
 import { useActiveSection } from "@/hooks/useActiveSection";
+import { i18n } from "@/i18n";
 
 function scrollToSection(id: string) {
   const element = document.getElementById(id);
@@ -57,9 +58,9 @@ export default function Navbar() {
           aria-label="Go to home section"
         >
           <div className="h-10 w-10 overflow-hidden rounded-full">
-            <Image src="/favicon.png" alt="SWAPDROiD logo" width={40} height={40} />
+            <Image src="/favicon.png" alt={i18n.branding.brandName} width={40} height={40} />
           </div>
-          <div className="font-semibold text-white">SWAPDROiD</div>
+          <div className="font-semibold text-white">{i18n.branding.brandName}</div>
         </button>
 
         <nav className="hidden items-center gap-6 text-sm text-slate-400 md:flex">
@@ -82,7 +83,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="ml-4 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 text-sm text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
           >
-            Resume
+            {i18n.navigation.resume}
           </a>
         </nav>
 
@@ -119,7 +120,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 text-sm text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
               >
-                Resume
+                {i18n.navigation.resume}
               </a>
             </div>
           </div>
