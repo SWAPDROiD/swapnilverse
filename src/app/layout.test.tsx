@@ -1,6 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import RootLayout, { metadata } from "@/app/layout";
 
+jest.mock("@vercel/analytics/next", () => ({
+  Analytics: () => <div data-testid="vercel-analytics" />,
+}));
+
 describe("RootLayout", () => {
   it("exports portfolio metadata", () => {
     expect(metadata.title).toBe("Swapnil Nandapure | Senior Software Engineer | React Java TypeScript GenAI");
@@ -16,5 +20,6 @@ describe("RootLayout", () => {
 
     expect(screen.getByText("App child")).toBeInTheDocument();
     expect(document.querySelectorAll("script")).toHaveLength(2);
+    expect(screen.getByTestId("vercel-analytics")).toBeInTheDocument();
   });
 });
