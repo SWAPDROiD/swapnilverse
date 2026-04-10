@@ -30,6 +30,100 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    title: "hueprint",
+    tech: "Developer Tools",
+    url: "https://www.npmjs.com/package/hueprint",
+    image: "/images/hueprint.webp",
+    details: {
+      fullTitle: "hueprint – Universal Styling & Logging Toolkit",
+      subtitle: "ANSI, HTML, and UI Styling for Modern JavaScript Apps",
+      roleTitle: "Creator & Maintainer",
+      badges: ["Open Source", "Developer Tools", "Node.js", "CLI", "Styling"],
+      highlight:
+        "Built a lightweight developer toolkit enabling expressive logging and styling across terminal, web, and UI environments",
+      overview:
+        "hueprint is a universal styling and logging toolkit for Node.js that enables developers to create expressive output across terminals (ANSI), web (HTML), and UI frameworks. It combines chainable and functional APIs, gradient text support, reusable themes, and built-in logging helpers for modern development workflows.",
+      features: [
+        "ANSI styling for terminal output",
+        "HTML rendering for web previews",
+        "Style object generation for UI frameworks",
+        "Gradient text support",
+        "Chainable and functional API usage",
+        "Reusable theming system",
+        "Built-in developer-friendly logging utilities",
+        "Lightweight and optimized for CLI tools and scripts",
+      ],
+      role: [
+        "Designed and developed the full library architecture",
+        "Implemented cross-platform styling engine (ANSI, HTML, UI)",
+        "Built gradient and theming capabilities",
+        "Created developer-friendly APIs for chaining and functional usage",
+        "Published and maintained npm package",
+      ],
+      highlights: [
+        "Created a multi-target styling system supporting terminal, web, and UI",
+        "Designed a clean and intuitive developer API",
+        "Delivered a lightweight yet powerful logging toolkit for Node.js ecosystem",
+      ],
+      tech: ["Node.js", "JavaScript", "TypeScript", "NPM", "CLI Development"],
+      links: [
+        {
+          label: "View Package",
+          href: "https://www.npmjs.com/package/hueprint",
+        },
+      ],
+    },
+  },
+  {
+    title: "Zendesk",
+    tech: "Enterprise SaaS",
+    url: "https://www.zendesk.com/in/pricing/employee-service-pricing/",
+    image: "/images/zendesk.webp",
+    details: {
+      fullTitle: "Zendesk – Admin Center & Internal Platforms",
+      subtitle: "Enterprise Customer Service & Admin Experience",
+      roleTitle: "Senior Software Engineer",
+      badges: [
+        "Enterprise",
+        "SaaS",
+        "Admin Platform",
+        "Customer Support",
+        "AI",
+      ],
+      highlight:
+        "Delivered scalable admin and support workflows, including AI-powered writing assistance for customer ticketing systems",
+      overview:
+        "Worked on multiple applications within Zendesk's Admin Center and internal platforms, focusing on feature visibility, subscription management, and intelligent support tooling. Contributed to enhancing customer experience through AI-assisted writing and improved team management workflows.",
+      features: [
+        "Admin Center feature visibility based on subscription plans",
+        "Plan details, add-ons, and entitlement management",
+        "AI Copilot assistance for ticket writing enhancement",
+        "Team and group management workflows",
+        "Internal tools for operational efficiency",
+        "Dynamic feature enablement based on user plans",
+      ],
+      role: [
+        "Developed Admin Center features for plan and feature visibility",
+        "Implemented AI-powered Copilot assist in ticketing workflows",
+        "Worked on team and group management modules",
+        "Collaborated across frontend and backend teams",
+        "Contributed to scalable enterprise-grade applications",
+      ],
+      highlights: [
+        "Delivered AI-assisted writing capabilities for customer support",
+        "Improved clarity of feature access across subscription plans",
+        "Enhanced admin workflows for large-scale enterprise usage",
+      ],
+      tech: ["React", "TypeScript", "Ruby on Rails", "Scala", "REST APIs"],
+      links: [
+        {
+          label: "Zendesk",
+          href: "https://www.zendesk.com/in/pricing/employee-service-pricing/",
+        },
+      ],
+    },
+  },
+  {
     title: "Slasher",
     tech: "Entertainment",
     url: "https://www.slasher.tv/",
@@ -38,7 +132,12 @@ export const PROJECTS: Project[] = [
       fullTitle: "Slasher – Horror Social Network",
       subtitle: "Real-time Social Platform for Horror Community",
       roleTitle: "React Native Developer",
-      badges: ["Social Network", "Real-time Chat", "Video Streaming", "Entertainment"],
+      badges: [
+        "Social Network",
+        "Real-time Chat",
+        "Video Streaming",
+        "Entertainment",
+      ],
       highlight:
         "Helped scale real-time community features for a niche social platform with stronger engagement and faster communication flows",
       overview:
