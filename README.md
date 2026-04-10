@@ -12,6 +12,8 @@ Personal portfolio application built with Next.js, React, and TypeScript to show
 
 [![Live Demo](https://img.shields.io/badge/Visit-Live%20Demo-22C55E?style=for-the-badge&logo=vercel&logoColor=white)](https://swapdroid.vercel.app/)
 
+![Hero](public/images/hero.webp)
+
 ## Project Overview
 
 This repository contains a production-ready portfolio built with a modern frontend stack and a developer-friendly workflow.
