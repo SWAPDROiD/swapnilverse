@@ -198,7 +198,10 @@ export default function Toolbox() {
             >
               <div className="flex items-center justify-between border-b border-gray-200 p-5 dark:border-white/10">
                 <div>
-                  <h2 id="toolbox-modal-title" className="mt-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-2xl font-bold text-transparent md:text-3xl">
+                  <h2
+                    id="toolbox-modal-title"
+                    className="mt-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-2xl font-bold text-transparent md:text-3xl"
+                  >
                     {i18n.toolbox.modalTitle}
                   </h2>
                   <div className="text-sm text-slate-600 dark:text-slate-400">
@@ -321,6 +324,21 @@ export default function Toolbox() {
                       </li>
                       <li>
                         <a
+                          href="https://www.jenkins.io/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={linkClass}
+                        >
+                          Jenkins
+                        </a>
+                        : Jenkins is a powerhouse for CI/CD automation. It
+                        automates the entire software development lifecycle from
+                        building and testing to deployment. The extensible
+                        plugin ecosystem makes it incredibly flexible for any
+                        pipeline you can imagine.
+                      </li>
+                      <li>
+                        <a
                           href="https://tailwindcss.com/"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -369,6 +387,20 @@ export default function Toolbox() {
                     <ul className="list-inside list-disc space-y-3 text-gray-700 dark:text-gray-300">
                       <li>
                         <a
+                          href="https://developer.android.com/studio"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={linkClass}
+                        >
+                          Android Studio
+                        </a>
+                        : I have been using Android Studio since I started my
+                        career as an Android developer. It&apos;s the official
+                        IDE for Android development and has become an essential
+                        part of my development workflow.
+                      </li>
+                      <li>
+                        <a
                           href="https://code.visualstudio.com/"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -405,7 +437,7 @@ export default function Toolbox() {
                     </ul>
                   </div>
 
-                  <div>
+                  {/* <div>
                     <h3 className="mb-2 text-xl font-semibold text-purple-400">
                       Productivity Tools
                     </h3>
@@ -620,7 +652,7 @@ export default function Toolbox() {
                         new blog or goes through some of his classic blogs.
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </motion.div>

@@ -193,18 +193,6 @@ npm run storybook
 npm run build-storybook
 ```
 
-## Deployment
-
-Production URL: [https://swapdroid.vercel.app/](https://swapdroid.vercel.app/)
-
-The app is designed to be deployed as a standard Next.js application. Storybook can be published separately as a static build if needed.
-
-## Notes For Contributors
-
-- Static constants under `src/constants/` do not need tests unless logic is introduced
-- Coverage reports should remain outside `src/`
-- Storybook stories should cover default states, relevant variants, and notable edge cases where applicable
-
 ## 🔗 Contact
 
 If you would like to discuss the project, collaboration, or engineering opportunities:
