@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { HiMenu } from "react-icons/hi";
+import SearchBar from "@/components/Search/SearchBar";
 import { RESUME_URL } from "@/constants/links";
 import { NAV_LINKS } from "@/constants/navigation";
 import { useActiveSection } from "@/hooks/useActiveSection";
@@ -13,9 +13,18 @@ function scrollToSection(id: string) {
   if (!element) return;
 
   const header = document.querySelector("header");
-  const headerHeight = header instanceof HTMLElement ? header.offsetHeight : 72;
-  const top = element.getBoundingClientRect().top + window.pageYOffset - headerHeight - 8;
+  const headerHeight = header instanceof HTMLElement ? header.offsetHeight : 88;
+  const top = element.getBoundingClientRect().top + window.pageYOffset - headerHeight - 12;
   window.scrollTo({ top, behavior: "smooth" });
+}
+
+function BrandWordmark() {
+  return (
+    <span className="text-sm font-extrabold uppercase tracking-[0.28em] text-text-primary sm:text-base">
+      SWAP
+      <span className="text-accent">DROiD</span>
+    </span>
+  );
 }
 
 export default function Navbar() {
@@ -42,83 +51,90 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const headerClass = isScrolled
-    ? "bg-slate-950/35 shadow-sm backdrop-blur-md"
-    : "bg-transparent";
-
   return (
-    <header
-      className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${headerClass}`}
-    >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <button
-          type="button"
-          onClick={() => scrollToSection("home")}
-          className="flex items-center gap-3"
-          aria-label="Go to home section"
+    <header className="sticky top-0 z-50 border-b border-border bg-[rgba(10,14,26,0.8)] backdrop-blur-xl">
+      <div className="section-container py-4">
+        <div
+          className={`grid items-center gap-3 transition-all duration-300 md:grid-cols-[auto_1fr_auto] ${
+            isScrolled ? "rounded-[24px] border border-border bg-[rgba(13,21,38,0.78)] px-3 py-2" : ""
+          }`}
         >
-          <div className="h-10 w-10 overflow-hidden rounded-full">
-            <Image src="/favicon.png" alt={i18n.branding.brandName} width={40} height={40} />
-          </div>
-          <div className="font-semibold text-white">{i18n.branding.brandName}</div>
-        </button>
-
-        <nav className="hidden items-center gap-6 text-sm text-slate-400 md:flex">
-          {NAV_LINKS.map((link) => (
-            <button
-              key={link.id}
-              type="button"
-              onClick={() => scrollToSection(link.id)}
-              className={`transition-all duration-300 ease-in-out hover:text-white ${
-                active === link.id ? "font-medium text-white" : ""
-              }`}
-            >
-              {link.label}
-            </button>
-          ))}
-
-          <a
-            href={RESUME_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-4 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 text-sm text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+          <button
+            type="button"
+            onClick={() => scrollToSection("home")}
+            className="flex items-center gap-3"
+            aria-label="Go to home section"
           >
-            {i18n.navigation.resume}
-          </a>
-        </nav>
+            <BrandWordmark />
+          </button>
 
-        <button
-          type="button"
-          className="rounded-lg p-2 text-white transition-colors duration-300 hover:text-indigo-300 md:hidden"
-          onClick={() => setOpen((prev) => !prev)}
-          aria-label="Toggle mobile navigation"
-        >
-          <HiMenu size={22} />
-        </button>
-      </div>
+          <div className="hidden md:flex md:justify-center">
+            <SearchBar />
+          </div>
 
-      {open ? (
-        <div className="border-b border-white/10 bg-slate-950/45 py-4 backdrop-blur-md md:hidden">
-          <div className="flex flex-col items-center gap-4">
+          <div className="hidden items-center justify-end gap-2 md:flex">
             {NAV_LINKS.map((link) => (
               <button
                 key={link.id}
                 type="button"
-                onClick={() => {
-                  setOpen(false);
-                  scrollToSection(link.id);
-                }}
-                className="text-base text-white transition-colors duration-300 hover:text-indigo-300"
+                onClick={() => scrollToSection(link.id)}
+                className={`rounded-full px-3 py-2 text-sm font-medium transition duration-200 ease-out ${
+                  active === link.id
+                    ? "bg-accent text-background"
+                    : "text-text-secondary hover:bg-surface hover:text-text-primary"
+                }`}
               >
                 {link.label}
               </button>
             ))}
-            <div className="flex items-center gap-3 pt-2">
+            <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="primary-button ml-2"
+            >
+              {i18n.navigation.resume}
+            </a>
+          </div>
+
+          <button
+            type="button"
+            className="ml-auto rounded-xl border border-border bg-[rgba(13,21,38,0.78)] p-3 text-text-primary transition duration-200 hover:border-accent/50 hover:text-active md:hidden"
+            onClick={() => setOpen((prev) => !prev)}
+            aria-label="Toggle mobile navigation"
+          >
+            <HiMenu size={22} />
+          </button>
+        </div>
+      </div>
+
+      {open ? (
+        <div className="border-t border-border bg-[rgba(10,14,26,0.96)] px-4 py-4 backdrop-blur-xl md:hidden">
+          <div className="section-container">
+            <div className="bento-card space-y-3 p-4">
+              <SearchBar compact onNavigate={() => setOpen(false)} />
+              {NAV_LINKS.map((link) => (
+                <button
+                  key={link.id}
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    scrollToSection(link.id);
+                  }}
+                  className={`w-full rounded-2xl px-4 py-3 text-left text-sm font-medium transition duration-200 ${
+                    active === link.id
+                      ? "bg-accent text-background"
+                      : "bg-[rgba(13,21,38,0.78)] text-text-primary hover:border-accent/40 hover:text-active"
+                  }`}
+                >
+                  {link.label}
+                </button>
+              ))}
               <a
                 href={RESUME_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 text-sm text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+                className="primary-button w-full"
               >
                 {i18n.navigation.resume}
               </a>

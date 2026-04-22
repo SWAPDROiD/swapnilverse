@@ -48,63 +48,56 @@ export default function Projects() {
   }, [openProject]);
 
   return (
-    <Section id="projects" className="py-20">
-      <div className="mx-auto max-w-6xl px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-6 text-2xl font-bold text-slate-950 dark:text-white"
-        >
-          {i18n.projects.title}
-        </motion.h2>
-        <p className="mb-6 text-sm text-slate-600 dark:text-slate-400">
-          {i18n.projects.subtitle}
-        </p>
+    <Section id="projects" className="section-shell">
+      <div className="section-container">
+        <div className="section-intro">
+          <p className="section-label">Case Studies</p>
+          <h2 className="section-heading">{i18n.projects.title}</h2>
+          <p className="section-copy">{i18n.projects.subtitle}</p>
+        </div>
 
-        <div className="grid gap-6 md:grid-cols-4">
-          {PROJECTS.map((project) => (
+        <div className="bento-grid">
+          {PROJECTS.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.02, y: -4 }}
-              transition={{ duration: 0.28, ease: "easeOut" }}
-              className="glass overflow-hidden rounded-lg transition-all duration-300 ease-in-out hover:shadow-md"
+              transition={{ duration: 0.45, delay: index * 0.04 }}
+              className="bento-card interactive-card group col-span-1 md:col-span-3 xl:col-span-4"
             >
-              <div className="relative">
+              <div className="relative overflow-hidden rounded-[20px] border border-border bg-surface-high">
                 <Image
                   src={project.image}
                   alt={project.title}
                   width={640}
                   height={420}
                   loading="lazy"
-                  className="h-40 w-full object-cover"
+                  className="image-kinetic h-52 w-full object-cover"
                 />
-                <div className="p-4">
-                  <div className="font-semibold text-slate-950 dark:text-white">{project.title}</div>
-                  <div className="mb-3 text-sm text-slate-600 dark:text-slate-400">
-                    {project.tech}
-                  </div>
-                  <div className="flex gap-2">
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="rounded-md bg-gradient-to-r from-indigo-500 to-purple-500 px-3 py-2 text-sm text-white shadow-md transition-all duration-300 ease-in-out hover:shadow-lg"
-                    >
-                      {i18n.projects.viewProject}
-                    </a>
-                    <button
-                      type="button"
-                      onClick={() => setOpenProject(project)}
-                      className="rounded-md border border-gray-300 bg-white/70 px-3 py-2 text-sm text-gray-700 transition-all duration-300 ease-in-out hover:bg-gray-100 dark:border-white/10 dark:bg-transparent dark:text-white dark:hover:bg-white/5"
-                    >
-                      {i18n.projects.details}
-                    </button>
-                  </div>
-                </div>
+              </div>
+
+              <div className="mt-6">
+                <p className="section-label">{project.tech}</p>
+                <h3 className="mt-3 text-2xl font-bold tracking-[-0.04em] text-text-primary">{project.title}</h3>
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="primary-button"
+                >
+                  {i18n.projects.viewProject}
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setOpenProject(project)}
+                  className="secondary-button"
+                >
+                  {i18n.projects.details}
+                </button>
               </div>
             </motion.div>
           ))}
@@ -114,7 +107,7 @@ export default function Projects() {
       <AnimatePresence>
         {openProject ? (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -122,135 +115,108 @@ export default function Projects() {
               if (event.target === event.currentTarget) setOpenProject(null);
             }}
           >
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
+            <div className="absolute inset-0 bg-[rgba(10,14,26,0.8)] backdrop-blur-md" />
             <motion.div
               ref={modalRef}
               role="dialog"
               aria-modal="true"
               aria-labelledby="project-details-title"
-              className="glass relative z-10 mx-auto flex max-h-[90vh] w-[92%] max-w-3xl flex-col overflow-hidden rounded-2xl border border-gray-200 shadow-2xl dark:border-white/10 md:max-h-[80vh]"
+              className="modal-shell relative z-10 mx-auto flex max-h-[88vh] w-full max-w-5xl flex-col"
               initial={{ scale: 0.98, y: 8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ scale: 0.98, y: 8 }}
               transition={{ duration: 0.18 }}
             >
-              <div
-                className="pointer-events-none absolute -inset-px rounded-2xl"
-                style={{
-                  background: "linear-gradient(90deg, rgba(99,102,241,0.06), rgba(124,58,237,0.06))",
-                  filter: "blur(24px)",
-                }}
-              />
-              <div className="relative z-10 flex min-h-0 flex-1 flex-col">
-                <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 p-5 dark:border-white/10">
-                  <div>
-                    <h2 id="project-details-title" className="mt-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-2xl font-bold text-transparent md:text-3xl">
-                      {openProject.details.fullTitle}
-                    </h2>
-                    <div className="text-sm text-slate-600 dark:text-slate-400">
-                      {openProject.details.subtitle}
-                    </div>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {openProject.details.badges.map((badge) => (
-                        <span
-                          key={badge}
-                          className="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-700 dark:bg-white/10 dark:text-white"
-                        >
-                          {badge}
-                        </span>
-                      ))}
-                    </div>
+              <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-border bg-[rgba(13,21,38,0.92)] px-6 py-5 backdrop-blur-xl">
+                <div>
+                  <h2 id="project-details-title" className="mt-2 text-2xl font-bold tracking-[-0.04em] text-text-primary md:text-3xl">
+                    {openProject.details.fullTitle}
+                  </h2>
+                  <div className="mt-1 text-sm text-text-secondary">{openProject.details.subtitle}</div>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {openProject.details.badges.map((badge) => (
+                      <span key={badge} className="token-pill">
+                        {badge}
+                      </span>
+                    ))}
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => setOpenProject(null)}
-                    aria-label="Close project details"
-                    className="rounded-md p-2 transition-all duration-150 hover:scale-105"
-                  >
-                    <svg className="h-5 w-5 text-slate-500 dark:text-slate-300" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M6 18L18 6M6 6l12 12"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
                 </div>
+                <button
+                  type="button"
+                  onClick={() => setOpenProject(null)}
+                  aria-label="Close project details"
+                  className="text-sm text-text-secondary transition hover:text-text-primary"
+                >
+                  Close
+                </button>
+              </div>
 
-                <div className="min-h-0 flex-1 overflow-y-auto scroll-smooth p-6">
-                  <div className="space-y-6">
-                  <div className="text-slate-700 dark:text-slate-300">
-                    <div className="mb-2 text-sm font-medium text-indigo-600 dark:text-indigo-300">
+              <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6">
+                <div className="space-y-6 text-text-secondary">
+                  <div className="bento-card">
+                    <div className="mb-2 text-sm font-semibold uppercase tracking-[0.24em] text-accent">
                       {openProject.details.highlight}
                     </div>
-                    <p className="leading-relaxed">{openProject.details.overview}</p>
+                    <p className="text-base leading-8">{openProject.details.overview}</p>
                   </div>
 
                   {openProject.details.highlights?.length ? (
-                    <div className="space-y-3">
-                      <h3 className="text-lg font-semibold text-slate-950 dark:text-white">
-                        Impact &amp; Outcomes
-                      </h3>
-                      <ul className="grid list-inside list-disc gap-2 text-slate-700 dark:text-slate-300 md:grid-cols-2">
-                        {openProject.details.highlights.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
+                    <div className="bento-grid">
+                      <div className="bento-card col-span-1 md:col-span-6 xl:col-span-6">
+                        <h3 className="text-lg font-semibold text-text-primary">Impact &amp; Outcomes</h3>
+                        <ul className="mt-4 grid list-inside list-disc gap-2 leading-7 md:grid-cols-1">
+                          {openProject.details.highlights.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="bento-card col-span-1 md:col-span-6 xl:col-span-6">
+                        <h3 className="text-lg font-semibold text-text-primary">Role &amp; Contribution</h3>
+                        <ul className="mt-4 list-inside list-disc space-y-2 leading-7">
+                          {openProject.details.role.map((role) => (
+                            <li key={role}>{role}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   ) : null}
 
-                  <div className="space-y-3">
-                    <h3 className="text-lg font-semibold text-slate-950 dark:text-white">Features</h3>
-                    <ul className="grid list-inside list-disc gap-2 text-slate-700 dark:text-slate-300 md:grid-cols-2">
-                      {openProject.details.features.map((feature) => (
-                        <li key={feature}>{feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h3 className="text-lg font-semibold text-slate-950 dark:text-white">
-                      Role &amp; Contribution
-                    </h3>
-                    <ul className="list-inside list-disc text-slate-700 dark:text-slate-300">
-                      {openProject.details.role.map((role) => (
-                        <li key={role}>{role}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h3 className="text-lg font-semibold text-slate-950 dark:text-white">Tech Stack</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {openProject.details.tech.map((tech) => (
-                        <span
-                          key={tech}
-                          className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700 dark:bg-white/10 dark:text-white"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                  <div className="bento-grid">
+                    <div className="bento-card col-span-1 md:col-span-6 xl:col-span-6">
+                      <h3 className="text-lg font-semibold text-text-primary">Features</h3>
+                      <ul className="mt-4 list-inside list-disc space-y-2 leading-7">
+                        {openProject.details.features.map((feature) => (
+                          <li key={feature}>{feature}</li>
+                        ))}
+                      </ul>
                     </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-slate-950 dark:text-white">Links</h3>
-                    <div className="flex flex-wrap gap-3">
-                      {openProject.details.links.map((link) => (
-                        <a
-                          key={link.href}
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="rounded-md bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 text-white transition-all duration-300 ease-in-out hover:shadow-lg"
-                        >
-                          {link.label}
-                        </a>
-                      ))}
+                    <div className="bento-card col-span-1 md:col-span-6 xl:col-span-6">
+                      <h3 className="text-lg font-semibold text-text-primary">Tech Stack</h3>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {openProject.details.tech.map((tech) => (
+                          <span key={tech} className="token-pill">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <h3 className="mt-8 text-lg font-semibold text-text-primary">Links</h3>
+                      <div className="mt-4 flex flex-wrap gap-3">
+                        {openProject.details.links.map((link) => (
+                          <a
+                            key={link.href}
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="primary-button"
+                          >
+                            {link.label}
+                          </a>
+                        ))}
+                      </div>
                     </div>
-                  </div>
                   </div>
                 </div>
               </div>

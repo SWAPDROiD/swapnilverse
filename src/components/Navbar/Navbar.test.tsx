@@ -2,6 +2,11 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import Navbar from "@/components/Navbar";
 import { useActiveSection } from "@/hooks/useActiveSection";
 
+jest.mock("next/navigation", () => ({
+  useRouter: jest.fn(() => ({ push: jest.fn() })),
+  usePathname: jest.fn(() => "/"),
+}));
+
 jest.mock("@/hooks/useActiveSection", () => ({
   useActiveSection: jest.fn(() => "about"),
 }));
@@ -9,6 +14,7 @@ jest.mock("@/hooks/useActiveSection", () => ({
 describe("Navbar", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    window.scrollTo = jest.fn();
     document.body.innerHTML = '<header></header><section id="home"></section><section id="about"></section>';
     Object.defineProperty(window, "pageYOffset", { value: 50, writable: true });
     Object.defineProperty(window, "scrollY", { value: 0, writable: true });
@@ -31,7 +37,7 @@ describe("Navbar", () => {
     (useActiveSection as jest.Mock).mockReturnValue("about");
     render(<Navbar />);
 
-    expect(screen.getByRole("button", { name: "About" })).toHaveClass("text-white");
+    expect(screen.getByRole("button", { name: "About" })).toHaveClass("bg-accent", "text-background");
     expect(screen.getByRole("link", { name: "Resume" })).toHaveAttribute("target", "_blank");
   });
 
@@ -65,6 +71,6 @@ describe("Navbar", () => {
 
     fireEvent.scroll(window);
 
-    expect(container.querySelector("header")).toHaveClass("backdrop-blur-md");
+    expect(container.querySelector("header > div > div")).toHaveClass("rounded-[24px]");
   });
 });

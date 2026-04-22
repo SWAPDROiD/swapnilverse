@@ -23,7 +23,7 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <div className="min-h-[120vh] bg-slate-950 p-6 text-white">
+      <div className="min-h-[120vh] bg-background p-6 text-text-primary">
         <p>Scroll helper story canvas</p>
         <Story />
       </div>

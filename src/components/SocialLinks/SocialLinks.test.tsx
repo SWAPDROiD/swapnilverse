@@ -29,6 +29,6 @@ describe("SocialLinks", () => {
   it("applies large sizing classes when requested", () => {
     render(<SocialLinks size="lg" />);
 
-    expect(screen.getByRole("link", { name: "GitHub" }).className).toContain("p-3");
+    expect(screen.getByRole("link", { name: "GitHub" }).className).toContain("h-12");
   });
 });

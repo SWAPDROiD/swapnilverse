@@ -11,9 +11,12 @@ import Toolbox from "@/sections/Toolbox";
 
 export default function Page() {
   return (
-    <>
+    <div className="page-shell">
+      <div className="ambient-glow left-[-140px] top-[80px] h-[520px] w-[520px]" />
+      <div className="ambient-glow right-[-180px] top-[420px] h-[540px] w-[540px]" />
+      <div className="ambient-glow bottom-[180px] left-[12%] h-[500px] w-[500px]" />
       <Navbar />
-      <main className="pt-[72px]">
+      <main>
         <Hero />
         <About />
         <Skills />
@@ -24,6 +27,6 @@ export default function Page() {
       </main>
       <Footer />
       <ScrollToTopButton />
-    </>
+    </div>
   );
 }

@@ -2,8 +2,9 @@
 
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { FiMapPin, FiUser, FiX } from "react-icons/fi";
+import { FiMapPin } from "react-icons/fi";
 import BarGraph, { type BarGraphDatum } from "@/components/BarGraph";
+import { COLORS } from "@/constants/colors";
 import { i18n } from "@/i18n";
 import {
   NAGPUR_LOCATION,
@@ -24,16 +25,13 @@ type AboutModalLinkProps = {
   text: string;
 };
 
-const codeClass =
-  "rounded bg-gray-100 px-1 py-0.5 text-sm text-purple-600 dark:bg-gray-800 dark:text-purple-300";
-
 const chartData: BarGraphDatum[] = [
-  { name: "Coding", value: 90, color: "#3B82F6" },
-  { name: "Mentoring", value: 60, color: "#9ecae1" },
-  { name: "Dancing", value: 40, color: "#deebf7" },
-  { name: "Learning", value: 50, color: "#3182bd" },
-  { name: "AI Exploration", value: 70, color: "#9ecae1" },
-  { name: "DIY projects", value: 60, color: "#deebf7" },
+  { name: "Coding", value: 90, color: COLORS.primary },
+  { name: "Mentoring", value: 60, color: COLORS.secondary },
+  { name: "Dancing", value: 40, color: COLORS.glow },
+  { name: "Learning", value: 50, color: COLORS.active },
+  { name: "AI Exploration", value: 70, color: COLORS.progress },
+  { name: "DIY projects", value: 60, color: COLORS.trace },
 ];
 
 function AboutModalLink({ href, text }: AboutModalLinkProps) {
@@ -42,7 +40,7 @@ function AboutModalLink({ href, text }: AboutModalLinkProps) {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="font-medium text-indigo-600 underline decoration-indigo-400/50 underline-offset-4 transition hover:text-purple-600 dark:text-indigo-200 dark:decoration-indigo-300/50 dark:hover:text-white"
+      className="font-medium text-accent underline decoration-accent/40 underline-offset-4 transition hover:opacity-80"
     >
       {text}
     </a>
@@ -71,7 +69,7 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -79,145 +77,91 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
             if (event.target === event.currentTarget) onClose();
           }}
         >
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
+          <div className="absolute inset-0 bg-[rgba(10,14,26,0.8)] backdrop-blur-md" />
 
           <motion.div
             role="dialog"
             aria-modal="true"
             aria-labelledby="about-modal-title"
-            className="glass relative z-10 mx-auto flex max-h-[90vh] w-[92%] max-w-3xl flex-col overflow-hidden rounded-2xl border border-gray-200 shadow-2xl dark:border-white/10 md:max-h-[80vh]"
+            className="modal-shell relative z-10 mx-auto flex max-h-[88vh] w-full max-w-5xl flex-col"
             initial={{ scale: 0.98, y: 8 }}
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.98, y: 8 }}
             transition={{ duration: 0.18 }}
           >
-            <div
-              className="pointer-events-none absolute -inset-px rounded-3xl"
-              style={{
-                background:
-                  "linear-gradient(120deg, rgba(99,102,241,0.08), rgba(168,85,247,0.08))",
-                filter: "blur(30px)",
-              }}
-            />
-
-            <div className="relative z-10 flex min-h-0 flex-1 flex-col">
-              <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 p-5 dark:border-white/10">
-                <div>
-                  <h2
-                    id="about-modal-title"
-                    className="mt-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-2xl font-bold text-transparent md:text-3xl"
-                  >
-                    {i18n.aboutModal.title}
-                  </h2>
-                  <div className="text-sm text-slate-600 dark:text-slate-400">
-                    {i18n.aboutModal.subtitle}
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={onClose}
-                  aria-label="Close about modal"
-                  className="rounded-md p-2 transition-all duration-150 hover:scale-105"
-                >
-                  <FiX className="h-5 w-5 text-slate-500 dark:text-slate-300" />
-                </button>
+            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-[rgba(13,21,38,0.92)] px-6 py-5 backdrop-blur-xl">
+              <div>
+                <h2 id="about-modal-title" className="mt-2 text-2xl font-bold tracking-[-0.04em] text-text-primary md:text-3xl">
+                  {i18n.aboutModal.title}
+                </h2>
+                <div className="mt-1 text-sm text-text-secondary">{i18n.aboutModal.subtitle}</div>
               </div>
 
-              <div className="min-h-0 flex-1 overflow-y-auto scroll-smooth p-6">
-                <div className="space-y-8 text-gray-700 dark:text-slate-300">
-                  <section className="space-y-5">
-                    <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      👋🏻 {i18n.aboutModal.section1Intro}{" "}
-                      <AboutModalLink
-                        href={NAGPUR_LOCATION}
-                        text={i18n.aboutModal.nagpur}
-                      />
-                      .
-                    </p>
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="Close about modal"
+                className="text-sm text-text-secondary transition hover:text-text-primary"
+              >
+                Close
+              </button>
+            </div>
 
-                    <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      {i18n.aboutModal.childhood}
-                    </p>
+            <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6">
+              <div className="space-y-6 text-base leading-8 text-text-secondary">
+                <section className="bento-card space-y-5">
+                  <p>
+                    {i18n.aboutModal.section1Intro}{" "}
+                    <AboutModalLink href={NAGPUR_LOCATION} text={i18n.aboutModal.nagpur} />.
+                  </p>
 
-                    <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      {i18n.aboutModal.education}{" "}
-                      <AboutModalLink
-                        href={PUNE_LOCATION}
-                        text={i18n.aboutModal.pune}
-                      />
-                      .
-                    </p>
-                  </section>
+                  <p>{i18n.aboutModal.childhood}</p>
 
-                  <div className="border-t border-gray-200 dark:border-white/10" />
+                  <p>
+                    {i18n.aboutModal.education}{" "}
+                    <AboutModalLink href={PUNE_LOCATION} text={i18n.aboutModal.pune} />.
+                  </p>
+                </section>
 
-                  <section className="space-y-5">
-                    <div className="flex items-center gap-2">
-                      <FiMapPin className="h-5 w-5 text-indigo-600 dark:text-indigo-300" />
-                      <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
-                        {i18n.aboutModal.occupiedTitle}
-                      </h3>
-                    </div>
-                    <p className="max-w-3xl leading-8 text-gray-500 dark:text-slate-400">
-                      {i18n.aboutModal.occupiedDescription}
-                    </p>
-                    <BarGraph data={chartData} />
-                  </section>
+                <section className="bento-card space-y-5">
+                  <div className="flex items-center gap-2">
+                    <FiMapPin className="h-5 w-5 text-accent" />
+                    <h3 className="text-2xl font-semibold text-text-primary">{i18n.aboutModal.occupiedTitle}</h3>
+                  </div>
+                  <p>{i18n.aboutModal.occupiedDescription}</p>
+                  <BarGraph data={chartData} />
+                </section>
 
-                  <div className="border-t border-gray-200 dark:border-white/10" />
+                <section className="bento-card space-y-5">
+                  <p>{i18n.aboutModal.journeyPart1}</p>
 
-                  <section className="space-y-4">
-                    <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      {i18n.aboutModal.journeyPart1}
-                    </p>
+                  <p>
+                    {i18n.aboutModal.journeyPart2}{" "}
+                    <AboutModalLink href={AMS_WORLD} text={i18n.aboutModal.amsPvtLtd} />
+                    {i18n.aboutModal.amsPart2}
+                  </p>
 
-                    <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      {i18n.aboutModal.journeyPart2}{" "}
-                      <AboutModalLink
-                        href={AMS_WORLD}
-                        text={i18n.aboutModal.amsPvtLtd}
-                      />
-                      {i18n.aboutModal.amsPart2}
-                    </p>
+                  <p>
+                    {i18n.aboutModal.convictionPart1}{" "}
+                    <AboutModalLink href={SMART_DATA} text={i18n.aboutModal.smartData} />
+                    {i18n.aboutModal.smartDataPart2}
+                  </p>
 
-                    <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      {i18n.aboutModal.convictionPart1}{" "}
-                      <AboutModalLink
-                        href={SMART_DATA}
-                        text={i18n.aboutModal.smartData}
-                      />
-                      {i18n.aboutModal.smartDataPart2}
-                    </p>
+                  <p>
+                    {i18n.aboutModal.persistentPart1}{" "}
+                    <AboutModalLink href={PERSISTENT} text={i18n.aboutModal.persistent} />
+                    {i18n.aboutModal.persistentPart2}{" "}
+                    <AboutModalLink href={ZENDESK} text={i18n.aboutModal.zendesk} /> {i18n.aboutModal.zendeskBotPart1}
+                  </p>
 
-                    <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      {i18n.aboutModal.persistentPart1}{" "}
-                      <AboutModalLink
-                        href={PERSISTENT}
-                        text={i18n.aboutModal.persistent}
-                      />
-                      {i18n.aboutModal.persistentPart2}{" "}
-                      <AboutModalLink
-                        href={ZENDESK}
-                        text={i18n.aboutModal.zendesk}
-                      />{" "}
-                      {i18n.aboutModal.zendeskBotPart1}
-                    </p>
+                  <p>
+                    {i18n.aboutModal.currentlyPart1}{" "}
+                    <AboutModalLink href={ZENDESK} text={i18n.aboutModal.zendesk} />
+                    {i18n.aboutModal.currentlyPart2}
+                  </p>
 
-                    <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      {i18n.aboutModal.currentlyPart1}{" "}
-                      <AboutModalLink
-                        href={ZENDESK}
-                        text={i18n.aboutModal.zendesk}
-                      />
-                      {i18n.aboutModal.currentlyPart2}
-                    </p>
-
-                    <p className="leading-8 text-gray-700 dark:text-slate-300/95">
-                      {i18n.aboutModal.outside}
-                    </p>
-                  </section>
-                </div>
+                  <p>{i18n.aboutModal.outside}</p>
+                </section>
               </div>
             </div>
           </motion.div>

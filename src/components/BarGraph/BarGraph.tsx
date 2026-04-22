@@ -43,9 +43,9 @@ function VerticalBarLabel({
     <text
       x={x + width / 2}
       y={y + height / 2}
-      fill="rgba(15,23,42,0.8)"
+      fill="rgba(10,14,26,0.92)"
       fontSize="10"
-      fontWeight="600"
+      fontWeight="700"
       textAnchor="middle"
       dominantBaseline="middle"
       transform={`rotate(-90, ${x + width / 2}, ${y + height / 2})`}
@@ -74,7 +74,7 @@ export default function BarGraph({ data }: BarGraphProps) {
 
   if (!hasMounted) {
     return (
-      <div className="h-[400px] w-full select-none rounded-2xl border border-gray-200 bg-white/70 p-4 dark:border-white/8 dark:bg-white/[0.03]">
+      <div className="h-[400px] w-full select-none rounded-[24px] border border-border bg-surface-high p-4">
         <div className="flex h-full items-end gap-3">
           {data.map((item) => (
             <div
@@ -82,15 +82,13 @@ export default function BarGraph({ data }: BarGraphProps) {
               className="flex flex-1 flex-col items-center justify-end gap-3"
             >
               <div
-                className="w-full rounded-t-2xl opacity-70"
+                className="w-full rounded-t-[20px] opacity-80"
                 style={{
                   height: `${item.value * 3}px`,
                   backgroundColor: item.color,
                 }}
               />
-              <span className="text-center text-[10px] text-gray-500 dark:text-slate-400">
-                {item.name}
-              </span>
+              <span className="text-center text-[10px] text-text-secondary">{item.name}</span>
             </div>
           ))}
         </div>
@@ -99,30 +97,26 @@ export default function BarGraph({ data }: BarGraphProps) {
   }
 
   return (
-    <div className="h-[400px] w-full select-none">
-      <ResponsiveContainer width="99%" height={400}>
+    <div className="h-[400px] w-full select-none rounded-[24px] border border-border bg-surface-high p-3">
+      <ResponsiveContainer width="99%" height={370}>
         <BarChart
           data={data}
           margin={{ top: 12, right: 10, left: -14, bottom: isMobile ? 0 : 12 }}
           style={{ pointerEvents: "none", userSelect: "none" }}
         >
-          <CartesianGrid
-            strokeDasharray="4 6"
-            vertical={false}
-            stroke="rgba(148,163,184,0.16)"
-          />
+          <CartesianGrid strokeDasharray="4 6" vertical={false} stroke="rgba(0,212,255,0.12)" />
           <XAxis
             dataKey="name"
             hide={isMobile}
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#94A3B8", fontSize: 12 }}
+            tick={{ fill: "#8899aa", fontSize: 12 }}
             style={{ userSelect: "none" }}
           />
           <YAxis
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#94A3B8", fontSize: 12 }}
+            tick={{ fill: "#8899aa", fontSize: 12 }}
             domain={[0, 100]}
             style={{ userSelect: "none" }}
           />
@@ -135,11 +129,7 @@ export default function BarGraph({ data }: BarGraphProps) {
             activeBar={false}
           >
             {data.map((entry) => (
-              <Cell
-                key={entry.name}
-                fill={entry.color}
-                style={{ pointerEvents: "none" }}
-              />
+              <Cell key={entry.name} fill={entry.color} style={{ pointerEvents: "none" }} />
             ))}
             <LabelList dataKey="name" content={<VerticalBarLabel />} />
           </Bar>

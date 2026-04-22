@@ -19,7 +19,7 @@ export default function ScrollToTopButton() {
       type="button"
       aria-label="Scroll to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed bottom-6 right-6 rounded-full bg-gradient-to-r from-primary to-accent p-3 text-white shadow-lg transition-transform duration-300 hover:scale-105"
+      className="primary-button fixed bottom-6 right-6 z-40 h-12 w-12 rounded-2xl p-0 shadow-glow"
     >
       <FaArrowUp />
     </button>

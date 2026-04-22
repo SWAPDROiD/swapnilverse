@@ -32,43 +32,43 @@ export const SOCIAL_LINKS: SocialLink[] = [
     name: "LinkedIn",
     href: LINKEDIN,
     icon: FaLinkedin,
-    color: "hover:text-blue-500",
-    glow: "0px 0px 14px rgba(59, 130, 246, 0.45)",
+    color: "hover:text-active",
+    glow: "0px 0px 18px rgba(0, 229, 255, 0.35)",
   },
   {
     name: "GitHub",
     href: GITHUB,
     icon: FaGithub,
-    color: "hover:text-purple-400",
-    glow: "0px 0px 14px rgba(168, 85, 247, 0.4)",
+    color: "hover:text-active",
+    glow: "0px 0px 18px rgba(0, 229, 255, 0.35)",
   },
   {
     name: "StackOverflow",
     href: STACKOVERFLOW,
     icon: FaStackOverflow,
-    color: "hover:text-orange-500",
-    glow: "0px 0px 14px rgba(249, 115, 22, 0.42)",
+    color: "hover:text-active",
+    glow: "0px 0px 18px rgba(0, 229, 255, 0.35)",
   },
   {
     name: "Instagram",
     href: INSTAGRAM,
     icon: FaInstagram,
-    color: "hover:text-pink-500",
-    glow: "0px 0px 14px rgba(236, 72, 153, 0.42)",
+    color: "hover:text-active",
+    glow: "0px 0px 18px rgba(0, 229, 255, 0.35)",
   },
   {
     name: "Facebook",
     href: FACEBOOK,
     icon: FaFacebook,
-    color: "hover:text-blue-600",
-    glow: "0px 0px 14px rgba(37, 99, 235, 0.42)",
+    color: "hover:text-active",
+    glow: "0px 0px 18px rgba(0, 229, 255, 0.35)",
   },
   {
     name: "YouTube",
     href: YOUTUBE,
     icon: FaYoutube,
-    color: "hover:text-red-500",
-    glow: "0px 0px 14px rgba(239, 68, 68, 0.42)",
+    color: "hover:text-active",
+    glow: "0px 0px 18px rgba(0, 229, 255, 0.35)",
   },
 ];
 
@@ -76,9 +76,9 @@ type SocialLinkSize = "sm" | "md" | "lg";
 type SocialLinkVariant = "rounded" | "minimal";
 
 const sizeClasses: Record<SocialLinkSize, { button: string; icon: string }> = {
-  sm: { button: "p-1.5", icon: "text-sm" },
-  md: { button: "p-2", icon: "text-base" },
-  lg: { button: "p-3", icon: "text-lg" },
+  sm: { button: "h-10 w-10", icon: "text-sm" },
+  md: { button: "h-11 w-11", icon: "text-base" },
+  lg: { button: "h-12 w-12", icon: "text-lg" },
 };
 
 interface SocialLinksProps {
@@ -96,32 +96,16 @@ export default function SocialLinks({
 }: SocialLinksProps) {
   const selectedSize = sizeClasses[size];
   const isMinimal = variant === "minimal";
-  const wrapperClassName = `flex min-w-0 flex-wrap items-center gap-4 ${className}`.trim();
+  const wrapperClassName = `flex min-w-0 flex-wrap items-center gap-3 ${className}`.trim();
 
   return (
     <div className={wrapperClassName}>
       {SOCIAL_LINKS.map(({ name, href, icon: Icon, color, glow }, index) => {
-        const linkClassName = `
-          group
-          relative
-          inline-flex
-          items-center
-          justify-center
-          text-gray-600
-          transition-all
-          duration-300
-          will-change-transform
-          focus-visible:outline-none
-          focus-visible:ring-2
-          focus-visible:ring-indigo-300
-          ${selectedSize.button}
-          ${color}
-          ${
-            isMinimal
-              ? "rounded-lg bg-transparent text-slate-600 dark:text-slate-300"
-              : "rounded-lg border border-gray-200 bg-white/70 text-slate-600 backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:text-slate-300"
-          }
-        `.replace(/\s+/g, " ").trim();
+        const linkClassName = `group relative inline-flex items-center justify-center transition-all duration-200 ease-out will-change-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${selectedSize.button} ${color} ${
+          isMinimal
+            ? "rounded-xl border border-border bg-transparent text-text-secondary hover:border-accent/40 hover:bg-[rgba(0,212,255,0.05)]"
+            : "rounded-2xl border border-border bg-[rgba(13,21,38,0.72)] text-text-secondary backdrop-blur-sm"
+        }`;
 
         return (
           <motion.a
@@ -132,29 +116,23 @@ export default function SocialLinks({
             aria-label={name}
             title={name}
             className={linkClassName}
-            initial={{ opacity: 0, y: 10, scale: 0.9 }}
-            whileInView={{ opacity: 1, y: [10, -2, 0], scale: 1 }}
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.6 }}
-            transition={{
-              duration: 0.45,
-              delay: index * 0.05,
-              ease: "easeOut",
-            }}
+            transition={{ duration: 0.35, delay: index * 0.04, ease: "easeOut" }}
             whileHover={
               isMinimal
-                ? undefined
+                ? { y: -3 }
                 : {
-                    scale: 1.2,
-                    y: -4,
-                    rotate: 5,
+                    y: -5,
                     boxShadow: glow,
                   }
             }
-            whileTap={isMinimal ? undefined : { scale: 0.95 }}
+            whileTap={{ scale: 0.95 }}
           >
             <Icon className={selectedSize.icon} aria-hidden="true" />
             {showTooltip ? (
-              <span className="pointer-events-none absolute -top-10 left-1/2 max-w-[12rem] -translate-x-1/2 break-words rounded-md border border-gray-200 bg-white/95 px-2 py-1 text-center text-xs text-gray-800 opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 dark:border-white/10 dark:bg-slate-900/95 dark:text-white">
+              <span className="pointer-events-none absolute -top-10 left-1/2 max-w-[12rem] -translate-x-1/2 break-words rounded-xl border border-border bg-surface px-3 py-1 text-center text-xs text-text-primary opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
                 {name}
               </span>
             ) : null}
