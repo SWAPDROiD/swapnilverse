@@ -79,8 +79,13 @@ export const en = {
       email: "Email",
       message: "Message",
     },
+    form: {
+      note: "Send a note and I'll get back to you soon.",
+      send: "Send Message",
+      sending: "Sending...",
+    },
     validation: {
-      fillAllFields: "Please fill all fields",
+      fillAllFields: "Please fill all fields!",
       validEmail: "Please enter a valid email",
       configError:
         "EmailJS is not configured. Add NEXT_PUBLIC_EMAILJS_* variables to .env.local.",

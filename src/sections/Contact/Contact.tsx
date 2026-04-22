@@ -3,7 +3,13 @@
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
+import {
+  FaCheckCircle,
+  FaEnvelope,
+  FaExclamationTriangle,
+  FaPhoneAlt,
+  FaTimes,
+} from "react-icons/fa";
 import Section from "@/components/Section";
 import SocialLinks from "@/components/SocialLinks";
 import { EMAIL, KOFI, MAILTO, PHONE, TEL, ZENDESK } from "@/constants/links";
@@ -176,15 +182,71 @@ export default function Contact() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.18 }}
-            className="fixed right-4 top-4 z-50"
+            className="fixed right-4 top-4 z-50 w-[min(92vw,28rem)]"
             aria-live="polite"
           >
             <div
-              className={`max-w-xs rounded-lg px-4 py-3 text-white shadow-lg ${
-                toast.type === "success" ? "bg-green-600" : "bg-red-600"
+              className={`relative overflow-hidden rounded-2xl border bg-[#121212]/95 p-4 text-white shadow-[0_18px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl ${
+                toast.type === "success"
+                  ? "border-primary/35"
+                  : "border-rose-400/35"
               }`}
             >
-              {toast.msg}
+              <div
+                className={`pointer-events-none absolute inset-0 ${
+                  toast.type === "success"
+                    ? "bg-[radial-gradient(circle_at_left,rgba(124,58,237,0.14),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent)]"
+                    : "bg-[radial-gradient(circle_at_left,rgba(251,113,133,0.16),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent)]"
+                }`}
+              />
+              <div className="relative flex items-start gap-4">
+                <div
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border ${
+                    toast.type === "success"
+                      ? "border-primary/30 bg-primary/12 text-primary"
+                      : "border-rose-400/30 bg-rose-400/12 text-rose-300"
+                  }`}
+                >
+                  {toast.type === "success" ? (
+                    <FaCheckCircle aria-hidden="true" className="h-5 w-5" />
+                  ) : (
+                    <FaExclamationTriangle
+                      aria-hidden="true"
+                      className="h-5 w-5"
+                    />
+                  )}
+                </div>
+
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p
+                        className={`text-xs font-semibold uppercase tracking-[0.28em] ${
+                          toast.type === "success"
+                            ? "text-primary"
+                            : "text-rose-300"
+                        }`}
+                      >
+                        {toast.type === "success"
+                          ? "Message Sent"
+                          : "Transmission Error"}
+                      </p>
+                      <p className="mt-1 pr-2 text-base leading-6 text-white/88">
+                        {toast.msg}
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => setToast(null)}
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full text-white/45 transition-colors hover:text-white/75"
+                      aria-label="Dismiss notification"
+                    >
+                      <FaTimes aria-hidden="true" className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         ) : null}
@@ -291,72 +353,74 @@ export default function Contact() {
           >
             <form
               onSubmit={submit}
-              className="glass relative rounded-2xl border border-white/10 p-6 shadow-lg"
+              className="glass relative overflow-hidden rounded-2xl border border-white/10 p-6 shadow-lg sm:p-8"
             >
-              <motion.div variants={stagger} className="grid gap-4">
-                <div className="relative">
-                  <input
-                    id="name"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder=" "
-                    className="peer w-full rounded-lg border border-white/10 bg-transparent px-4 py-3 outline-none transition-transform duration-300 ease-in-out focus:scale-[1.02] focus:shadow-[0_0_18px_rgba(139,92,246,0.18)]"
-                  />
-                  {!form.name ? (
+              <motion.div variants={stagger} className="relative grid gap-6">
+                <div className="grid gap-5 md:grid-cols-2 md:gap-0">
+                  <div className="relative md:border-r md:border-white/5 md:pr-6">
                     <label
                       htmlFor="name"
-                      className="pointer-events-none absolute left-4 top-[calc(50%+2px)] -translate-y-1/2 text-sm text-slate-500 transition-all duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs dark:text-slate-400"
+                      className="mb-4 block text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400"
                     >
                       {i18n.contact.placeholders.name}
                     </label>
-                  ) : null}
-                </div>
+                    <input
+                      id="name"
+                      name="name"
+                      value={form.name}
+                      onChange={handleChange}
+                      aria-label={i18n.contact.placeholders.name}
+                      placeholder="Your name"
+                      className="w-full border-b border-white/10 bg-transparent pb-4 text-base text-slate-900 outline-none transition-colors duration-300 placeholder:text-slate-500/70 focus:border-primary/60 dark:text-white dark:placeholder:text-slate-500"
+                    />
+                  </div>
 
-                <div className="relative">
-                  <input
-                    id="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder=" "
-                    className="peer w-full rounded-lg border border-white/10 bg-transparent px-4 py-3 outline-none transition-transform duration-300 ease-in-out focus:scale-[1.02] focus:shadow-[0_0_18px_rgba(236,72,153,0.14)]"
-                  />
-                  {!form.email ? (
+                  <div className="relative md:pl-6">
                     <label
                       htmlFor="email"
-                      className="pointer-events-none absolute left-4 top-[calc(50%+2px)] -translate-y-1/2 text-sm text-slate-500 transition-all duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs dark:text-slate-400"
+                      className="mb-4 block text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400"
                     >
                       {i18n.contact.placeholders.email}
                     </label>
-                  ) : null}
+                    <input
+                      id="email"
+                      name="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      aria-label={i18n.contact.placeholders.email}
+                      placeholder="email@domain.com"
+                      className="w-full border-b border-white/10 bg-transparent pb-4 text-base text-slate-900 outline-none transition-colors duration-300 placeholder:text-slate-500/70 focus:border-primary/60 dark:text-white dark:placeholder:text-slate-500"
+                    />
+                  </div>
                 </div>
 
-                <div className="relative">
+                <div className="relative border-white/5">
+                  <label
+                    htmlFor="message"
+                    className="mb-4 block text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400"
+                  >
+                    {i18n.contact.placeholders.message}
+                  </label>
                   <textarea
                     id="message"
                     name="message"
                     value={form.message}
                     onChange={handleChange}
-                    placeholder=" "
+                    aria-label={i18n.contact.placeholders.message}
+                    placeholder="Write your message"
                     rows={6}
-                    className="peer w-full resize-none rounded-lg border border-white/10 bg-transparent px-4 py-3 outline-none transition-transform duration-300 ease-in-out focus:scale-[1.01] focus:shadow-[0_0_22px_rgba(99,102,241,0.12)]"
+                    className="min-h-[180px] w-full resize-none border-b border-white/10 bg-transparent pb-4 text-base text-slate-900 outline-none transition-colors duration-300 placeholder:text-slate-500/70 focus:border-primary/60 dark:text-white dark:placeholder:text-slate-500"
                   />
-                  {!form.message ? (
-                    <label
-                      htmlFor="message"
-                      className="pointer-events-none absolute left-4 top-[calc(1rem+2px)] text-sm text-slate-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs dark:text-slate-400"
-                    >
-                      {i18n.contact.placeholders.message}
-                    </label>
-                  ) : null}
                 </div>
 
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex flex-col gap-5 border-white/5 sm:flex-row sm:items-end sm:justify-between">
+                  <p className="max-w-sm text-sm leading-6 text-slate-600 dark:text-slate-400">
+                    {i18n.contact.form.note}
+                  </p>
                   <button
                     type="submit"
                     disabled={loading}
-                    className={`inline-flex items-center justify-center gap-3 rounded-full px-6 py-3 text-white transition-all duration-300 ${
+                    className={`inline-flex items-center justify-center gap-3 self-start rounded-full px-6 py-3 text-white transition-all duration-300 sm:self-auto ${
                       loading
                         ? "cursor-not-allowed opacity-70"
                         : "hover:scale-105"
@@ -387,9 +451,7 @@ export default function Contact() {
                         />
                       </svg>
                     ) : null}
-                    <span className="font-medium">
-                      {loading ? "Sending..." : "Send Message"}
-                    </span>
+                    <span>{loading ? i18n.contact.form.sending : i18n.contact.form.send}</span>
                   </button>
                 </div>
               </motion.div>
