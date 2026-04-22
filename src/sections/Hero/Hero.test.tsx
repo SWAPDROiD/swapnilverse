@@ -4,6 +4,7 @@ import Hero from "@/sections/Hero";
 describe("Hero", () => {
   beforeEach(() => {
     jest.useFakeTimers();
+    window.scrollTo = jest.fn();
     document.body.innerHTML = '<section id="contact"></section><section id="projects"></section>';
     const contact = document.getElementById("contact");
     const projects = document.getElementById("projects");
@@ -28,8 +29,7 @@ describe("Hero", () => {
     fireEvent.click(screen.getByRole("button", { name: "Hire Me" }));
     fireEvent.click(screen.getByRole("button", { name: "View Projects" }));
 
-    expect(document.getElementById("contact")?.scrollIntoView).toHaveBeenCalled();
-    expect(document.getElementById("projects")?.scrollIntoView).toHaveBeenCalled();
+    expect(window.scrollTo).toHaveBeenCalledTimes(2);
   });
 
   it("types out a role over time", () => {
@@ -45,6 +45,7 @@ describe("Hero", () => {
 
   it("does not fail when target sections are missing", () => {
     document.body.innerHTML = "";
+    jest.clearAllMocks();
     render(<Hero />);
 
     fireEvent.click(screen.getByRole("button", { name: "Hire Me" }));

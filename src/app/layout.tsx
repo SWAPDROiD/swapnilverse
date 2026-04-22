@@ -52,7 +52,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="dark">
-      <body className="overflow-x-hidden bg-[var(--bg)] text-[var(--text)] antialiased">
+      <body className="overflow-x-hidden bg-background text-text-primary antialiased">
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
           strategy="afterInteractive"

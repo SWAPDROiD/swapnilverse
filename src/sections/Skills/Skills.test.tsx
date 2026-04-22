@@ -15,7 +15,7 @@ describe("Skills", () => {
   it("renders a progress bar for each skill item", () => {
     const { container } = render(<Skills />);
 
-    expect(container.querySelectorAll(".bg-gradient-to-r.from-primary.to-accent")).toHaveLength(
+    expect(container.querySelectorAll(".bg-accent")).toHaveLength(
       SKILL_CATEGORIES.flatMap((category) => category.items).length,
     );
   });

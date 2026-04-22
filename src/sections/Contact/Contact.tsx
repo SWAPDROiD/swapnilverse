@@ -20,11 +20,6 @@ interface StatusMessage {
   msg: string;
 }
 
-const sectionVariant = {
-  hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0 },
-};
-
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 const field = { hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } };
 
@@ -86,8 +81,7 @@ export default function Contact() {
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { serviceId, templateId, publicKey, contactTarget } =
-      getEmailConfig();
+    const { serviceId, templateId, publicKey, contactTarget } = getEmailConfig();
 
     if (!form.name || !form.email || !form.message) {
       const nextStatus = {
@@ -145,10 +139,7 @@ export default function Contact() {
     } catch (error) {
       const nextStatus = {
         type: "error",
-        msg:
-          error instanceof Error
-            ? error.message
-            : i18n.contact.messages.error,
+        msg: error instanceof Error ? error.message : i18n.contact.messages.error,
       } satisfies StatusMessage;
       setStatus(nextStatus);
       showToast(nextStatus);
@@ -158,19 +149,8 @@ export default function Contact() {
   };
 
   return (
-    <Section id="contact" className="relative overflow-hidden py-20">
-      <motion.div
-        className="absolute left-0 top-0 h-72 w-72 -translate-x-1/3 -translate-y-1/3 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-indigo-400 opacity-20 blur-3xl"
-        animate={{ scale: [1, 1.05, 1] }}
-        transition={{ duration: 6, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute bottom-4 right-0 h-96 w-96 translate-x-1/3 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-600 to-pink-400 opacity-20 blur-3xl"
-        animate={{ scale: [1, 1.04, 1] }}
-        transition={{ duration: 8, repeat: Infinity }}
-      />
-
-      <div className="relative mx-auto max-w-6xl px-6">
+    <Section id="contact" className="section-shell relative overflow-hidden pb-24">
+      <div className="section-container">
         {toast ? (
           <motion.div
             initial={{ opacity: 0, y: -8 }}
@@ -180,8 +160,10 @@ export default function Contact() {
             aria-live="polite"
           >
             <div
-              className={`max-w-xs rounded-lg px-4 py-3 text-white shadow-lg ${
-                toast.type === "success" ? "bg-green-600" : "bg-red-600"
+              className={`max-w-xs rounded-2xl border px-4 py-3 text-sm font-medium text-text-primary shadow-lg ${
+                toast.type === "success"
+                  ? "border-trace/40 bg-[rgba(0,255,159,0.12)]"
+                  : "border-progress/40 bg-[rgba(0,172,193,0.14)]"
               }`}
             >
               {toast.msg}
@@ -189,211 +171,188 @@ export default function Contact() {
           </motion.div>
         ) : null}
 
-        <motion.h2
-          className="mb-6 text-3xl font-bold text-slate-950 dark:text-white"
-          variants={sectionVariant}
-        >
-          Let&apos;s Build Something Amazing
-        </motion.h2>
+        <div className="section-intro">
+          <p className="section-label">Contact</p>
+          <h2 className="section-heading">Let&apos;s Build Something Amazing</h2>
+          <p className="section-copy">{i18n.contact.openTo}</p>
+        </div>
 
         <motion.div
-          className="grid items-start gap-8 lg:grid-cols-2"
+          className="bento-grid items-start"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
           variants={stagger}
         >
-          <motion.div className="min-w-0 space-y-4" variants={field}>
-            <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-              {i18n.contact.openTo}
-            </p>
+          <motion.div variants={field} className="col-span-1 space-y-5 xl:col-span-5">
+            <div className="bento-card space-y-5">
+              <div className="flex flex-wrap gap-3">
+                <div className="token-pill">{i18n.contact.experience}</div>
+                <div className="token-pill">{i18n.contact.applicationsDelivered}</div>
+                <div className="token-pill">
+                  <span>{i18n.contact.currentlyAt} </span>
+                  <a href={ZENDESK} target="_blank" rel="noreferrer" className="ml-1 mr-1 text-accent">
+                    {i18n.contact.zendesk}
+                  </a>
+                  <span>{i18n.contact.zendeskLocation} </span>
+                </div>
+              </div>
 
-            <div className="mt-4 mb-4 flex flex-wrap gap-3">
-              <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-sm">
-                {i18n.contact.experience}
+              <div>
+                <p className="section-label">Reach me directly</p>
+                <div className="mt-4 flex min-w-0 flex-col gap-3">
+                  <a href={MAILTO} className="interactive-card rounded-[24px] border border-border bg-[rgba(13,21,38,0.72)] p-4 transition duration-200 ease-out hover:border-accent/40">
+                    <div className="flex min-w-0 items-center gap-4">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent text-background">
+                        <FaEnvelope aria-hidden="true" />
+                      </span>
+                      <span className="flex min-w-0 flex-col">
+                        <span className="text-xs uppercase tracking-[0.22em] text-text-secondary">{i18n.contact.email}</span>
+                        <span className="break-all text-text-primary">{EMAIL}</span>
+                      </span>
+                    </div>
+                  </a>
+
+                  <a href={TEL} className="interactive-card rounded-[24px] border border-border bg-[rgba(13,21,38,0.72)] p-4 transition duration-200 ease-out hover:border-accent/40">
+                    <div className="flex min-w-0 items-center gap-4">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent text-background">
+                        <FaPhoneAlt aria-hidden="true" />
+                      </span>
+                      <span className="flex min-w-0 flex-col">
+                        <span className="text-xs uppercase tracking-[0.22em] text-text-secondary">{i18n.contact.phone}</span>
+                        <span className="text-text-primary">{PHONE}</span>
+                      </span>
+                    </div>
+                  </a>
+                </div>
               </div>
-              <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-sm">
-                {i18n.contact.applicationsDelivered}
-              </div>
-              <div className="inline-flex flex-wrap items-center gap-1 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-sm">
-                <span>{i18n.contact.currentlyAt}</span>
-                <a
-                  href={ZENDESK}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-primary hover:underline"
-                >
-                  {i18n.contact.zendesk}
-                </a>
-              </div>
+
+              <SocialLinks size="lg" variant="rounded" showTooltip />
             </div>
 
-            <div className="mt-8 pt-4">
-              <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                {i18n.contact.reachMeDirectly}
-              </p>
-              <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a
-                  href={MAILTO}
-                  className="inline-flex min-w-0 items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-900 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 dark:text-white"
-                >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary">
-                    <FaEnvelope aria-hidden="true" />
-                  </span>
-                  <span className="flex min-w-0 flex-col">
-                    <span className="text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                      {i18n.contact.email}
-                    </span>
-                    <span className="break-all hover:underline">{EMAIL}</span>
-                  </span>
-                </a>
-
-                <a
-                  href={TEL}
-                  className="inline-flex min-w-0 items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-900 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 dark:text-white"
-                >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary">
-                    <FaPhoneAlt aria-hidden="true" />
-                  </span>
-                  <span className="flex min-w-0 flex-col">
-                    <span className="text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                      {i18n.contact.phone}
-                    </span>
-                    <span className="hover:underline">{PHONE}</span>
-                  </span>
-                </a>
-              </div>
-            </div>
-
-            <SocialLinks size="lg" variant="rounded" showTooltip />
-
-            <div className="pt-3">
-              <div className="inline-flex max-w-xl flex-col items-start gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-left backdrop-blur-sm">
-                <p className="text-sm font-medium text-slate-900 dark:text-white">
-                  {i18n.contact.enjoyed}
-                </p>
-                <a
-                  href={KOFI}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_25px_rgba(124,58,237,0.35)]"
-                >
-                  <span aria-hidden="true">☕</span>
-                  <span>{i18n.contact.buyMeCoffee}</span>
-                </a>
-              </div>
-            </div>
+            <motion.div variants={field} className="bento-card">
+              <p className="text-sm font-medium text-text-primary">{i18n.contact.enjoyed}</p>
+              <a
+                href={KOFI}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="primary-button mt-4"
+              >
+                <span aria-hidden="true">☕</span>
+                <span>{i18n.contact.buyMeCoffee}</span>
+              </a>
+            </motion.div>
           </motion.div>
 
-          <motion.div
-            variants={field}
-            className="relative mt-4 min-w-0 lg:mt-6"
-          >
-            <form
+          <motion.div variants={field} className="col-span-1 xl:col-span-7">
+            <motion.form
               onSubmit={submit}
-              className="glass relative rounded-2xl border border-white/10 p-6 shadow-lg"
+              className="relative overflow-hidden rounded-[24px] border border-[#1a2a4a] bg-gradient-to-br from-[#0d1526] to-[#0d1b2e] p-6 md:p-8"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <motion.div variants={stagger} className="grid gap-4">
-                <div className="relative">
-                  <input
-                    id="name"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder=" "
-                    className="peer w-full rounded-lg border border-white/10 bg-transparent px-4 py-3 outline-none transition-transform duration-300 ease-in-out focus:scale-[1.02] focus:shadow-[0_0_18px_rgba(139,92,246,0.18)]"
-                  />
-                  {!form.name ? (
+              <div className="pointer-events-none absolute inset-0">
+                <div className="absolute left-[-3rem] top-[-2rem] h-40 w-40 rounded-full bg-[#00d4ff] opacity-10 blur-[110px]" />
+                <div className="absolute bottom-[-3rem] right-[-1rem] h-48 w-48 rounded-full bg-[#00ffff] opacity-10 blur-[120px]" />
+                <div
+                  className="absolute inset-0 opacity-30"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(rgba(0,212,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.05) 1px, transparent 1px)",
+                    backgroundSize: "32px 32px",
+                  }}
+                />
+              </div>
+
+              <div className="relative">
+                <div className="mb-8">
+                  <p className="section-label">Message</p>
+                </div>
+
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                  <div>
                     <label
                       htmlFor="name"
-                      className="pointer-events-none absolute left-4 top-[calc(50%+2px)] -translate-y-1/2 text-sm text-slate-500 transition-all duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs dark:text-slate-400"
+                      className="mb-2 block text-xs uppercase tracking-[0.34em] text-[#00d4ff]"
                     >
-                      {i18n.contact.placeholders.name}
+                      Name
                     </label>
-                  ) : null}
-                </div>
+                    <input
+                      id="name"
+                      name="name"
+                      value={form.name}
+                      onChange={handleChange}
+                      placeholder={form.name ? "" : "YOUR NAME"}
+                      className="w-full border-b border-[#1a2a4a] bg-transparent py-2 text-white outline-none transition duration-200 ease-out placeholder:text-[#8899aa]/60 focus:border-[#00d4ff] focus:shadow-[0_10px_30px_rgba(0,212,255,0.08)]"
+                    />
+                  </div>
 
-                <div className="relative">
-                  <input
-                    id="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder=" "
-                    className="peer w-full rounded-lg border border-white/10 bg-transparent px-4 py-3 outline-none transition-transform duration-300 ease-in-out focus:scale-[1.02] focus:shadow-[0_0_18px_rgba(236,72,153,0.14)]"
-                  />
-                  {!form.email ? (
+                  <div>
                     <label
                       htmlFor="email"
-                      className="pointer-events-none absolute left-4 top-[calc(50%+2px)] -translate-y-1/2 text-sm text-slate-500 transition-all duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs dark:text-slate-400"
+                      className="mb-2 block text-xs uppercase tracking-[0.34em] text-[#00d4ff]"
                     >
-                      {i18n.contact.placeholders.email}
+                      Email
                     </label>
-                  ) : null}
-                </div>
+                    <input
+                      id="email"
+                      name="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      placeholder={form.email ? "" : "YOUR EMAIL"}
+                      className="w-full border-b border-[#1a2a4a] bg-transparent py-2 text-white outline-none transition duration-200 ease-out placeholder:text-[#8899aa]/60 focus:border-[#00d4ff] focus:shadow-[0_10px_30px_rgba(0,212,255,0.08)]"
+                    />
+                  </div>
 
-                <div className="relative">
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    placeholder=" "
-                    rows={6}
-                    className="peer w-full resize-none rounded-lg border border-white/10 bg-transparent px-4 py-3 outline-none transition-transform duration-300 ease-in-out focus:scale-[1.01] focus:shadow-[0_0_22px_rgba(99,102,241,0.12)]"
-                  />
-                  {!form.message ? (
+                  <div className="md:col-span-2">
                     <label
                       htmlFor="message"
-                      className="pointer-events-none absolute left-4 top-[calc(1rem+2px)] text-sm text-slate-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:-translate-y-4 peer-focus:text-xs dark:text-slate-400"
+                      className="mb-2 block text-xs uppercase tracking-[0.34em] text-[#00d4ff]"
                     >
-                      {i18n.contact.placeholders.message}
+                      Message
                     </label>
-                  ) : null}
-                </div>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={form.message}
+                      onChange={handleChange}
+                      placeholder={form.message ? "" : "YOUR MESSAGE"}
+                      rows={6}
+                      className="min-h-[120px] w-full resize-none border-b border-[#1a2a4a] bg-transparent py-2 text-white outline-none transition duration-200 ease-out placeholder:text-[#8899aa]/60 focus:border-[#00d4ff] focus:shadow-[0_12px_36px_rgba(0,212,255,0.08)]"
+                    />
+                  </div>
 
-                <div className="flex items-center justify-between gap-4">
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className={`inline-flex items-center justify-center gap-3 rounded-full px-6 py-3 text-white transition-all duration-300 ${
-                      loading
-                        ? "cursor-not-allowed opacity-70"
-                        : "hover:scale-105"
-                    }`}
-                    style={{
-                      background:
-                        "linear-gradient(90deg,#6366F1 0%,#7C3AED 50%,#EC4899 100%)",
-                    }}
-                  >
-                    {loading ? (
-                      <svg
-                        className="h-4 w-4 animate-spin"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <circle
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="rgba(255,255,255,0.25)"
-                          strokeWidth="4"
-                        />
-                        <path
-                          d="M22 12a10 10 0 00-10-10"
-                          stroke="#fff"
-                          strokeWidth="4"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    ) : null}
-                    <span className="font-medium">
-                      {loading ? "Sending..." : "Send Message"}
-                    </span>
-                  </button>
+                  <div className="flex items-end">
+                    <p className="text-xs italic text-[#8899aa]">
+                      Send a note and I&apos;ll get back to you soon.
+                    </p>
+                  </div>
+
+                  <div className="flex items-end justify-start md:justify-end">
+                    <motion.button
+                      type="submit"
+                      disabled={loading}
+                      className={`inline-flex items-center justify-center rounded-xl bg-[#00d4ff] px-6 py-3 text-sm font-semibold text-[#0a0e1a] transition-colors duration-200 hover:bg-[#00ffff] ${
+                        loading ? "cursor-not-allowed opacity-70" : ""
+                      }`}
+                      whileHover={loading ? undefined : { scale: 1.05, y: -1 }}
+                      whileTap={loading ? undefined : { scale: 0.96 }}
+                      transition={{ type: "spring", stiffness: 320, damping: 18 }}
+                    >
+                      {loading ? (
+                        <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                          <circle cx="12" cy="12" r="10" stroke="rgba(10,14,26,0.2)" strokeWidth="4" />
+                          <path d="M22 12a10 10 0 00-10-10" stroke="#0a0e1a" strokeWidth="4" strokeLinecap="round" />
+                        </svg>
+                      ) : null}
+                      <span>{loading ? "Sending..." : "Send Message"}</span>
+                    </motion.button>
+                  </div>
                 </div>
-              </motion.div>
-            </form>
+              </div>
+            </motion.form>
           </motion.div>
         </motion.div>
       </div>

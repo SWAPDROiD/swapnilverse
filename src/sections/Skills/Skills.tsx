@@ -7,37 +7,40 @@ import { i18n } from "@/i18n";
 
 export default function Skills() {
   return (
-    <Section id="skills" className="py-20">
-      <div className="mx-auto max-w-6xl px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-6 text-2xl font-bold text-slate-950 dark:text-white"
-        >
-          {i18n.skills.title}
-        </motion.h2>
+    <Section id="skills" className="section-shell">
+      <div className="section-container">
+        <div className="section-intro">
+          <p className="section-label">Capability Stack</p>
+          <h2 className="section-heading">{i18n.skills.title}</h2>
+        </div>
 
-        <div className="grid gap-4 md:grid-cols-4">
-          {SKILL_CATEGORIES.map((category) => (
+        <div className="bento-grid">
+          {SKILL_CATEGORIES.map((category, index) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-md"
+              transition={{ duration: 0.45, delay: index * 0.05 }}
+              className="bento-card interactive-card col-span-1 md:col-span-3 xl:col-span-3"
             >
-              <div className="mb-2 font-semibold text-slate-950 dark:text-white">
-                {category.title}
-              </div>
-              <div className="flex flex-col gap-2">
+              <p className="section-label">{category.title}</p>
+              <div className="mt-6 flex flex-col gap-4">
                 {category.items.map((item) => (
-                  <div key={item.label} className="flex items-center justify-between gap-3 text-sm">
-                    <div className="text-slate-700 dark:text-slate-300">{item.label}</div>
-                    <div className="h-2 w-24 overflow-hidden rounded-md bg-black/5 dark:bg-white/10">
-                      <div
-                        className="h-full bg-gradient-to-r from-primary to-accent"
-                        style={{ width: `${item.level}%` }}
+                  <div key={item.label} className="space-y-2">
+                    <div className="flex items-center justify-between gap-3 text-sm">
+                      <span className="text-base text-text-primary">{item.label}</span>
+                      <span className="text-xs font-semibold uppercase tracking-[0.22em] text-text-secondary">
+                        {item.level}%
+                      </span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-[rgba(0,212,255,0.08)]">
+                      <motion.div
+                        className="h-full rounded-full bg-accent"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${item.level}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7, ease: "easeOut", delay: index * 0.05 }}
                       />
                     </div>
                   </div>
